@@ -1,0 +1,22 @@
+﻿{
+    "caption": "Повідомлення",
+    "description": "Системні повідомлення",
+    "documentation": "Системні повідомлення",
+    "attributes": {
+        "messageBody": {
+            "caption": "Повідомлення"
+        },
+        "complete": {
+            "caption": "Готове для відправки"
+        },
+        "messageType": {
+            "caption": "Тип"
+        },
+        "startDate": {
+            "caption": "Дійсне з"
+        },
+        "expireDate": {
+            "caption": "Дійсне до"
+        }
+    }
+}

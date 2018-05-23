@@ -1,0 +1,44 @@
+﻿{
+    "caption": "Audit",
+    "description": "Audit",
+    "attributes": {
+        "entity": {
+            "caption": "Maddə",
+            "description": "Maddə"
+        },
+        "entityinfo_id": {
+            "caption": "Maddənin ID qeydləri",
+            "description": "Maddənin ID qeydləri"
+        },
+        "actionType": {
+            "caption": "Əməliyyat",
+            "description": "Fəaliyyət"
+        },
+        "actionUser": {
+            "caption": "İstifadəçi",
+            "description": "İstifadəçi"
+        },
+        "actionTime": {
+            "caption": "Əməliyyat vaxtı",
+            "description": "Fəaliyyət vaxtı"
+        },
+        "remoteIP": {
+            "caption": "IP ünvan",
+            "description": "Çağırışçı tərəfin IP ünvanı"
+        },
+        "fromValue": {
+            "caption": "Qiymətdən"
+        },
+        "toValue": {
+            "caption": "Qiymətə"
+        },
+        "targetUser": {
+            "caption": "Hədəf istifadəçi ",
+            "description": "Məlumatları dəyişmiş istifadəçi adı"
+        },
+        "targetRole": {
+            "caption": "Hədəf rol",
+            "description": "Məlumatları dəyişdirmiş istifadəçi rolu"
+        }
+    }
+}

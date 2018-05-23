@@ -1,0 +1,14 @@
+﻿{
+    "caption": "Naviqasiya panelinin inzibatlaşdırılması",
+    "description": "Təsvir",
+    "attributes": {
+        "instanceID": {
+            "caption": "Yarlıq",
+            "description": ""
+        },
+        "admSubjID": {
+            "caption": "İnzibatlaşdırma subyekti",
+            "description": ""
+        }
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "caption": "Заявки",
+    "description": "Список заявок",
+    "attributes": {
+      "reqDate": {
+      "caption": "Дата заявки",
+      "description": "Дата заявки"
+        },
+      "applicantPhone": {
+       "caption": "Телефон заявника",
+      "description": "Телефон заявника"     
+   },
+     "applicantInfo": {
+      "caption": "Інформація про заявника",
+      "description": "Інформація про заявника"
+   },
+
+   "department": { 
+     "caption": "Департамент"
+     },
+   "subDepartment": { 
+     "caption": "Підрозділ"
+     },
+   "reqText": {
+     "caption": "Текст заяви",
+     "description": "Текст заяви"
+      } ,
+   "reqDoc":{
+	"caption": "Завантаження",
+	"description": "Завантаження"
+	},
+   "answer":
+	{
+        "caption": "Відповідь",
+        "description": "Відповідь"
+        } ,
+             
+   "status": {
+	"caption": "Статус заявки"
+	}
+}
+}

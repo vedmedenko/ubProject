@@ -1,0 +1,30 @@
+﻿{
+    "caption": "Kökləmələr",
+    "description": "Sistem kökləmələrinin saxlandığı obyekt",
+    "attributes": {
+        "settingKey": {
+            "caption": "Açar",
+            "description": "Kökləmə açarı"
+        },
+        "name": {
+            "caption": "Ad",
+            "description": "Kökləmənin adı"
+        },
+        "description": {
+            "caption": "Təsvir",
+            "description": "Təsvir"
+        },
+        "type": {
+            "caption": "Tip",
+            "description": "Qiymət tipi"
+        },
+        "settingValue": {
+            "caption": "Qiymət",
+            "description": "Qiymət"
+        },
+        "defaultValue": {
+            "caption": "Susmaya görə qiymət",
+            "description": "Susmaya görə qiymət"
+        }
+    }
+}

@@ -1,0 +1,17 @@
+﻿{
+    "caption": "EntityDiagrams",
+    "description": "Entity relation diagrams",
+    "attributes": {
+        "model": {
+            "caption": "Model",
+            "description": "Model"
+        },
+        "name": {
+            "caption": "Name"
+        },
+        "document": {
+            "caption": "Entity diagram",
+            "description": "Entity diagram"
+        }
+    }
+}

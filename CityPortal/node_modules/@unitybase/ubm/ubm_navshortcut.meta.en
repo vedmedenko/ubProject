@@ -1,0 +1,36 @@
+﻿{
+    "caption": "Shortcut",
+    "description": "Shortcut to launch function",
+    "attributes": {
+        "desktopID": {
+            "caption": "Desktop"
+        },
+        "parentID": {
+            "caption": "Shortcut folder"
+        },
+        "code": {
+            "caption": "Code"
+        },
+        "isFolder": {
+            "caption": "Is folder?"
+        },
+        "caption": {
+            "caption": "Shortcut caption"
+        },
+        "cmdCode": {
+            "caption": "Command code"
+        },
+        "inWindow": {
+            "caption": "In new window",
+            "description": "Display in new window"
+        },
+        "isCollapsed": {
+            "caption": "Collapse",
+            "description": "Show collapsed at the first start"
+        },
+        "displayOrder": {
+            "caption": "№ order",
+            "description": "Display order (in current node)"
+        }
+    }
+}

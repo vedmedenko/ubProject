@@ -1,0 +1,18 @@
+﻿{
+    "caption": "Qeydiyyat açarlarının rezerv edilmiş sayğacları",
+    "description": "Qeydiyyat açarlarının rezerv edilmiş sayğacları",
+    "attributes": {
+        "regKey": {
+            "caption": "Qeydiyyat açarı",
+            "description": "Qeydiyyat açarı"
+        },
+        "counter": {
+            "caption": "Sayğac",
+            "description": "Sayğac"
+        },
+        "reservedDate": {
+            "caption": "Əvvəlcədən təyin edilmiş tarix",
+            "description": "Sənədin əvvəlcədən təyin edilmiş tarixi"
+        }
+    }
+}

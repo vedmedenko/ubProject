@@ -1,0 +1,26 @@
+﻿{
+    "caption": "Повідомлення",
+    "description": "Системні повідомлення",
+    "documentation": "Системні повідомлення",
+    "attributes": {
+        "messageBody": {
+            "caption": "Повідомлення"
+        },
+        "complete": {
+            "caption": "Доставляти повідомлення"
+        },
+        "messageType": {
+            "caption": "Тип"
+        },
+        "startDate": {
+            "caption": "Дійсне з"
+        },
+        "expireDate": {
+            "caption": "Дійсне до"
+        },
+        "recipients": {
+            "caption": "Отримувачі повідомлень",
+            "description": "Отримувачі повідомлень"
+        }
+    }
+}

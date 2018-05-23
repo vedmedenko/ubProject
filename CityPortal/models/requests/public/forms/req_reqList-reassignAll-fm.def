@@ -1,0 +1,61 @@
+// @! "do not remove comments below unless you know what you do!"
+// @isDefault "false"
+// @entity "req_reqList"
+// @model "RequestList"
+// @formType "custom"
+// @caption "Reassign to"
+// @description "Reassign to other departments"
+
+Ext.define('RequestList.reassignAll', {
+    extend: "Ext.form.Panel",
+    size: {
+        width: 500,
+        height: 600
+    },
+
+    items: [
+        {
+            xtype:'ubcombobox',
+            width:400,
+            name:'cbxDep',
+            fieldLabel: UB.i18n('department'),
+            allowBlank: false,
+            ubRequest: {
+              entity: 'req_depart',
+              method: 'select',
+              fieldList: ['ID','name']
+                }
+        }
+    ],
+    buttons: [{
+        ubID: 'btnOK',
+        text: UB.i18n('ok'),
+        glyph: UB.core.UBUtil.glyphs.faSave,
+        formBind: true
+    }, {
+        ubID: 'btnCancel',
+        text: UB.i18n('cancel'),
+        glyph: UB.core.UBUtil.glyphs.faTimes
+    }],
+
+    initComponent: function () {
+        var me = this;
+        me.callParent(arguments);
+
+        me.down('button[ubID="btnOK"]').handler = function(){
+            me.commandConfig.deferred.resolve({
+                action: 'ok',
+                newDep: me.getForm().findField('cbxDep').getValue()
+               });
+            me.up('window').close();
+        };
+
+        me.down('button[ubID="btnCancel"]').handler = function(){
+            me.commandConfig.deferred.resolve({
+                action: 'cancel'
+            });
+            me.up('window').close();
+        };
+    }
+});
+

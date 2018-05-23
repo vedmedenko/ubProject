@@ -1,0 +1,3 @@
+settingKey;type;defaultValue;settingValue;name;description
+ubs.numcounter.autoRegWithDeletedNumber;boolean;"true";"true";Use deleted numbers first;During number generation priority is to 'Deleted/reserved numbers' dictionary
+

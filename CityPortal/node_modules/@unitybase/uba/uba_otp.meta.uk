@@ -1,0 +1,26 @@
+﻿{
+    "caption": "Одноразові паролі",
+    "description": "Одноразові паролі",
+    "attributes": {
+        "otp": {
+            "caption": "Пароль",
+            "description": "Згенерований одноразовий пароль"
+        },
+        "userID": {
+            "caption": "Користувач",
+            "description": "Користувач, для якого згенеровано пароль"
+        },
+        "uData": {
+            "caption": "Додаткові дані",
+            "description": "Додаткові дані"
+        },
+        "expiredDate": {
+            "caption": "Термін дії",
+            "description": "Термін дії"
+        },
+        "otpKind": {
+            "caption": "Вид паролю",
+            "description": "Вид паролю(Email, SMS тощо)"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+﻿{
+    "caption": "Шаблони звітів",
+    "description": "Шаблони звітів",
+    "attributes": {
+        "model": {
+            "caption": "Модель",
+            "description": "Модель, де зберігається звіт"
+        },
+        "report_code": {
+            "caption": "Код звіту"
+        },
+        "name": {
+            "caption": "Назва"
+        },
+        "template": {
+            "caption": "Шаблон",
+            "description": "Шаблон звіту"
+        },
+        "code": {
+            "caption": "Javascript code",
+            "description": "Javascript code"
+        }
+    }
+}

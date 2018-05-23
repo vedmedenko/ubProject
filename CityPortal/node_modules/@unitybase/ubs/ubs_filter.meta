@@ -1,0 +1,75 @@
+﻿{
+	"caption": "Stored UI filters",
+	"description": "Stored UI filters",
+	"connectionName": "",
+	"sqlAlias": "sfilter",
+	"cacheType": "Session",
+	"descriptionAttribute": "name",
+	"documentation": "doCmd.showList.autoFilter use this entity to store user filters definition",
+	"attributes": {
+		"code": {
+			"dataType": "String",
+			"size": 100,
+			"caption": "Code",
+			"description": "Code of filter group",
+			"allowNull": false
+		},
+        "name": {
+            "dataType": "String",
+            "size": 250,
+            "caption": "Name",
+            "description": "Filter name",
+            "allowNull": false
+        },
+        "filter": {
+            "dataType": "Text",
+            "caption": "Filter definition",
+            "description": "filter",
+            "allowNull": false
+        },
+        "isGlobal": {
+            "dataType": "Boolean",
+            "caption": "Is global?",
+            "description": "Is global?",
+		"documentation": "Is this filter accessible for all users",
+            "allowNull": false
+        },
+        "owner": {
+            "dataType": "Entity",
+            "associatedEntity": "uba_user",
+            "caption": "Filter owner",
+            "description": "Filter owner",
+            "allowNull": false
+        }
+	},
+    "dbKeys":
+    {
+        "uix_ubs_filter": {
+            "code": {},
+            "owner": {},
+            "name": {}
+        }
+    },
+    "dbExtensions":
+    {
+        "ix_ubs_filter_code": {
+            "type": "INDEX",
+            "definition": {
+                "keys": {
+                    "code": {}
+                },
+                "isUnique": false
+            }
+        }
+    },
+	"mixins": {
+		"mStorage": {
+			"simpleAudit": true,
+			"safeDelete": false
+		},
+        "rls": {
+            "expression": "([$.ubs_filter_owner()])"
+        }
+
+	}
+}

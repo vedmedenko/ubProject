@@ -1,0 +1,4 @@
+settingKey;type;defaultValue;settingValue;name;description
+uba.user.publicRegistrationSubject;string;"";"";Subject of email, sended to new user on public registration;Subject of email, sended to new user on public registration
+uba.user.publicRegistrationReportCode;string;"";"";Report code for generating email, sended to new user on public registration;Report code for generating email, sended to new user on public registration
+

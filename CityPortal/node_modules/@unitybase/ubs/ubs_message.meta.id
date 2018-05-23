@@ -1,0 +1,25 @@
+﻿{
+    "caption": "pesan",
+    "description": "pesan sistem",
+    "attributes": {
+        "messageBody": {
+            "caption": "Pesan"
+        },
+        "complete": {
+            "caption": "Dikirim"
+        },
+        "messageType": {
+            "caption": "Mengetik"
+        },
+        "startDate": {
+            "caption": "Berlaku dari"
+        },
+        "expireDate": {
+            "caption": "Hari ke"
+        },
+        "recipients": {
+            "caption": "penerima pesan",
+            "description": "penerima pesan sistem"
+        }
+    }
+}

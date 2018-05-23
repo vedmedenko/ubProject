@@ -1,0 +1,13 @@
+﻿{
+    "caption": "EntityDiagrams",
+    "description": "diagram hubungan entitas",
+    "attributes": {
+        "name": {
+            "caption": "Nama"
+        },
+        "document": {
+            "caption": "diagram entitas",
+            "description": "diagram entitas"
+        }
+    }
+}

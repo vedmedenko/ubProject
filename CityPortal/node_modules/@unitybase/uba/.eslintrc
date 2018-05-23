@@ -1,0 +1,8 @@
+{
+  "extends": ["standard"],
+  "globals": {
+    "App": true,
+    "UB": true,
+    "Session": true
+  }
+} 

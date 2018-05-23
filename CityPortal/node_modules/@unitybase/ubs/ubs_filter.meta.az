@@ -1,0 +1,22 @@
+﻿{
+    "caption": "Yadda saxlanmış filtrlər",
+    "description": "Yadda saxlanmış filtrlər",
+    "attributes": {
+        "code": {
+            "caption": "Коd",
+            "description": "Filtr qrupunun kodu"
+        },
+        "name": {
+            "caption": "Filtrin adı"
+        },
+        "filter": {
+            "caption": "Filtrin mətni"
+        },
+        "isGlobal": {
+            "caption": "Ümumi?"
+        },
+        "owner": {
+            "caption": "Sahib"
+        }
+    }
+}

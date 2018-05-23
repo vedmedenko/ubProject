@@ -1,0 +1,59 @@
+{
+    "caption": "Attribute level security",
+    "description": "Attribute level security",
+    "connectionName": "",
+    "sqlAlias": "als",
+    "cacheType": "None",
+    "descriptionAttribute": "",
+    "documentation": "",
+    "attributes": {
+        "entity": {
+            "dataType": "String",
+			"size": 64,
+            "caption": "Entity",
+            "allowNull": false,
+			"isMultiLang": false
+        },
+        "attribute": {
+            "dataType": "String",
+			"size": 32,
+            "caption": "Attribute",
+            "allowNull": false,
+			"isMultiLang": false
+        },
+		"state": {
+            "dataType": "String",
+			"size": 32,
+            "caption": "State code",
+            "allowNull": false,
+			"isMultiLang": false
+		},
+		"roleName": {
+            "dataType": "String",
+			"size": 32,
+            "caption": "Role name",
+            "allowNull": false,
+			"isMultiLang": false
+		},
+		"actions": {
+            "dataType": "Int",
+            "caption": "Allow actions",
+            "allowNull": false
+		}
+    },
+	"dbKeys":
+	{
+		"UK_UBA_ALS_EASR": {
+			"entity":{},
+			"attribute": {},
+			"state": {},
+			"roleName": {}
+		}
+	},
+    "mixins": {
+        "mStorage": {
+            "simpleAudit": false,
+            "safeDelete": false
+        }
+    }
+}

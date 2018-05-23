@@ -1,0 +1,3 @@
+code;entityMask;methodMask;ruleType;ruleRole;description
+UBA_GROUP_EDIT_SUPERVISOR;uba_group;[iuda]*;A;Supervisor;Allow CUD operations on security groups for supervisor
+UBA_USER_GROUP_EDIT_SUPERVISOR;uba_usergroup;[iuda]*;A;Supervisor;Allow grant agroup to user for supervisor

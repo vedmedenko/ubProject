@@ -1,0 +1,63 @@
+﻿{
+	"caption": "Scheduler run statistic",
+	"description": "Scheduler run statistic",
+	"connectionName": "",
+	"sqlAlias": "qss",
+	"cacheType": "None",
+	"descriptionAttribute": "schedulerName",
+	"documentation": "Statistic for every scheduler item run and result",
+	"attributes": {
+		"appName": {
+			"dataType": "String",
+			"size": 64,
+			"caption": "Application name",
+			"description": "",
+			"allowNull": false
+		},
+		"schedulerName": {
+			"dataType": "String",
+			"size": 64,
+			"caption": "Scheduler name",
+			"description": "",
+			"allowNull": false
+		},
+		"startTime": {
+			"dataType": "DateTime",
+			"caption": "Time of start scheduler item",
+			"description": "Time of start scheduler item",
+			"allowNull": false
+		},
+		"endTime": {
+			"dataType": "DateTime",
+			"caption": "Time of end scheduler item",
+			"description": "Time of end scheduler item",
+			"allowNull": true
+		},
+		"logText": {
+			"dataType": "adtText",
+			"caption": "Log from runned script about all actions",
+			"description": "Log from runned script about all actions",
+			"allowNull": true
+		},
+		"resultError": {
+			"dataType": "Int",
+			"caption": "Result error code. 0=No error",
+			"allowNull": true
+		},
+		"resultErrorMsg": {
+			"dataType": "String",
+			"size": 2000,
+			"caption": "Error text message if resultError > 0",
+			"allowNull": true
+		}
+	},
+	"mixins": {
+		"mStorage": {
+			"simpleAudit": false,
+			"safeDelete" : false
+		},
+		"audit": {
+			"enabled": false
+		}
+	}
+}

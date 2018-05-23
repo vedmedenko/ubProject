@@ -1,0 +1,39 @@
+﻿{
+  "caption": "Administering of navigation panel",
+  "sqlAlias": "admnav",
+  "cacheType": "None",
+  "descriptionAttribute": "ID",
+  "documentation": "This entity used by $.currentUserOrUserGroupInAdmSubtable RLS macro",
+  "attributes": [
+    {
+      "name": "instanceID",
+      "dataType": "Entity",
+      "associatedEntity": "ubm_navshortcut",
+      "caption": "Navshortcut",
+      "cascadeDelete": true,
+      "description": "",
+      "allowNull": false
+    },
+    {
+      "name": "admSubjID",
+      "dataType": "Entity",
+      "associatedEntity": "uba_subject",
+      "caption": "Subject of administration",
+      "description": "",
+      "cascadeDelete": true,
+      "allowNull": false
+    }
+  ],
+  "mixins": {
+    "mStorage": {
+      "simpleAudit": false,
+      "safeDelete": false
+    }
+  },
+  "dbKeys": {
+    "UK_ADMNAV_INST_ADMSUBJ": {
+      "instanceID": {},
+      "admSubjID": {}
+    }
+  }
+}

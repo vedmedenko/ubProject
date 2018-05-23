@@ -1,0 +1,22 @@
+﻿{
+    "caption": "nilai-nilai yang disebutkan",
+    "description": "nilai-nilai yang disebutkan",
+    "attributes": {
+        "eGroup": {
+            "caption": "Kelompok"
+        },
+        "code": {
+            "caption": "Kode",
+            "description": "kode nilai"
+        },
+        "shortName": {
+            "caption": "Nama pendek"
+        },
+        "name": {
+            "caption": "nama nilai"
+        },
+        "sortOrder": {
+            "caption": "№ rangka"
+        }
+    }
+}

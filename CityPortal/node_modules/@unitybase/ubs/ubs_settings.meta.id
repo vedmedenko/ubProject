@@ -1,0 +1,30 @@
+﻿{
+    "caption": "pengaturan",
+    "description": "Entitas dengan informasi tentang sistem pengaturan",
+    "attributes": {
+        "settingKey": {
+            "caption": "Kunci",
+            "description": "kunci pengaturan"
+        },
+        "name": {
+            "caption": "Nama",
+            "description": "nama pengaturan"
+        },
+        "description": {
+            "caption": "Deskripsi",
+            "description": "Deskripsi"
+        },
+        "type": {
+            "caption": "Mengetik",
+            "description": "Jenis nilai"
+        },
+        "settingValue": {
+            "caption": "Nilai",
+            "description": "Nilai"
+        },
+        "defaultValue": {
+            "caption": "nilai default",
+            "description": "nilai default"
+        }
+    }
+}

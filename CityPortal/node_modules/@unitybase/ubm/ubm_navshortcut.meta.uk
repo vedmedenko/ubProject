@@ -1,0 +1,37 @@
+﻿{
+    "caption": "Ярлик",
+    "description": "Ярлик на запуск ф-и",
+    "attributes": {
+        "desktopID": {
+            "caption": "Десктоп"
+        },
+        "parentID": {
+            "caption": "Папка ярлика"
+        },
+        "code": {
+            "caption": "Код"
+        },
+        "isFolder": {
+            "caption": "Папка?"
+        },
+        "caption": {
+            "caption": "Назва ярлика"
+        },
+        "cmdCode": {
+            "caption": "Текст команди"
+        },
+        "inWindow": {
+            "caption": "В окремому вікні",
+            "description": "Відображати в окремому вікні"
+        },
+        "isCollapsed": {
+            "caption": "Згорнути",
+            "description": "Відображати згорнутим при першому запуску",
+            "documentation": "Має сенс, якщо Is_Folder = true. Відображати цю групу в згорнутому стані в дереві"
+        },
+        "displayOrder": {
+            "caption": "№ п/п",
+            "description": "Порядок відображення (в рамках поточного вузла)"
+        }
+    }
+}

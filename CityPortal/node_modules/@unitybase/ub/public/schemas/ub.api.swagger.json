@@ -1,0 +1,568 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.11.0",
+        "title": "UnityBase API"
+    },
+    "paths": {
+        "/getAppInfo": {
+            "get": {
+                "description": "Get application information.\n",
+                "tags": [
+                    "Authentication",
+                    "Metadata"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/AppInfo"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "trafficEncryption": false,
+                                "serverCertificate": "",
+                                "encryptionKeyLifetime": 0,
+                                "serverVersion": "1.11.0.11592",
+                                "defaultLang": "en",
+                                "authMethods": [
+                                    "UB",
+                                    "OpenIDConnect"
+                                ],
+                                "supportedLanguages": [
+                                    "en"
+                                ],
+                                "supportedWSProtocols": [
+                                    "ubNotifier"
+                                ],
+                                "uiSettings": {
+                                    "adminUI": {
+                                        "applicationName": "UnityBase.OreBali",
+                                        "themeName": "UBGrayTheme"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/openIDConnect": {
+            "get": {
+                "description": "Get list of supported OpenID providers.\n",
+                "tags": [
+                    "Authentication",
+                    "Metadata"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response.\nReturns list of supported OpenID providers.\n",
+                        "schema": {
+                            "$ref": "#/definitions/StringArray"
+                        },
+                        "examples": {
+                            "application/json": [
+                                "IdentityServer"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/auth": {
+            "get": {
+                "description": "Authenticate a user.  Authentication protocol usually requires several\ncalls of this method with different parameters.\nDetails could be found at: https://dev.softengi.com/confluence/display/UB/Authentication+in+1.8\n",
+                "tags": [
+                    "Authentication"
+                ],
+                "parameters": [
+                    {
+                        "name": "AUTHTYPE",
+                        "in": "query",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "userName",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "clientNonce",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "type": "string",
+                        "description": "It is NOT a clear text."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response.\n",
+                        "schema": {
+                            "$ref": "#/definitions/AuthResult"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "result": "cb59ac47c9af69ef10752a14aae54dac22ab3a1eaf9e475425e38f8b3e54d248"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/getDomainInfo": {
+            "get": {
+                "description": "Get entities metadata.\n",
+                "tags": [
+                    "Metadata"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/DomainInfo"
+                        }
+                    }
+                }
+            }
+        },
+        "/runList": {
+            "post": {
+                "description": "Execute `UbRequestList` array of requests.\n",
+                "parameters": [
+                    {
+                        "name": "requests",
+                        "in": "body",
+                        "description": "Array of `UbRequest`",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "#/definitions/UbRequest"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response\n",
+                        "schema": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "#/definitions/UbResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/getDocument": {
+            "get": {
+                "description": "Read content from BLOB store.\n",
+                "tags": [
+                    "Documents",
+                    "BLOBs"
+                ],
+                "parameters": [
+                    {
+                        "name": "entity",
+                        "in": "query",
+                        "type": "string",
+                        "required": true,
+                        "description": "Name of entity with attribute of \"document\" type."
+                    },
+                    {
+                        "name": "attribute",
+                        "in": "query",
+                        "type": "string",
+                        "required": true,
+                        "description": "Name of entity attribute, which stores the document (BLOB)."
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "type": "number",
+                        "required": true,
+                        "description": "Primary key value of the entity."
+                    },
+                    {
+                        "name": "origName",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Server will return content with this file name."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response.  Content shall contain BLOB."
+                    }
+                }
+            }
+        },
+        "/setDocument": {
+            "post": {
+                "description": "Set document attribute content.  The content will be saved to a temp store.\nIt will be moved to a permanent store after entity update.\nOrder of actions must be the following:\n  * Call `setDocument` for an entity to save content to temp store\n  * Remember result returned by the `setDocument` call and use it for update\n    entity.\n  * Call `runList` with `update` method to update an entity\n",
+                "tags": [
+                    "Documents",
+                    "BLOBs"
+                ],
+                "parameters": [
+                    {
+                        "name": "entity",
+                        "in": "query",
+                        "type": "string",
+                        "required": true,
+                        "description": "Name of entity with attribute of \"document\" type."
+                    },
+                    {
+                        "name": "attribute",
+                        "in": "query",
+                        "type": "string",
+                        "required": true,
+                        "description": "Name of entity attribute, which stores the document (BLOB)."
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "type": "number",
+                        "required": true,
+                        "description": "Primary key value of the entity."
+                    },
+                    {
+                        "name": "filename",
+                        "in": "query",
+                        "type": "string",
+                        "description": "File name."
+                    },
+                    {
+                        "name": "origName",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Original file name."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response.\nResult of the response shall be set as a value of BLOB attribute.\n",
+                        "schema": {
+                            "$ref": "#/definitions/SetDocumentResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "UbRequest": {
+            "type": "object",
+            "description": "Object containing information about UB Request.  Usually constructed at\nclient using helper classes.  But it is ok to just pass request objects to\nserver.\n",
+            "required": [
+                "entity",
+                "method"
+            ],
+            "properties": {
+                "entity": {
+                    "type": "string",
+                    "description": "Name of the entity to execute request"
+                },
+                "method": {
+                    "type": "string",
+                    "description": "A method of entity to call.  Could be one of standard methods:\n'select', 'addnew', 'insert', 'update', 'delete'.\nIt is also possible to call custom methods.\n"
+                },
+                "fieldList": {
+                    "$ref": "#/definitions/FieldList"
+                },
+                "whereList": {
+                    "description": "Key - identifier of where expression (could be any string, for example 'nameExpression'; value - `WhereExpression`.",
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/WhereExpression"
+                    }
+                },
+                "orderList": {
+                    "description": "Key - identifier of order expression (could be any string, for example 'nameExpression'; value - `OrderExpression`.",
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/OrderExpression"
+                    }
+                },
+                "groupList": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/GroupExpression"
+                    }
+                },
+                "options": {
+                    "type": "object",
+                    "properties": {
+                        "start": {
+                            "description": "If provided, it specifies a number of row to start with.",
+                            "type": "number"
+                        },
+                        "limit": {
+                            "description": "If provided, it specifies the maximum number of rows to return to client.",
+                            "type": "number"
+                        }
+                    }
+                }
+            }
+        },
+        "WhereExpression": {
+            "type": "object",
+            "properties": {
+                "condition": {
+                    "type": "string",
+                    "enum": [
+                        "equal",
+                        "like",
+                        "startWith",
+                        "more",
+                        "less",
+                        "moreEqual",
+                        "lessEqual"
+                    ]
+                },
+                "expression": {
+                    "description": "An expression to evaluate against entity attributes.",
+                    "type": "string"
+                },
+                "values": {
+                    "description": "Specifies parameter of expression.",
+                    "type": "object"
+                }
+            }
+        },
+        "OrderExpression": {
+            "type": "object",
+            "properties": {
+                "expression": {
+                    "type": "string"
+                },
+                "order": {
+                    "description": "Ascending or descending, default is ascending.",
+                    "type": "string",
+                    "default": "asc",
+                    "enum": [
+                        "asc",
+                        "desc"
+                    ]
+                }
+            }
+        },
+        "GroupExpression": {
+            "type": "object"
+        },
+        "UbResponse": {
+            "description": "Object containing UB Response.\n",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/UbRequest"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "resultData": {
+                            "type": "object",
+                            "description": "Result of the query returned by server",
+                            "properties": {
+                                "fields": {
+                                    "$ref": "#/definitions/FieldList"
+                                },
+                                "rowcount": {
+                                    "$ref": "#/definitions/FieldList"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": [
+                                                "string",
+                                                "number"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "FieldList": {
+            "type": "array",
+            "description": "Array of strings, each string is an entity attribute name.\nFor many to one relations, attributes of related entities are specified\nvia dot separator, for example `userID.fullName`.\n",
+            "items": {
+                "type": "string"
+            }
+        },
+        "SetDocumentResponse": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean"
+                },
+                "errMsg": {
+                    "type": "string"
+                },
+                "errCode": {
+                    "type": "integer"
+                },
+                "result": {
+                    "$ref": "#/definitions/BlobDescriptor"
+                }
+            }
+        },
+        "BlobDescriptor": {
+            "type": "object",
+            "description": "Description of a BLOB object, which is stored as a string column of a table.\nIt is a reference to a BLOB store which allows to read data from the store\nand check data integrity.\n",
+            "properties": {
+                "store": {
+                    "description": "BLOB store which holds the  content.",
+                    "type": "string"
+                },
+                "fName": {
+                    "description": "File name.",
+                    "type": "string"
+                },
+                "origName": {
+                    "description": "Original file name.",
+                    "type": "string"
+                },
+                "relPath": {
+                    "description": "Path relative to BLOB store root.",
+                    "type": "string"
+                },
+                "ct": {
+                    "description": "MIME content type.",
+                    "type": "string"
+                },
+                "size": {
+                    "description": "size in bytes.",
+                    "type": "number"
+                },
+                "md5": {
+                    "description": "MD5 checksum",
+                    "type": "string"
+                },
+                "revision": {
+                    "description": "Revision number.",
+                    "type": "integer"
+                },
+                "isDirty": {
+                    "description": "If `true`, it means that content is stored in `temp` storage; the content will be moved to a permanent store on entity saving.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "AppInfo": {
+            "type": "object",
+            "description": "Information about application such as list of supported languages and the\ndefault language, server certificate and traffic encryption options, etc.\n",
+            "properties": {
+                "trafficEncryption": {
+                    "type": "boolean"
+                },
+                "serverCertificate": {
+                    "type": "string"
+                },
+                "encryptionKeyLifetime": {
+                    "type": "integer"
+                },
+                "serverVersion": {
+                    "type": "string"
+                },
+                "defaultLang": {
+                    "type": "string"
+                },
+                "authMethods": {
+                    "$ref": "#/definitions/StringArray"
+                },
+                "supportedLanguages": {
+                    "$ref": "#/definitions/StringArray"
+                },
+                "supportedWSProtocols": {
+                    "$ref": "#/definitions/StringArray"
+                },
+                "uiSettings": {
+                    "type": "object"
+                }
+            }
+        },
+        "StringArray": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "AuthResult": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "string"
+                }
+            }
+        },
+        "DomainInfo": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "description": "Key is an entity name, value is entity description, see `DomainEntityDescriptor'.",
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/DomainEntityDescriptor"
+                    }
+                }
+            }
+        },
+        "DomainEntityDescriptor": {
+            "type": "object",
+            "properties": {
+                "modelName": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "connectionName": {
+                    "type": "string"
+                },
+                "sqlAlias": {
+                    "type": "string"
+                },
+                "attributes": {
+                    "description": "Key is an attribute name, value is attribute descriptor.",
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/EntityAttributeDescriptor"
+                    }
+                }
+            }
+        },
+        "EntityAttributeDescriptor": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "dataType": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "number"
+                },
+                "caption": {
+                    "type": "string"
+                },
+                "allowNull": {
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}

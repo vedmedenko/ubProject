@@ -1,0 +1,58 @@
+﻿{
+	"caption": "Soft lock",
+	"description": "Instance-level soft lock list",
+	"connectionName": "",
+	"sqlAlias": "slock",
+	"cacheType": "None",
+	"descriptionAttribute": "entity",
+	"attributes": {
+		"entity": {
+			"dataType": "String",
+			"size": 32,
+			"caption": "Entity code",
+			"description": "Entity code",
+			"allowNull": false
+		},
+		"lockID": {
+			"dataType": "ID",
+			"caption": "Instance ID",
+			"description": "Locked dataStore ID",
+			"allowNull": false
+		},
+		"lockUser": {
+			"dataType": "Entity",
+			"associatedEntity": "uba_user",
+			"caption": "User",
+			"description": "User who made a lock",
+			"allowNull": false
+		},
+		"lockType": {
+			"dataType": "Enum",
+			"enumGroup": "SOFTLOCK_TYPE",
+			"caption": "Lock type",
+			"description": "Lock type",
+			"allowNull": false
+		},
+		"lockTime": {
+			"dataType": "DateTime",
+			"caption": "Lock time",
+			"description": "Time when lock is made",
+			"allowNull": false
+		}
+	},
+	"mixins": {
+		"mStorage": {
+			"simpleAudit": false,
+			"safeDelete": false
+		},
+		"audit": {
+			"enabled": false // manually disable audit for this entity even if added via autoimplementedMixins server 
+		}
+	},
+	"dbKeys": {
+		"UIDX_SOFTLOCK_LOENT": {
+			"lockID": {},
+			"entity": {}
+		}
+	}
+}

@@ -1,0 +1,56 @@
+﻿{
+	"caption": "System roles",
+	"description": "Administering subsystem roles",
+	"connectionName": "",
+	"cacheType": "None",
+	"sqlAlias": "role",
+	"descriptionAttribute": "name",
+	"documentation": "",
+	"attributes": {
+		"name":	{
+			"dataType": "String",
+			"size": 128,
+			"caption": "Role",
+			"description": "",
+			"allowNull": false,
+            		"isUnique": true
+		},
+		"description": {
+			"dataType": "String",
+			"size": 256,
+			"caption": "Description",
+			"allowNull": false
+		},
+		"sessionTimeout": {
+			"dataType": "Int",
+			"caption": "Session duration",
+			"description": "Time after which the session is deleted by timeout (in minutes)",
+			"allowNull": false,
+			"defaultValue": "30"
+		},
+		"allowedAppMethods": {
+			"dataType": "String",
+			"size": 2000,
+			"caption": "Which application level methods are allowed (comma separated list)",
+			"documentation": "",
+			"description": ""
+		}
+	},
+	"mixins": {
+		"mStorage":	{
+			"simpleAudit": true,
+			"safeDelete": false
+		},
+		"unity": {
+			"entity": "uba_subject",
+			"attributeList": ["code", "name"],
+			"mapping": {
+			  "name": "code",
+			  "description": "name"
+			},
+			"defaults": {
+				"sType": "R"
+			}
+		}
+	}
+}

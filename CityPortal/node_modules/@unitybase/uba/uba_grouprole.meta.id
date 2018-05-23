@@ -1,0 +1,12 @@
+﻿{
+    "caption": "peran kelompok",
+    "description": "Peran ditugaskan untuk kelompok",
+    "attributes": {
+        "groupID": {
+            "caption": "kelompok"
+        },
+        "roleID": {
+            "caption": "Peran"
+        }
+    }
+}

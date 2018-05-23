@@ -1,0 +1,17 @@
+﻿{
+    "caption": "İnzibatçılıq subyektləri",
+    "description": "İnzibatçılıq subyektləri - Rol və İstifadəçiləri birləşdirir",
+    "attributes": {
+	"code":	{
+	  "caption": "Kod"
+	},
+        "name": {
+            "caption": "Login",
+            "description": ""
+        },
+        "sType": {
+            "caption": "Subyekt tipi",
+            "description": ""
+        }
+    }
+}

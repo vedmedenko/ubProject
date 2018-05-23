@@ -1,0 +1,3 @@
+code;entityMask;methodMask;ruleType;ruleRole;description
+UBA_USERCERT_READ;uba_usercertificate;select;A;User;Allow read user certificates for registered users
+UBA_USERCERT_READ_CERT_BIN;uba_usercertificate;getCertificate;A;User;Allow read base64 representation of cert for registered users

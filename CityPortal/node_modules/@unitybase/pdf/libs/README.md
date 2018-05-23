@@ -1,0 +1,1 @@
+adler32 is downloaded from https://github.com/chick307/adler32cs.js.git

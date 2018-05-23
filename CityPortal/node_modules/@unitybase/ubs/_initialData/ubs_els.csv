@@ -1,0 +1,7 @@
+code;entityMask;methodMask;ruleType;ruleRole;description
+UBS_FILTER_*_USER;ubs_filter;*;A;User;Allow edit filters (accoding to rls)
+UBS_SETTINGS_SELECT_*;ubs_settings;select;A;User;Allow everyone to read settings
+UBS_SOFTLOCK_DELETE_SUPERVISOR;ubs_softLock;delete;A;Supervisor;Allow supervisor to delete soft locks
+UBS_MESSAGES_GET;ubs_message;getCached;A;User;Allow read notification messages info for everyone
+UBS_MESSAGES_READ;ubs_message;select;A;User;Allow read notification messages for everyone (accoding to RLS)
+UBS_MESSAGES_ACCEPT;ubs_message_recipient;accept;A;User;Allow accept notification messages for everyone (accoding to RLS)

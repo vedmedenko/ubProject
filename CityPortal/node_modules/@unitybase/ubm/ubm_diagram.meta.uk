@@ -1,0 +1,17 @@
+﻿{
+    "caption": "Діаграми",
+    "description": "Діаграми сутностей",
+    "attributes": {
+        "model": {
+            "caption": "Модель",
+            "description": "Модель"
+        },
+        "name": {
+            "caption": "Назва"
+        },
+        "document": {
+            "caption": "Діаграма",
+            "description": "Діаграма сутностей"
+        }
+    }
+}

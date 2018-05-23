@@ -1,0 +1,35 @@
+﻿{
+    "connectionName": "",
+    "sqlAlias": "usrGroup",
+    "cacheType": "None",
+
+    "caption": "User Groups",
+    "description": "User memberships in groups",
+
+    "mixins": {
+        "mStorage": {
+            "simpleAudit": true,
+            "safeDelete": false
+        }
+    },
+
+    "attributes": {
+        "userID": {
+            "dataType": "Entity", "associatedEntity": "uba_user", "cascadeDelete": true,
+            "allowNull": false,
+            "caption": "User"
+        },
+        "groupID": {
+            "dataType": "Entity", "associatedEntity": "uba_group", "cascadeDelete": true,
+            "allowNull": false,
+            "caption": "Group"
+        }
+    },
+
+    "dbKeys": {
+		"UK_USRGROUP_USER_GROUP": {
+			"userID":{},
+			"groupID": {}
+		}
+	}
+}

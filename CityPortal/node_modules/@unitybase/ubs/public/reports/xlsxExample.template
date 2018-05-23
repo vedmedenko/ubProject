@@ -1,0 +1,82 @@
+<!--@name "XLSX example"-->
+<!--@model "UBS"-->
+
+<!--%pageOrientation:portrait--><table style="word-break: break-all;" cellspacing="0" cellpadding="3px">
+<tbody>
+<tr style="height: 80px;">
+<td style="text-align: center; vertical-align: middle;" colspan="4">Заголовок таблицы</td>
+</tr>
+<tr style="height: 40px;">
+<td style="width: 3px;">&nbsp;</td>
+<td style="width: 180px; background-color: #becdd4; font-weight: bold; text-align: center; vertical-align: middle;">Name</td>
+<td style="width: 100px; background-color: #becdd4; text-align: center; vertical-align: middle;"><strong>count</strong></td>
+<td style="width: 100px; background-color: #becdd4; text-align: center; vertical-align: middle;"><strong>Sum</strong></td>
+</tr>
+<!--{{#data}}--> <!--{{^footer}}-->
+<tr class="tinymce_templated" data-iterate-over="data">
+<td>&nbsp;</td>
+<td><em>{{name}} - <span style="color: #ff0000;">да</span></em></td>
+<td style="border: 1px solid #28b449; text-align: right;">{{count}} <strong>item</strong></td>
+<td style="text-align: right;">{{sum}}</td>
+</tr>
+<!--{{/footer}}--> <!--{{#footer}}-->
+<tr style="height: 30px;">
+<td>&nbsp;</td>
+<td style="border-left: 1px solid #ff7f7f;"><em>{{name}}</em></td>
+<td style="text-align: right;">{{count}}</td>
+<td style="border-right: 1px solid #FF7F7F; text-align: right;">{{#$f}}"sum","sum"{{/$f}}</td>
+</tr>
+<!--{{/footer}}--> <!--{{/data}}-->
+<tr>
+<td colspan="3">&nbsp;</td>
+<td style="text-align: center;">{{#$f}}"reportDate","dateTime"{{/$f}}</td>
+</tr>
+</tbody>
+</table>
+<p><br /> <br /> </p>
+<table style="border-collapse: collapse; width: 100%; word-break: break-all; border: solid 1px black;" cellspacing="0" cellpadding="3px">
+<tbody>
+<tr>
+<td style="width: 12.5%; text-align: center; border: solid 1px black;" colspan="8">{{organization}}</td>
+</tr>
+<tr style="height: 55px;">
+<td style="width: 12.5%; text-align: center; border: solid 1px;" colspan="8">Оборотно-сальдова відомість за період з&nbsp; {{#$$fd}}"dateFrom"{{/$$fd}} по {{dateTo}}</td>
+</tr>
+<tr style="height: 100px;">
+<td style="width: 10%; text-align: center; border: solid 1px;" rowspan="2">Рахунок</td>
+<td style="width: 30%; text-align: center; border: solid 1px;" rowspan="2">Найменування</td>
+<td style="width: 20%; text-align: center; border: solid 1px;" colspan="2">Сальдо на початок періоду</td>
+<td style="width: 20%; text-align: center; border: solid 1px;" colspan="2">Обороти за період</td>
+<td style="width: 20%; text-align: center; border: solid 1px;" colspan="2">Сальдо на кінець періоду</td>
+</tr>
+<tr>
+<td style="width: 10%; text-align: center; border: solid 1px;">Дебет</td>
+<td style="width: 10%; text-align: center; border: solid 1px;">Кредит</td>
+<td style="width: 10%; text-align: center; border: solid 1px;">Дебет</td>
+<td style="width: 10%; text-align: center; border: solid 1px;">Кредит</td>
+<td style="width: 10%; text-align: center; border: solid 1px;">Дебет</td>
+<td style="width: 10%; text-align: center; border: solid 1px;">Кредит</td>
+</tr>
+<!--{{#balanceData.data}}-->
+<tr>
+<td style="width: 10%; border: solid 1px;"><a href="#">{{accCode}}</a></td>
+<td style="width: 30%; border: solid 1px;">{{accID}}</td>
+<td style="width: 10%; border: solid 1px; text-align: right;">{{#$fs}}"dbS"{{/$fs}}</td>
+<td style="width: 10%; border: solid 1px; text-align: right;">{{#$fs}}"crS"{{/$fs}}</td>
+<td style="width: 10%; border: solid 1px; text-align: right;">{{#$fs}}"dbT"{{/$fs}}</td>
+<td style="width: 10%; border: solid 1px; text-align: right;">{{#$fs}}"crT"{{/$fs}}</td>
+<td style="width: 10%; border: solid 1px; text-align: right;">{{#$fs}}"dbE"{{/$fs}}</td>
+<td style="width: 10%; border: solid 1px; text-align: right;">{{#$fs}}"crE"{{/$fs}}</td>
+</tr>
+<!--{{/balanceData.data}}-->
+<tr>
+<td style="width: 10%;" colspan="2"><strong>Разом</strong></td>
+<td style="width: 10%; font-weight: bold; text-align: right;">{{#$fs}}"balanceData.totals.dbS"{{/$fs}}</td>
+<td style="width: 10%; font-weight: bold; text-align: right;">{{#$fs}}"balanceData.totals.crS"{{/$fs}}</td>
+<td style="width: 10%; font-weight: bold; text-align: right;">{{#$fs}}"balanceData.totals.dbT"{{/$fs}}</td>
+<td style="width: 10%; font-weight: bold; text-align: right;">{{#$fs}}"balanceData.totals.crT"{{/$fs}}</td>
+<td style="width: 10%; font-weight: bold; text-align: right;">{{#$fs}}"balanceData.totals.dbE"{{/$fs}}</td>
+<td style="width: 10%; font-weight: bold; text-align: right;">{{#$fs}}"balanceData.totals.crE"{{/$fs}}</td>
+</tr>
+</tbody>
+</table>

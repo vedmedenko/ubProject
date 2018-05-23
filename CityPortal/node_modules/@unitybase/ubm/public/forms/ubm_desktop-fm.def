@@ -1,0 +1,42 @@
+//@! "do not remove comments below unless you know what you do!"
+//@isDefault "false"
+//@entity "ubm_desktop"
+//@formType "auto"
+//@caption "Desktop"
+//@description "Desktop"
+/*global UB, Ext */
+exports.formDef = {
+
+	parentConfig:{
+    	layout: {type: "vbox", align: "stretch"}
+	},
+    size: {
+        width: 500,
+        height: 500
+    },
+items: [
+	{ attributeName: "caption"},
+	{ attributeName: "code"},
+    { attributeName: "isDefault", labelWidth: 200},
+    { attributeName: "url"},
+  	{
+        xtype: "label",
+        style: {
+            color: "red"
+        },
+        text: "Warning: Changes to Desktop's will be applied to the top navbar after relogon"
+    }, 
+    {
+        xtype: "ubdetailgrid",
+        flex: 1,
+        height: 300,
+        entityConfig: {
+            entity: "ubm_desktop_adm",
+            fieldList: ["instanceID", "admSubjID"]
+        },
+        masterFields: ["ID"],
+        detailFields: ["instanceID"]
+    }
+]
+}
+;

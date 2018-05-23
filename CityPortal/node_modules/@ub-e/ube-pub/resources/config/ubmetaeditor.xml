@@ -1,0 +1,685 @@
+<mxEditor  defaultGroup="group" defaultEdge="edge"
+	helpWindowImage="models/UBE/resources/images/help.gif"
+	tasksWindowImage="models/UBE/resources/images/tasks.gif"
+	forcedInserting="0"
+	swimlaneRequired="0">
+	<ui>
+		<resource basename="models/UBE/resources/localization/mxApplication"/>
+        <!--<add as="graph" element="graph"
+            style="left:70px;right:20px;top:20px;bottom:40px"/> -->
+         <add as="toolbar" x="16" y="20" width="50" style="padding:5px;padding-top:8px;padding-right:0px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none;"/>
+    </ui>
+	
+	<Array as="cycleAttributeValues">
+		<add value="#83027F"/>
+		<add value="#66B922"/>
+		<add value="#808913"/>
+		<add value="#CF0056"/>
+		<add value="#4679B6"/>
+	</Array>
+	<add as="createTasks"><![CDATA[
+		function (div)
+		{
+			var off = 30;
+			
+			if (this.graph != null)
+			{
+				var layer = this.graph.model.root.getChildAt(0);
+				
+				//mxUtils.para(div,  mxResources.get('examples'));
+				//mxUtils.linkInvoke(div, mxResources.get('newDiagram'), this,
+				//	'open', 'models/UBE/resources/diagrams/empty.xml', off);
+				//mxUtils.br(div);
+				//mxUtils.linkInvoke(div, mxResources.get('swimlanes'), this,
+				//	'open', 'models/UBE/resources/diagrams/swimlanes.xml', off);
+				//mxUtils.br(div);
+				//mxUtils.linkInvoke(div, mxResources.get('travelBooking'), this,
+				//	'open', 'models/UBE/resources/diagrams/travel-booking.xml', off);
+				//mxUtils.br(div);
+				
+				if (!this.graph.isSelectionEmpty())
+				{
+					var cell = this.graph.getSelectionCell();
+					if (this.graph.getSelectionCount() == 1 &&
+						(this.graph.model.isVertex(cell) &&
+						cell.getEdgeCount() > 0) || this.graph.isSwimlane(cell))
+					{
+						mxUtils.para(div, 'Layout');
+						mxUtils.linkAction(div, mxResources.get('verticalTree'),
+							this, 'verticalTree', off);
+						mxUtils.br(div);
+						mxUtils.linkAction(div, mxResources.get('horizontalTree'),
+							this, 'horizontalTree', off);
+						mxUtils.br(div);
+					}
+					
+					mxUtils.para(div, 'Format');
+					
+					if (mxUtils.isNode(cell.value, 'Symbol'))
+					{
+						mxUtils.linkAction(div, mxResources.get('image'),
+							this, 'image', off);
+						mxUtils.br(div);
+					}
+					else
+					{
+						mxUtils.linkAction(div, mxResources.get('opacity'),
+							this, 'opacity', off);
+						mxUtils.br(div);
+						if (this.graph.model.isVertex(cell) ||
+							(cell.style != null && 
+							cell.style.indexOf("arrowEdge") >= 0))
+						{
+							mxUtils.linkAction(div, mxResources.get('gradientColor'),
+								this, 'gradientColor', off);
+							mxUtils.br(div);
+						}
+						if (this.graph.model.isEdge(cell))
+						{
+							mxUtils.linkAction(div, 'Straight Connector', this, 'straightConnector', off);
+							mxUtils.br(div);
+							mxUtils.linkAction(div, 'Elbow Connector', this, 'elbowConnector', off);
+							mxUtils.br(div);
+							mxUtils.linkAction(div, 'Arrow Connector', this, 'arrowConnector', off);
+							mxUtils.br(div);
+						}
+					}
+					
+					mxUtils.linkAction(div, 'Rounded', this, 'toggleRounded', off);
+					mxUtils.br(div);
+					if (this.graph.isSwimlane(cell) || this.graph.model.isEdge(cell))
+					{
+						mxUtils.linkAction(div, 'Orientation', this, 'toggleOrientation', off);
+						mxUtils.br(div);
+					}
+					
+					if (this.graph.getSelectionCount() > 1)
+					{
+						mxUtils.para(div, mxResources.get('align'));
+						mxUtils.linkAction(div, mxResources.get('left'),
+							this, 'alignCellsLeft', off);
+						mxUtils.br(div);
+						mxUtils.linkAction(div, mxResources.get('center'),
+							this, 'alignCellsCenter', off);
+						mxUtils.br(div);
+						mxUtils.linkAction(div, mxResources.get('right'),
+							this, 'alignCellsRight', off);
+						mxUtils.br(div);
+						mxUtils.linkAction(div, mxResources.get('top'),
+							this, 'alignCellsTop', off);
+						mxUtils.br(div);
+						mxUtils.linkAction(div, mxResources.get('middle'),
+							this, 'alignCellsMiddle', off);
+						mxUtils.br(div);
+						mxUtils.linkAction(div, mxResources.get('bottom'),
+							this, 'alignCellsBottom', off);
+						mxUtils.br(div);
+					}
+					
+					mxUtils.para(div, mxResources.get('selection'));
+					mxUtils.linkAction(div, mxResources.get('clearSelection'),
+						this, 'selectNone', off);
+					mxUtils.br(div);
+				}
+				else if (layer.getChildCount() > 0)
+				{
+					mxUtils.para(div, mxResources.get('selection'));
+					mxUtils.linkAction(div, mxResources.get('selectAll'),
+						this, 'selectAll', off);
+					mxUtils.br(div);
+				}
+				
+				mxUtils.br(div);
+			}
+		}
+	]]></add>
+	
+	<mxDefaultPopupMenu as="popupHandler">
+		<add as="cut" action="cut" icon="models/UBE/resources/images/cut.gif"/>
+		<add as="copy" action="copy" icon="models/UBE/resources/images/copy.gif"/>
+		<add as="paste" action="paste" icon="models/UBE/resources/images/paste.gif"/>
+		<separator/>
+		<add as="delete" action="delete" icon="models/UBE/resources/images/delete.gif" if="cell"/>
+		<separator/>
+		<add as="exitGroup" action="exitGroup" icon="models/UBE/resources/images/up.gif" if="notRoot"/>
+		<add as="enterGroup" action="enterGroup" icon="models/UBE/resources/images/down.gif" if="validRoot"/>
+		<separator/>
+		<add as="shape" if="cell">
+			<add as="group" action="group" icon="models/UBE/resources/images/group.gif" if="ncells"/>
+			<add as="ungroup" action="ungroup" icon="models/UBE/resources/images/ungroup.gif" if="cell"/>
+			<separator/>
+			<add as="removeFromParent" action="removeFromParent" if="cell"/>
+			<separator/>
+			<add as="collapse" action="collapse" icon="models/UBE/resources/images/collapse.gif" if="expandable"/>
+			<add as="expand" action="expand" icon="models/UBE/resources/images/expand.gif" if="collapsable"/>
+			<separator/>
+			<add as="toFront" action="toFront" icon="models/UBE/resources/images/tofront.gif" if="cell"/>
+			<add as="toBack" action="toBack" icon="models/UBE/resources/images/toback.gif" if="cell"/>
+			<separator/>
+			<add as="editStyle" action="editStyle" if="cell"/>
+		</add>
+		<add as="format" if="cell">
+			<add as="fillColor" action="fillColor" icon="models/UBE/resources/images/fillcolor.gif" if="cell"/>
+			<add as="gradientColor" action="gradientColor" if="cell"/>
+			<add as="strokeColor" action="strokeColor" icon="models/UBE/resources/images/linecolor.gif" if="cell"/>
+			<separator/>
+			<add as="toggleRounded" action="toggleRounded" if="cell"/>
+			<add as="toggleShadow" action="toggleShadow" if="cell"/>
+		</add>
+		<add as="font" if="cell">
+			<add as="fontColor" action="fontColor" icon="models/UBE/resources/images/fontcolor.gif" if="cell"/>
+			<add as="fontFamily" action="fontFamily" if="cell"/>
+			<add as="fontSize" action="fontSize" if="cell"/>
+			<separator/>
+			<add as="bold" action="bold" icon="models/UBE/resources/images/bold.gif" if="cell"/>
+			<add as="italic" action="italic" icon="models/UBE/resources/images/italic.gif" if="cell"/>
+		</add>
+		<!--
+		<separator/>
+		<add as="properties" action="showProperties" icon="models/UBE/resources/images/properties.gif"/>
+		<separator/>
+		<add as="openHref" action="openHref" icon="models/UBE/resources/images/link.gif"/>
+		-->
+	</mxDefaultPopupMenu>
+	
+	<include name="models/UBE/resources/config/keyhandler-commons.xml"/>
+	<Array as="actions">
+		<add as="open"><![CDATA[
+			function (editor)
+			{
+				editor.open(mxUtils.prompt('Enter filename', 'workflow.xml'));
+			}
+		]]></add>
+		<add as="openHref"><![CDATA[
+			function (editor, cell)
+			{
+				cell = cell || editor.graph.getSelectionCell();
+				
+				if (cell == null)
+				{
+					cell = editor.graph.getCurrentRoot();
+
+					if (cell == null)
+					{
+						cell = editor.graph.getModel().getRoot();
+					}
+				}
+
+				if (cell != null)
+				{
+					var href = cell.getAttribute('href');
+					
+					if (href != null && href.length > 0)
+					{
+						window.open(href);
+					}
+					else
+					{
+						mxUtils.alert('No URL defined. Showing properties...');
+						editor.execute('showProperties', cell);
+					}
+				}
+			}
+		]]></add>
+		<add as="editStyle"><![CDATA[
+			function (editor)
+			{
+				var cell = editor.graph.getSelectionCell();
+				
+				if (cell != null)
+				{
+					var model = editor.graph.getModel();
+					var style = mxUtils.prompt(mxResources.get('enterStyle'), model.getStyle(cell) || '');
+
+					if (style != null)
+					{
+						model.setStyle(cell, style);
+					}
+				}
+			}
+		]]></add>
+		<add as="fillColor"><![CDATA[
+			function (editor)
+			{
+				var color = mxUtils.prompt(mxResources.get('enterColorname'), 'red');
+				
+				if (color != null)
+				{
+					editor.graph.model.beginUpdate();
+					try
+					{
+						editor.graph.setCellStyles("strokeColor", color);
+						editor.graph.setCellStyles("fillColor", color);
+					}
+					finally
+					{
+						editor.graph.model.endUpdate();
+					}
+				}
+			}
+		]]></add>
+		<add as="gradientColor"><![CDATA[
+			function (editor)
+			{
+				var color = mxUtils.prompt(mxResources.get('enterColorname'), 'white');
+				
+				if (color != null)
+				{
+					editor.graph.setCellStyles("gradientColor", color);
+				}
+			}
+		]]></add>
+		<add as="strokeColor"><![CDATA[
+			function (editor)
+			{
+				var color = mxUtils.prompt(mxResources.get('enterColorname'), 'red');
+				
+				if (color != null)
+				{
+					editor.graph.setCellStyles("strokeColor", color);
+				}
+			}
+		]]></add>
+		<add as="fontColor"><![CDATA[
+			function (editor)
+			{
+				var color = mxUtils.prompt(mxResources.get('enterColorname'), 'red');
+				
+				if (color != null)
+				{
+					editor.graph.setCellStyles("fontColor", color);
+				}
+			}
+		]]></add>
+		<add as="fontFamily"><![CDATA[
+			function (editor)
+			{
+				var family = mxUtils.prompt(mxResources.get('enterFontfamily'), 'Arial');
+				
+				if (family != null && family.length > 0)
+				{
+					editor.graph.setCellStyles("fontFamily", family);
+				}
+			}
+		]]></add>
+		<add as="fontSize"><![CDATA[
+			function (editor)
+			{
+				var size = mxUtils.prompt(mxResources.get('enterFontsize'), '10');
+				
+				if (size != null && size > 0 && size < 999)
+				{
+					editor.graph.setCellStyles("fontSize", size);
+				}
+			}
+		]]></add>
+		<add as="image"><![CDATA[
+			function (editor)
+			{
+				var image = mxUtils.prompt(mxResources.get('enterImageUrl'),
+					'examples/images/image.gif');
+				
+				if (image != null)
+				{
+					editor.graph.setCellStyles("image", image);
+				}
+			}
+		]]></add>
+		<add as="opacity"><![CDATA[
+			function (editor)
+			{
+				var opacity = mxUtils.prompt(mxResources.get('enterOpacity'), '100');
+				
+				if (opacity != null && opacity >= 0 && opacity <= 100)
+				{
+					editor.graph.setCellStyles("opacity", opacity);
+				}
+			}
+		]]></add>
+		<add as="straightConnector"><![CDATA[
+			function (editor)
+			{
+				editor.graph.setCellStyle("straightEdge");
+			}
+		]]></add>
+		<add as="elbowConnector"><![CDATA[
+			function (editor)
+			{
+				editor.graph.setCellStyle("");
+			}
+		]]></add>
+		<add as="arrowConnector"><![CDATA[
+			function (editor)
+			{
+				editor.graph.setCellStyle("arrowEdge");
+			}
+		]]></add>
+		<add as="toggleOrientation"><![CDATA[
+			function (editor, cell)
+			{
+				editor.graph.toggleCellStyles(mxConstants.STYLE_HORIZONTAL, true);
+			}
+		]]></add>
+		<add as="toggleRounded"><![CDATA[
+			function (editor)
+			{
+				editor.graph.toggleCellStyles(mxConstants.STYLE_ROUNDED);
+			}
+		]]></add>
+		<add as="toggleShadow"><![CDATA[
+			function (editor)
+			{
+				editor.graph.toggleCellStyles(mxConstants.STYLE_SHADOW);
+			}
+		]]></add>
+		<add as="horizontalTree"><![CDATA[
+			function (editor, cell)
+			{
+				cell = cell || editor.graph.getSelectionCell();
+				
+				if (cell == null)
+				{
+					cell = editor.graph.getDefaultParent();
+				}
+				
+				editor.treeLayout(cell, true);
+			}
+		]]></add>
+		<add as="verticalTree"><![CDATA[
+			function (editor, cell)
+			{
+				cell = cell || editor.graph.getSelectionCell();
+				
+				if (cell == null)
+				{
+					cell = editor.graph.getDefaultParent();
+				}
+				
+				editor.treeLayout(cell, false);
+			}
+		]]></add>
+	</Array>
+	
+	
+	<Array as="templates">
+		<add as="group">
+			<Group label="" description="" href="">
+				<mxCell vertex="1" style="group" connectable="0"/>
+			</Group>
+		</add>
+		<add as="edge">
+			<Edge label="" description="">
+				<mxCell edge="1">
+					<mxGeometry as="geometry" relative="1"/>
+				</mxCell>
+			</Edge>
+		</add>
+		<add as="swimlane">
+			<Swimlane label="Swimlane" description="" href="">
+				<mxCell vertex="1" style="swimlane" connectable="0">
+					<mxGeometry as="geometry" width="300" height="160"/>
+				</mxCell>
+			</Swimlane>
+		</add>
+		<add as="task">
+			<Task label="Task" description="" href="">
+				<mxCell vertex="1">	
+					<mxGeometry as="geometry" width="72" height="32"/>
+				</mxCell>
+			</Task>
+		</add>
+		<add as="subprocess">
+			<Subprocess label="Subprocess" description="" href="">
+				<mxCell vertex="1" style="rounded">		
+					<mxGeometry as="geometry" width="72" height="32"/>
+				</mxCell>
+			</Subprocess>
+		</add>
+		<add as="shape">
+			<Shape label="" description="" href="">
+				<mxCell vertex="1" style="ellipse">		
+					<mxGeometry as="geometry" width="32" height="32"/>
+				</mxCell>
+			</Shape>
+		</add>
+		<add as="symbol">
+			<Symbol label="Symbol" description="" href="">
+				<mxCell vertex="1" style="symbol;image=models/UBE/resources/images/symbols/event.png">
+					<mxGeometry as="geometry" width="32" height="32"/>
+				</mxCell>
+			</Symbol>
+		</add>
+	</Array>
+	
+	<mxGraph as="graph" alternateEdgeStyle="verticalConnector" allowLoops="1" dropEnabled="1">
+		<add as="isAutoSizeCell"><![CDATA[
+			function(cell)
+			{
+				return this.isSwimlane(cell);
+			}
+		]]></add>
+		<add as="isSwimlane"><![CDATA[
+			function (cell)
+			{
+				return mxUtils.isNode(this.model.getValue(cell), 'swimlane');
+			}
+		]]></add>
+		<add as="isAllowOverlapParent"><![CDATA[
+			function(cell)
+			{
+				return !this.isSwimlane(cell.parent);
+			}
+		]]></add>
+		<add as="getTooltipForCell"><![CDATA[
+			function(cell)
+			{
+				var href = cell.getAttribute('href');
+				href = (href != null && href.length > 0) ?
+					'<br>'+href : '';
+				var maxlen = 30;
+				var desc = cell.getAttribute('description');
+				if (desc == null || desc.length == 0)
+				{
+					desc = '';
+				}
+				else if (desc.length < maxlen)
+				{
+					desc = '<br>'+desc;
+				}
+				else
+				{
+					desc = '<br>'+desc.substring(0, maxlen)+'...';
+				}
+				return '<b>'+cell.getAttribute('label')+
+						'</b> ('+cell.getId()+')'+href+desc+
+						'<br>Edges: '+cell.getEdgeCount()+
+						'<br>Children: '+cell.getChildCount();
+			}
+		]]></add>
+		<add as="convertValueToString">
+			function(cell)
+			{
+				return cell.getAttribute('label');
+			}
+		</add>
+		<mxGraphModel as="model">
+			<add as="valueForCellChanged"><![CDATA[
+				function(cell, value)
+				{
+					var previous = null;
+					
+					if (isNaN(value.nodeType))
+					{
+						previous = cell.getAttribute('label');
+						cell.setAttribute('label', value);
+					}
+					else
+					{
+						previous = cell.value;
+						cell.value = value;
+					}
+					
+					return previous;
+				}
+			]]></add>
+			<root>
+				<Workflow label="none" description="" href="" id="0"/>
+				<Layer label="Default Layer">
+					<mxCell parent="0"/>
+				</Layer>
+			</root>
+		</mxGraphModel>
+		<mxStylesheet as="stylesheet">
+			<add as="defaultVertex">
+				<add as="shape" value="label"/>
+				<add as="perimeter" value="rectanglePerimeter"/>
+				<add as="labelBackgroundColor" value="white"/>
+				<add as="fontSize" value="10"/>
+				<add as="align" value="center"/>
+				<add as="verticalAlign" value="middle"/>
+				<add as="strokeColor" value="black"/>
+			</add>
+			<add as="defaultEdge">
+				<add as="shape" value="connector"/>
+				<add as="labelBackgroundColor" value="white"/>
+				<add as="rounded" value="1"/>
+				<add as="edgeStyle" value="elbowEdgeStyle"/>
+				<add as="endArrow" value="classic"/>
+				<add as="fontSize" value="10"/>
+				<add as="align" value="center"/>
+				<add as="verticalAlign" value="middle"/>
+				<add as="strokeColor" value="black"/>
+			</add>
+			<add as="verticalEdge">
+				<add as="elbow" value="vertical"/>
+			</add>
+			<add as="straightEdge">
+				<add as="shape" value="connector"/>
+				<add as="endArrow" value="classic"/>
+			</add>
+			<add as="arrowEdge">
+				<add as="shape" value="arrow"/>
+				<add as="fillColor" value="red"/>
+			</add>
+			<add as="swimlane">
+				<add as="shape" value="swimlane"/>
+				<add as="fontSize" value="12"/>
+				<add as="startSize" value="23"/>
+				<add as="horizontal" value="0"/>
+				<add as="verticalAlign" value="top"/>
+				<add as="fontColor" value="white"/>
+				<add as="labelBackgroundColor" value="none"/>
+			</add>
+			<add as="group">
+				<add as="shape" value="rectangle"/>
+				<add as="rounded" value="1"/>
+				<add as="verticalAlign" value="top"/>
+				<add as="strokeColor" value="black"/>
+				<add as="dashed" value="1"/>
+				<add as="opacity" value="50"/>
+			</add>
+			<add as="rounded">
+				<add as="rounded" value="1"/>
+			</add>
+			<add as="ellipse">
+				<add as="shape" value="ellipse"/>
+				<add as="perimeter" value="ellipsePerimeter"/>
+			</add>
+			<add as="rhombus">
+				<add as="shape" value="rhombus"/>
+				<add as="perimeter" value="rhombusPerimeter"/>
+			</add>
+			<add as="actor">
+				<add as="shape" value="actor"/>
+			</add>
+			<add as="symbol">
+				<add as="shape" value="image"/>
+				<add as="perimeter" value="rectanglePerimeter"/>
+				<add as="labelBackgroundColor" value="white"/>
+				<add as="fontSize" value="10"/>
+				<add as="align" value="center"/>
+				<add as="verticalAlign" value="top"/>
+				<add as="verticalLabelPosition" value="bottom"/>
+			</add>
+		</mxStylesheet>
+	</mxGraph>	
+	<mxDefaultToolbar as="toolbar">
+			<!--
+			 <// add as="save" action="save" icon="models/UBE/resources/images/save.gif"/>
+			 -->
+			<add as="show" action="show" icon="models/UBE/resources/images/preview.gif"/>
+			<add as="print" action="print" icon="models/UBE/resources/images/print.gif"/>
+			<add as="exportImage" action="exportImage" icon="models/UBE/resources/images/image.gif"/>
+			<br/><hr/>
+			<add as="select" mode="select" icon="models/UBE/resources/images/select.gif"/>
+			<add as="pan" mode="pan" icon="models/UBE/resources/images/pan.gif"/>
+			<add as="connect" mode="connect" icon="models/UBE/resources/images/connect.gif"><![CDATA[
+				function (editor)
+				{
+					if (editor.defaultEdge != null)
+					{
+						editor.defaultEdge.style = null;
+					}
+				}
+			]]></add>
+			<add as="connect" mode="connect" icon="models/UBE/resources/images/straight.gif"><![CDATA[
+				function (editor)
+				{
+					if (editor.defaultEdge != null)
+					{
+						editor.defaultEdge.style = 'straightEdge';
+					}
+				}
+			]]></add>
+			<br/><hr/>
+			<add as="undo" action="undo" icon="models/UBE/resources/images/undo.gif"/>
+			<add as="redo" action="redo" icon="models/UBE/resources/images/redo.gif"/>
+			<br/><hr/>
+			<add as="cut" action="cut" icon="models/UBE/resources/images/cut.gif"/>
+			<add as="copy" action="copy" icon="models/UBE/resources/images/copy.gif"/>
+			<add as="paste" action="paste" icon="models/UBE/resources/images/paste.gif"/>
+			<add as="delete" action="delete" icon="models/UBE/resources/images/delete.gif"/>
+			<br/><hr/>
+			<add as="group" action="group" icon="models/UBE/resources/images/group.gif"/>
+			<add as="ungroup" action="ungroup" icon="models/UBE/resources/images/ungroup.gif"/>
+			<br/><hr/>
+			<add as="Swimlane" template="swimlane" icon="models/UBE/resources/images/swimlane.gif"/>
+			<add as="Task" template="task" icon="models/UBE/resources/images/rectangle.gif"/>
+			<add as="Subprocess" template="subprocess" icon="models/UBE/resources/images/rounded.gif"/>
+			<add as="Ellipse" template="shape" style="ellipse" icon="models/UBE/resources/images/ellipse.gif"/>
+			<add as="Rhombus" template="shape" style="rhombus" icon="models/UBE/resources/images/rhombus.gif"/>
+			<add as="Actor" template="shape" style="actor" icon="models/UBE/resources/images/actor.gif"/>
+			<br/><hr/>
+			<add as="Event" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/event.png" icon="models/UBE/resources/images/symbols/small_event.gif"/>
+			<add as="Event (Intermediate)" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/event_intermediate.png" icon="models/UBE/resources/images/symbols/small_event_intermediate.gif"/>
+			<add as="Event (End)" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/event_end.png" icon="models/UBE/resources/images/symbols/small_event_end.gif"/>
+			<add as="Timer" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/timer.png" icon="models/UBE/resources/images/symbols/small_timer.gif"/>
+			<add as="Message" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/message.png" icon="models/UBE/resources/images/symbols/small_message.gif"/>
+			<add as="Message (Intermediate)" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/message_intermediate.png" icon="models/UBE/resources/images/symbols/small_message_intermediate.gif"/>
+			<add as="Message (End)" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/message_end.png" icon="models/UBE/resources/images/symbols/small_message_end.gif"/>
+			<add as="Terminate" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/terminate.png" icon="models/UBE/resources/images/symbols/small_terminate.gif"/>
+			<add as="Link" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/link.png" icon="models/UBE/resources/images/symbols/small_link.gif"/>
+			<add as="Rule" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/rule.png" icon="models/UBE/resources/images/symbols/small_rule.gif"/>
+			<add as="Multiple" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/multiple.png" icon="models/UBE/resources/images/symbols/small_multiple.gif"/>
+			<add as="Error" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/error.png" icon="models/UBE/resources/images/symbols/small_error.gif"/>
+			<add as="Cancel (End)" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/cancel_end.png" icon="models/UBE/resources/images/symbols/small_cancel_end.gif"/>
+			<add as="Cancel (Intermediate)" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/cancel_intermediate.png" icon="models/UBE/resources/images/symbols/small_cancel_intermediate.gif"/>
+			<add as="Fork" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/fork.png" icon="models/UBE/resources/images/symbols/small_fork.gif"/>
+			<add as="Merge" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/merge.png" icon="models/UBE/resources/images/symbols/small_merge.gif"/>
+			<add as="Inclusive" template="symbol" style="symbol;image=models/UBE/resources/images/symbols/inclusive.png" icon="models/UBE/resources/images/symbols/small_inclusive.gif"/>
+			<br/><hr/>
+			<add as="fit" action="fit" icon="models/UBE/resources/images/zoom.gif"/>
+			<add as="zoomIn" action="zoomIn" icon="models/UBE/resources/images/zoomin.gif"/>
+			<add as="zoomOut" action="zoomOut" icon="models/UBE/resources/images/zoomout.gif"/>
+			<add as="actualSize" action="actualSize" icon="models/UBE/resources/images/zoomactual.gif"/>
+			<add as="zoom" action="zoom" icon="models/UBE/resources/images/zoom.gif"/>
+			<br/><hr/>
+			<add as="outline" action="toggleOutline" icon="models/UBE/resources/images/outline.gif"/>
+			<!--
+			<add as="tasks" action="toggleTasks" icon="models/UBE/resources/images/tasks.gif"/>
+			<add as="help" action="toggleHelp" icon="models/UBE/resources/images/help.gif"/>
+			<add as="console" action="toggleConsole" icon="models/UBE/resources/images/console.gif"/>
+			-->
+	</mxDefaultToolbar>
+	
+</mxEditor>

@@ -1,0 +1,22 @@
+﻿{
+    "caption": "Збережені фільтри",
+    "description": "Збережені фільтри",
+    "attributes": {
+        "code": {
+            "caption": "Код",
+            "description": "Код групи фільтрів"
+        },
+        "name": {
+            "caption": "Назва фільтра"
+        },
+        "filter": {
+            "caption": "Текст фільтра"
+        },
+        "isGlobal": {
+            "caption": "Загальний?"
+        },
+        "owner": {
+            "caption": "Власник"
+        }
+    }
+}

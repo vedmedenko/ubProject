@@ -1,0 +1,14 @@
+﻿{
+    "caption": "Ролі користувача",
+    "description": "Ролі, призначені користувачу",
+    "attributes": {
+        "userID": {
+            "caption": "Користувач",
+            "description": ""
+        },
+        "roleID": {
+            "caption": "Роль",
+            "description": ""
+        }
+    }
+}

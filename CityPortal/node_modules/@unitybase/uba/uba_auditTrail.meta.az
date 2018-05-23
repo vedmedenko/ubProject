@@ -1,0 +1,41 @@
+﻿{
+    "caption": "Audit",
+    "description": "Dəyişikliklərin auditi",
+    "attributes": {
+        "entity": {
+            "caption": "Obyekt",
+            "description": "Maddə"
+        },
+        "entityinfo_id": {
+            "caption": "Maddənin ID qeydləri",
+            "description": "Maddənin ID qeydləri"
+        },
+        "actionType": {
+            "caption": "Əməliyyat",
+            "description": "Fəaliyyət"
+        },
+        "actionUser": {
+            "caption": "İstifadəçi",
+            "description": "İstifadəçi"
+        },
+        "actionTime": {
+            "caption": "Əməliyyatvaxtı",
+            "description": "Fəaliyyət vaxtı"
+        },
+        "remoteIP": {
+            "caption": "Remote IP"
+        },
+        "fromValue": {
+            "caption": "Qiymətdən"
+        },
+        "toValue": {
+            "caption": "Qiymətə"
+        },
+        "parentEntity": {
+            "caption": "Əsas obyekt"
+        },
+        "parentEntityInfo_id": {
+            "caption": "Əsas obyektlərin ID qeydləri"
+        }
+    }
+}

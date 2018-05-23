@@ -1,0 +1,24 @@
+<!--@name "Closed requests for current month"-->
+<!--@model "RequestList"-->
+
+
+
+<!--%pageOrientation:portrait--><p style="text-align: center;"><span style="font-size: 14pt;"><strong>Request List Current Month</strong></span></p>
+<p>Current month: {{curMonth}}, Year: 2018</p>
+<p><em><strong>Closed requests</strong></em></p>
+<table style="height: 51px;" width="744">
+<tbody>
+<tr>
+<td><strong>Request Date</strong></td>
+<td><strong>Applicant Info</strong></td>
+<td><strong>Request Text</strong></td>
+<td><strong>Answer</strong></td>
+</tr>
+<tr>
+<td>&nbsp;{{reqDate}}</td>
+<td>&nbsp;{{applicantInfo}}</td>
+<td>&nbsp;{{reqText}}</td>
+<td>&nbsp;{{answer}}</td>
+</tr>
+</tbody>
+</table>

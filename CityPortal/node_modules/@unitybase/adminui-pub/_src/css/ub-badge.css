@@ -1,0 +1,116 @@
+.ub-badge-component {
+    display: inline;
+    padding: 1px 4px;
+    font-size: 100%;
+    font-weight: 700;
+    line-height: 2;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    margin: 0 1em;
+}
+
+.ub-badge-component.ub-badge-field {
+    position: relative;
+}
+
+.ub-badge-default {
+    background-color: #5bc0de;
+}
+
+.ub-badge-warning {
+    background-color: #f0ad4e;
+}
+
+.ub-badge-yellow {
+    background-color: #f0ad4e;
+}
+
+.ub-badge-success {
+    background-color: #5cb85c;
+}
+
+.ub-badge-green {
+    background-color: #5cb85c;
+}
+
+.ub-badge-error {
+    background-color: #c9302c;
+}
+
+.ub-badge-red {
+    background-color: #c9302c;
+}
+
+.ub-badge-primary {
+    background-color: #337ab7;
+}
+
+.ub-badge-blue {
+    background-color: #337ab7;
+}
+
+.ub-badge-grey {
+    background-color: #a5a2aa;
+}
+
+.ub-badge-invert {
+    background-color: white;
+    border: 1px solid;
+}
+
+.ub-badge-default.ub-badge-invert {
+    border-color: #5bc0de;
+    color: #5bc0de;
+}
+
+.ub-badge-warning.ub-badge-invert {
+    border-color: #f0ad4e;
+    color: #f0ad4e;
+}
+
+.ub-badge-yellow.ub-badge-invert {
+    border-color: #f0ad4e;
+    color: #f0ad4e;
+}
+
+.ub-badge-success.ub-badge-invert {
+    border-color: #5cb85c;
+    color: #5cb85c;
+}
+
+.ub-badge-green.ub-badge-invert {
+    border-color: #5cb85c;
+    color: #5cb85c;
+}
+
+.ub-badge-error.ub-badge-invert {
+    border-color: #c9302c;
+    color: #c9302c;
+}
+
+.ub-badge-red.ub-badge-invert {
+    border-color: #c9302c;
+    color: #c9302c;
+}
+
+.ub-badge-primary.ub-badge-invert {
+    border-color: #337ab7;
+    color: #337ab7;
+}
+
+.ub-badge-blue.ub-badge-invert {
+    border-color: #337ab7;
+    color: #337ab7;
+}
+
+.ub-badge-grey.ub-badge-invert {
+    border-color: #a5a2aa;
+    color: #a5a2aa;
+}
+.ub-badge-parent-paddings{
+    padding-top: 6px !important;
+    padding-bottom: 4px !important;;
+}

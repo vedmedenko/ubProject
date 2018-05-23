@@ -1,0 +1,43 @@
+﻿{
+    "caption": "Forma",
+    "description": "Forma interfeyslərinin müəyyənləşdirilməsi",
+    "attributes": {
+        "code": {
+            "caption": "Formanın kodu",
+            "description": ""
+        },
+        "description": {
+            "caption": "Təsvir",
+            "description": ""
+        },
+        "caption": {
+            "caption": "Formanın başlığı"
+        },
+        "formType": {
+            "caption": "Formanın tipi",
+            "description": "Formanın müəyyənləşdirilməsi tipi auto, yaxud custom"
+        },
+        "formDef": {
+            "caption": "Formanın müəyyənləşdirilməsi",
+            "description": "Forma interfeyslərinin müəyyənləşdirilməsi"
+        },
+        "formCode": {
+            "caption": "Forma skripti",
+            "description": "Formanın müştəri mlogikası ilə JS"
+        },
+	"model":
+	{
+	  "caption": "Model"
+	},
+        "entity": {
+            "caption": "Maddə",
+            "description": "Maddənin kodu",
+            "documentation": "Maddə üçün formanın avtomatik müəyyənləşdirilməsi zamanı istifadə edilir"
+        },
+        "isDefault": {
+            "caption": "Susmaya görə",
+            "description": "Susmaya görə istifadə edilir",
+            "documentation": "showForm komandası verildikdə formanın kodu göstərilməmişsə, entity üzrə axtarış aparılacaq və bundan bir neçə ədəd olduqda isə, isDefault=true olan seçiləcək"
+        }
+    }
+}

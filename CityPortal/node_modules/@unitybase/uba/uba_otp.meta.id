@@ -1,0 +1,26 @@
+﻿{
+    "caption": "Satu password waktu",
+    "description": "Satu password waktu",
+    "attributes": {
+        "otp": {
+            "caption": "OTP",
+            "description": "Sandi satu waktu"
+        },
+        "userID": {
+            "caption": "pemakai",
+            "description": "Pengguna yang sandi dihasilkan"
+        },
+        "uData": {
+            "caption": "uData",
+            "description": "Data tambahan"
+        },
+        "expiredDate": {
+            "caption": "Tanggal kadaluarsa",
+            "description": "Tanggal kadaluarsa"
+        },
+        "otpKind": {
+            "caption": "otp jenis",
+            "description": "Jenis otp (Email, SMS dll)"
+        }
+    }
+}

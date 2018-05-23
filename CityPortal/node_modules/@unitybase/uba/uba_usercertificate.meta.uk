@@ -1,0 +1,30 @@
+﻿{
+    "caption": "Сертифікати",
+    "description": "Сертифікати користувача",
+    "attributes": {
+        "userID": {
+            "caption": "Користувач"
+        },
+        "issuer_serial": {
+            "caption": "Серійний ключ ЦСК"
+        },
+        "issuer_cn": {
+            "caption": "Назва ЦСК"
+        },
+        "serial": {
+            "caption": "Серійний номер"
+        },
+        "certificate": {
+            "caption": "Сертифікат"
+        },
+        "description": {
+            "caption": "Опис"
+        },
+        "disabled": {
+            "caption": "Відключений"
+        },
+        "revoked": {
+            "caption": "Відкликаний"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+// transaction isolation!!!
+UB.Repository('uba_user').attrs(['ID', 'description']).selectAsObject();
+// in the SQL: begin transaction; update uba_user set description = 'admin1' where id = 10;
+UB.Repository('uba_user').attrs(['ID', 'description']).selectAsObject(); //must be admin in Oracle & Postgre. MS must wait on admin if snapshot!
+//  in the SQL: commit;
+UB.Repository('uba_user').attrs(['ID', 'description']).selectAsObject(); //must be admin1
+//  in SQL: begin transaction isolation level SERIALIZABLE; select * from uba_user; 
+conn.run({
+  entity: 'uba_user', 
+  method: 'update', 
+  execParams: {description: 'new1', ID: 10},
+  __skipOptimisticLock: true
+});
+//  in SQL: select * from uba_user; commit; // must be admin1 !!!!
+// select * from uba_user; // must be new1

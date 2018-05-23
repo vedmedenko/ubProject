@@ -1,0 +1,30 @@
+﻿{
+    "caption": "Sertifikatlar",
+    "description": "İstifadəçinin sertifikatları",
+    "attributes": {
+        "userID": {
+            "caption": "İstifadəçi"
+        },
+        "issuer_serial": {
+            "caption": "ERS seriya açarı"
+        },
+        "issuer_cn": {
+            "caption": "ERS adı"
+        },
+        "serial": {
+            "caption": "Seriya nömrəsi"
+        },
+        "certificate": {
+            "caption": "Sertifikat"
+        },
+        "description": {
+            "caption": "Təsvir"
+        },
+        "disabled": {
+            "caption": "De-aktiv edilmişdir"
+        },
+        "revoked": {
+            "caption": "Geri çağırılmışdır"
+        }
+    }
+}

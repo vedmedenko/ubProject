@@ -1,0 +1,30 @@
+﻿{
+    "caption": "Налаштування",
+    "description": "Сутність, в якій зберігається інформація з налаштуваннями системи",
+    "attributes": {
+        "settingKey": {
+            "caption": "Ключ",
+            "description": "Ключ налаштування"
+        },
+        "name": {
+            "caption": "Назва",
+            "description": "Назва налаштування"
+        },
+        "description": {
+            "caption": "Опис",
+            "description": "Опис"
+        },
+        "type": {
+            "caption": "Тип",
+            "description": "Тип значення"
+        },
+        "settingValue": {
+            "caption": "Значення",
+            "description": "Значення"
+        },
+        "defaultValue": {
+            "caption": "Значення за замовчуванням",
+            "description": "Значення за замовчуванням"
+        }
+    }
+}

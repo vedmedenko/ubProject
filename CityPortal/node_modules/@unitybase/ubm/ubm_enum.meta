@@ -1,0 +1,58 @@
+﻿{
+	"caption": "Enumerated values",
+	"description": "Enumerated values",
+	"connectionName": "",
+	"sqlAlias": "enu",
+	"cacheType": "SessionEntity",
+	"descriptionAttribute": "name",
+	"documentation": "",
+	"attributes": {
+		"eGroup": {
+			"dataType": "String",
+			"size": 32,
+			"caption": "Group",
+			"description": "Group of enumeration",
+			"allowNull": false
+		},
+		"code": {
+			"dataType": "String",
+			"size": 32,
+			"allowNull": false,
+			"caption": "Code",
+			"description": "Value code"
+		},
+		"shortName": {
+			"dataType": "String",
+			"size": 128,
+			"caption": "Short name",
+			"allowNull": true,
+			"isMultiLang": true
+		},
+		"name": {
+			"dataType": "String",
+			"size": 255,
+			"caption": "Value name",
+			"allowNull": false,
+			"isMultiLang": true
+		},
+		"sortOrder": {
+          	"dataType": "Int",
+			"caption": "N order",
+			"defaultValue": "100", 
+			"documentation": "This attribute is used for ordering enum in combobox. Default = 100 for easy change order to greate or smaller if need",
+			"allowNull": false
+		}
+	},
+	"mixins": {
+		"mStorage": {
+			"simpleAudit": true,
+			"safeDelete" : true
+		}
+	},
+	"dbKeys": {
+		"UK_UBM_ENUM_GROUPCODE": {
+			"eGroup":{},
+			"code": {}
+		}
+	}
+}

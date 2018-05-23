@@ -1,0 +1,27 @@
+﻿{
+    "caption": "Stored UI filters",
+    "description": "Stored UI filters",
+    "documentation": "doCmd.showList.autofilter use this entity to store user filters definition",
+    "attributes": {
+        "code": {
+            "caption": "Code",
+            "description": "Code of filter group"
+        },
+        "name": {
+            "caption": "Name",
+            "description": "Filter name"
+        },
+        "filter": {
+            "caption": "Filter definition",
+            "description": "filter"
+        },
+        "isGlobal": {
+            "caption": "Is global?",
+            "description": "Is this filter accessible for all users"
+        },
+        "owner": {
+            "caption": "Filter owner",
+            "description": "Filter owner"
+        }
+    }
+}

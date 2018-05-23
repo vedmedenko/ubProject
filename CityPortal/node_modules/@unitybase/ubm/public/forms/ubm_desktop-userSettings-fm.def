@@ -1,0 +1,63 @@
+//@! "do not remove comments below unless you know what you do!"
+//@isDefault "false"
+//@entity "ubm_desktop"
+//@formType "custom"
+//@caption "UserSettings"
+//@description "UserSettings"
+/*global UB, Ext, window*/
+Ext.define("UBM.userSettings", {
+    extend: "Ext.form.Panel",
+    alias: "widget.settingsform",
+    requires: [
+        "UB.core.UBApp",
+        "UB.core.UBAppConfig"
+    ],
+    layout: {
+        type: 'vbox'
+    },
+    size: {
+        width: 300,
+        height: 600
+    },
+
+    initComponent: function() {
+        var
+            btnIItSettings, btnIItCert, btnScannerSettings;
+
+        btnScannerSettings = Ext.create('Ext.button.Button', {
+            text: UB.i18n('nastroykiSkanera'),
+            iconCls: 'iconScanner',
+            handler: function() {
+                $App.scannerSettings();
+            }
+        });
+
+/*        btnIItSettings = Ext.create('Ext.button.Button', {
+            text: UB.i18n("btnIItSttings"),
+            margin: '10 0 2 0',
+            handler: function() {
+                $App.connection.pki().done(function(plugin) {
+                    plugin.showCryptoLibrarySettings().done();
+                });
+            }
+        });
+
+        btnIItCert = Ext.create('Ext.button.Button', {
+            text: UB.i18n("btnIItCert"),
+            margin: '10 0 2 0',
+            handler: function() {
+                $App.connection.pki().done(function(plugin) {
+                    plugin.showCryptoLibraryCertificates().done();
+                });
+            }
+        });*/
+
+        this.items = [
+            btnScannerSettings,
+            btnIItSettings,
+            btnIItCert
+        ];
+
+        this.callParent(arguments);
+    }
+});

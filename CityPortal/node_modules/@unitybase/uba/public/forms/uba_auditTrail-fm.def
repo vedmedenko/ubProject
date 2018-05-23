@@ -1,0 +1,63 @@
+//@! "do not remove comments below unless you know what you do!"
+//@isDefault "true"
+//@entity "uba_auditTrail"
+//@formType "auto"
+//@caption "Audit"
+//@description "Audit"
+/*global UB, Ext */
+exports.formDef = {
+    requiredFields: ['entity','actionUser','actionTime','fromValue','toValue'],
+    parentConfig: {
+        // autoScroll: true,
+        layout: {
+            type: "vbox",
+            align: "stretch" //max
+        },
+        defaults: {
+            layout: {
+                type: 'vbox',
+                align : 'stretch',
+                pack  : 'start'
+            }
+        }
+    },
+    size: {
+        width: 600,
+        height: 500
+    },
+    position: {
+        x: 100,
+        y: 100
+    },
+    items: [
+        {
+            xtype: "textfield",
+            name: "entityField",
+            fieldLabel: $App.domainInfo.entities['uba_auditTrail'].attributes['entity'].caption,
+            readOnly: true,
+            width: "50%"
+        },
+        { attributeName: "actionType", readOnly: true },
+        {
+            xtype: "textfield",
+            name: "actionUserField",
+            fieldLabel: $App.domainInfo.entities['uba_auditTrail'].attributes['actionUser'].caption,
+            readOnly: true,
+            width: "50%"
+        },
+        { attributeName: "remoteIP", readOnly: true },
+        {
+            xtype: "datefield",
+            name: "actionTimeField",
+            fieldLabel: $App.domainInfo.entities['uba_auditTrail'].attributes['actionTime'].caption,
+            format: 'd.m.Y H:i:s',
+            readOnly: true
+        },
+        {
+            name:"panel",
+            autoScroll: true,
+            xtype: "panel",
+            flex: 1
+        }
+    ]
+};

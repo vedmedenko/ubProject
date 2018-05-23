@@ -1,0 +1,128 @@
+﻿{
+	"connectionName": "",
+	"sqlAlias": "usr",
+	"cacheType": "None",
+
+	"caption": "Users",
+	"descriptionAttribute": "name",
+
+
+	"mixins": {
+		"mStorage": {
+			"simpleAudit": true,
+			"safeDelete": false
+		},
+		"unity": {
+			"entity": "uba_subject",
+			"attributeList": ["code", "name"],
+			"mapping": {
+			  "name": "code",
+			  "fullName": "name"
+			},
+			"defaults": {
+				"sType": "U"
+			}
+		}
+	},
+
+	"attributes": [
+		{
+			"name": "name",
+			"dataType": "String", "size": 128,
+			"allowNull": false, "isUnique": true,
+			"caption": "Login",
+			"description": "User login in lower case"
+		},
+		{
+			"name": "firstName",
+			"dataType": "String", "size": 64,
+			"caption": "First Name"
+		},
+		{
+			"name": "lastName",
+			"dataType": "String", "size": 64,
+			"caption": "Last Name"
+		},
+		{
+			"name": "fullName",
+			"dataType": "String", "size": 128,
+			"caption": "Full Name"
+		},
+		{
+			"name": "gender",
+			"dataType": "Enum",	"enumGroup": "UBA_USER_GENDER",
+			"caption": "User gender",
+			"defaultView": false
+		},
+		{
+			"name": "email",
+			"dataType": "String", "size": 64,
+			"caption": "Email",
+			"description": "User email (could be used for notifications)",
+			"defaultView": false
+		},
+		{
+			"name": "phone",
+			"dataType": "String", "size": 32,
+			"caption": "Phone",
+			"description": "User phone (could be used for sms)",
+			"defaultView": false
+		},
+		{
+			"name": "avatar",
+			"dataType": "Document", "storeName": "avatars",
+			"caption": "Avatar",
+			"description": "User avatar image (recommended 128x128)",
+			"defaultView": false
+		},
+		{
+			"name": "description",
+			"dataType": "String", "size": 255,
+			"caption": "Description",
+			"description": "Additional description of user account",
+			"defaultView": false
+		},
+		{
+			"name": "uData",
+			"dataType": "String", "size": 2000,
+			"caption": "uData",
+			"description": "Additional user data",
+			"documentation": "Any valid JSON object. This data transferred to client part as result of auth method. Also accessible in server methods vis Session.uData",
+			"defaultView": false
+		},
+		{
+			"name": "disabled",
+			"dataType": "Boolean",
+			"allowNull": false, "defaultValue": "0",
+			"caption": "Disabled"
+		},
+		{
+			"name": "isPending",
+			"dataType": "Boolean",
+			"allowNull": false, "defaultValue": "0",
+			"caption": "Registration pending",
+			"description": "The user is waiting for confirmation of registration"
+		},
+		{
+			"name": "trustedIP",
+			"dataType": "String", "size": 255,
+			"defaultView": false,
+			"caption": "trusted IPs",
+			"documentation": "Semicolon separated list of allowed IPs for UBIP authentication schema. Warning! We recomend use it only for IPs from DMZ"
+		},
+		{
+			"name": "uPasswordHashHexa",
+			"dataType": "String", "size": 64,
+			"caption": "Password hash",
+			"defaultView": false,
+			"documentation": "PasswordHashHexa := SHA256('salt'+PasswordPlain) in UTF-8"
+		},
+		{
+			"name": "lastPasswordChangeDate",
+			"dataType": "DateTime",
+			"allowNull": false, "defaultValue": "currentDate",
+			"defaultView": false,
+			"caption": "Last password change date"
+		}
+	]
+}

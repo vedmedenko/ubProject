@@ -1,0 +1,23 @@
+﻿{
+    "caption": "Sistem rolları",
+    "description": "İnzibatçılıq altsisteminin rolları",
+    "attributes": {
+        "name": {
+            "caption": "Rol",
+            "description": ""
+        },
+        "description": {
+            "caption": "Təsvir",
+            "description": ""
+        },
+        "sessionTimeout": {
+            "caption": "Sessiyanın əməliyyat müddəti",
+            "description": "Sessiyanın taymaut üzrə silinəcəyi vaxt (dəqiqə ilə)"
+        },
+        "allowedAppMethods": {
+            "caption": "İcra edilməli tətbiq üsulları",
+            "documentation": "",
+            "description": ""
+        }
+    }
+}

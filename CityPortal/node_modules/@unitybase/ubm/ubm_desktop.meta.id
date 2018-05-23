@@ -1,0 +1,19 @@
+﻿{
+    "caption": "Desktop",
+    "description": "desktop aplikasi",
+    "attributes": {
+        "caption": {
+            "caption": "nama Desktop"
+        },
+        "code": {
+            "caption": "Kode"
+        },
+        "url": {
+            "caption": "URL",
+            "description": "URL server halaman statis yang ditampilkan di tengah layar desktop yang dipilih"
+        },
+        "isDefault": {
+            "caption": "Secara default?"
+        }
+    }
+}

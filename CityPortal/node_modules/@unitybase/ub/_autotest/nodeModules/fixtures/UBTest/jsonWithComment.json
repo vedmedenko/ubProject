@@ -1,0 +1,3 @@
+{
+  "a": 1 // UnityBase must remove comments pefore JSON.parse
+}

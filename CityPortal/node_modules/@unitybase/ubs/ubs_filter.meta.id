@@ -1,0 +1,26 @@
+﻿{
+    "caption": "filter UI disimpan",
+    "description": "filter UI disimpan",
+    "attributes": {
+        "code": {
+            "caption": "Kode",
+            "description": "Kode kelompok filter"
+        },
+        "name": {
+            "caption": "Nama",
+            "description": "nama filter"
+        },
+        "filter": {
+            "caption": "definisi Filter",
+            "description": "menyaring"
+        },
+        "isGlobal": {
+            "caption": "Apakah global?",
+            "description": "Apakah filter ini dapat diakses untuk semua pengguna"
+        },
+        "owner": {
+            "caption": "pemilik Filter",
+            "description": "pemilik Filter"
+        }
+    }
+}

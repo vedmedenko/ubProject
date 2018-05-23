@@ -1,0 +1,45 @@
+﻿{
+	"caption": "Administration subjects",
+	"description": "Administration subjects- unity for users and roles",
+	"connectionName": "",
+	"sqlAlias": "subj",
+	"cacheType": "None",
+	"descriptionAttribute": "name",
+	"documentation": "",
+	"attributes": {
+		"code":	{
+			"dataType": "String",
+			"size": 128,
+			"caption": "Subject code",
+			"allowNull": false
+		},
+		"name":	{
+			"dataType": "String",
+			"size": 128,
+			"caption": "Login",
+			"allowNull": false
+		},
+		"sType": {
+			"dataType": "String",
+			"size": 1,
+			"caption": "Subject type",
+			"allowNull": false
+		}
+	},
+	"mixins": {
+		"mStorage":	{
+			"simpleAudit": false,
+			"safeDelete": false
+		}
+	},
+    "dbExtensions":{
+       "IDX_SUBJ_NAME": {
+          "type": "INDEX",
+          "definition": { 
+             "keys": { 
+                "name" : {}
+             }
+          }
+       }
+    }
+}

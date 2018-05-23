@@ -1,0 +1,25 @@
+﻿{
+    "caption": "Message queue",
+    "description": "Message queue",
+    "attributes": {
+        "queueCode": {
+            "caption": "Queue code",
+            "description": "Receivers determinate handler by this code. For each queCode must be receiver which handle it"
+        },
+        "msgCmd": {
+            "caption": "Command",
+            "description": "Command for receiver. Contain JSON serialized object with command parameters. Command must contain attributes receiver understand"
+        },
+        "msgData": {
+            "caption": "Message data",
+            "description": "Additional data for message. May contain Base64 encoded binary data"
+        },
+        "msgPriority": {
+            "caption": "Priority",
+            "description": "Priority of messages. 1=High, 0=Low, default 1"
+        },
+        "completeDate": {
+            "caption": "Complete date"
+        }
+    }
+}

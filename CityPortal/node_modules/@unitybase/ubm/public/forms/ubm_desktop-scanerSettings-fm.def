@@ -1,0 +1,1222 @@
+//@! "do not remove comments below unless you know what you do!"
+//@isDefault "false"
+//@entity "ubm_desktop"
+//@formType "custom"
+//@caption "ScanerSettings"
+//@description "ScanerSettings"
+
+//do not remove this. It's a dirty hack for get class with regexp from UBFormLoader.js
+//Ext.define('UBM.scanerSettings', {
+
+Ext.define('UBM.scanerSettings.doubleFields', {
+    extend: 'Ext.data.Model',
+    fields: ['name', 'code']
+}); 
+
+Ext.create('Ext.data.Store', {
+    storeId: 'UBM.scanerSettings.scanners',
+    model: 'UBM.scanerSettings.doubleFields'
+});
+
+Ext.create('Ext.data.Store', {
+    storeId: 'UBM.scanerSettings.printers',
+    model: 'UBM.scanerSettings.doubleFields'
+});
+
+Ext.create('Ext.data.Store', {
+    storeId: 'UBM.scanerSettings.pictireMode',
+    model: 'UBM.scanerSettings.doubleFields',
+    data: [
+        [UB.i18n('desktopService.BlackAndWhite'), 'SPM_BlackAndWhite'], //localize
+        [UB.i18n('desktopService.Grayscale'), 'SPM_Grayscale'], //localize
+        [UB.i18n('desktopService.Color'), 'SPM_Color'] //localize
+    ]
+});
+
+Ext.create('Ext.data.Store', {
+    storeId: 'UBM.scanerSettings.pagePosition',
+    model: 'UBM.scanerSettings.doubleFields',
+    data: [
+        [UB.i18n('desktopService.TopLeft'), 'bcppTopLeft'], //localize
+        [UB.i18n('desktopService.TopCenter'), 'bcppTopCenter'], //localize
+        [UB.i18n('desktopService.TopRight'), 'bcppTopRight'], //localize
+        [UB.i18n('desktopService.BottomLeft'), 'bcppBottomLeft'], //localize
+        [UB.i18n('desktopService.BottomCenter'), 'bcppBottomCenter'], //localize
+        [UB.i18n('desktopService.BottomRight'), 'bcppBottomRight'] //localize
+    ]
+});
+
+Ext.create('Ext.data.Store', {
+    storeId: 'UBM.scanerSettings.scanType',
+    model: 'UBM.scanerSettings.doubleFields',
+    data: [
+        ['ABBYY FineReader Engine', 'FineReader'], //localize ?
+        ['Unity Base scan engine', 'UnityBase'] //localize ?
+    ]
+});
+
+function getArrayWithPrefix(prefix, arr) {
+    return arr.map(function(elem) {
+        return ([elem, prefix + elem]);
+    })
+}
+
+Ext.create('Ext.data.Store', {
+    storeId: 'UBM.scanerSettings.messagesLanguages',
+    model: 'UBM.scanerSettings.doubleFields',
+    data: getArrayWithPrefix('ML_', [
+        'English',
+        'Russian',
+        'German',
+        'French',
+        'Ukrainian',
+        'Spanish',
+        'Italian',
+        'DutchStandard',
+        'Swedish',
+        'Portuguese',
+        'Slovak',
+        'Polish',
+        'Czech',
+        'Hungarian',
+        'Lithuanian',
+        'Latvian',
+        'Estonian',
+        'Bulgarian',
+        'Turkish'])
+});
+
+Ext.create('Ext.data.Store', {
+    storeId: 'UBM.scanerSettings.TextType',
+    model: 'UBM.scanerSettings.doubleFields',
+    data: getArrayWithPrefix('TT_', [
+        'Normal',
+        'Typewriter',
+        'Matrix',
+        'Index',
+        'Handprinted',
+        'OCR_A',
+        'OCR_B',
+        'MICR_E13B',
+        'MICR_CMC7',
+        'Gothic',
+        'ToBeDetected'])
+});
+
+Ext.create('Ext.data.Store', {
+    storeId: 'UBM.scanerSettings.PDFExportMode',
+    model: 'UBM.scanerSettings.doubleFields',
+    data: getArrayWithPrefix('PEM_', [
+        'TextOnly',
+        'TextOnImage',
+        'ImageOnText',
+        'ImageOnly'])
+});
+
+Ext.create('Ext.data.Store', {
+    storeId: 'UBM.scanerSettings.recognizationLanguages',
+    model: 'UBM.scanerSettings.doubleFields',
+    sorters: [{
+        property: 'code'
+    }]
+});
+
+Ext.create('Ext.data.Store', {
+    storeId: 'UBM.scanerSettings.aviableRecognizationLanguages',
+    model: 'UBM.scanerSettings.doubleFields',
+    data: getArrayWithPrefix('', [
+        'Abkhaz',
+        'Adyghe',
+        'Afrikaans',
+        'Agul',
+        'Albanian',
+        'Altaic',
+        'ArmenianEastern',
+        'ArmenianGrabar',
+        'ArmenianWestern',
+        'Awar',
+        'Aymara',
+        'AzeriCyrillic',
+        'AzeriLatin',
+        'Bashkir',
+        'Basque',
+        'Belarusian',
+        'Bemba',
+        'Blackfoot',
+        'Breton',
+        'Bugotu',
+        'Bulgarian',
+        'Buryat',
+        'Catalan',
+        'Chamorro',
+        'Chechen',
+        'ChinesePRC',
+        'ChineseTaiwan',
+        'Chukcha',
+        'Chuvash',
+        'Corsican',
+        'CrimeanTatar',
+        'Croatian',
+        'Crow',
+        'Czech',
+        'Danish',
+        'Dargwa',
+        'Dungan',
+        'Dutch',
+        'DutchBelgian',
+        'English',
+        'EskimoCyrillic',
+        'EskimoLatin',
+        'Esperanto',
+        'Estonian',
+        'Even',
+        'Evenki',
+        'Faeroese',
+        'Fijian',
+        'Finnish',
+        'French',
+        'Frisian',
+        'Friulian',
+        'GaelicScottish',
+        'Gagauz',
+        'Galician',
+        'Ganda',
+        'German',
+        'GermanNewSpelling',
+        'GermanLuxembourg',
+        'Greek',
+        'Guarani',
+        'Hani',
+        'Hausa',
+        'Hawaiian',
+        'Hebrew',
+        'Hungarian',
+        'Icelandic',
+        'Ido',
+        'Indonesian',
+        'Ingush',
+        'Interlingua',
+        'Irish',
+        'Italian',
+        'Japanese',
+        'Kabardian',
+        'Kalmyk',
+        'KarachayBalkar',
+        'Karakalpak',
+        'Kasub',
+        'Kawa',
+        'Kazakh',
+        'Khakas',
+        'Khanty',
+        'Kikuyu',
+        'Kirgiz',
+        'Kongo',
+        'Korean',
+        'KoreanHangul',
+        'Koryak',
+        'Kpelle',
+        'Kumyk',
+        'Kurdish',
+        'Lak',
+        'Lappish',
+        'Latin',
+        'Latvian',
+        'LatvianGothic',
+        'Lezgin',
+        'Lithuanian',
+        'Luba',
+        'Macedonian',
+        'Malagasy',
+        'Malay',
+        'Malinke',
+        'Maltese',
+        'Mansi',
+        'Maori',
+        'Mari',
+        'Maya',
+        'Miao',
+        'Minankabaw',
+        'Mohawk',
+        'Mongol',
+        'Mordvin',
+        'Nahuatl',
+        'Nenets',
+        'Nivkh',
+        'Nogay',
+        'Norwegian',
+        'NorwegianBokmal',
+        'NorwegianNynorsk',
+        'Nyanja',
+        'Occidental',
+        'Ojibway',
+        'OldEnglish',
+        'OldFrench',
+        'OldGerman',
+        'OldItalian',
+        'OldSpanish',
+        'Ossetic',
+        'Papiamento',
+        'PidginEnglish',
+        'Polish',
+        'PortugueseBrazilian',
+        'PortugueseStandard',
+        'Provencal',
+        'Quechua',
+        'RhaetoRomanic',
+        'Romanian',
+        'RomanianMoldavia',
+        'Romany',
+        'Ruanda',
+        'Rundi',
+        'RussianOldSpelling',
+        'Russian',
+        'Samoan',
+        'Selkup',
+        'SerbianCyrillic',
+        'SerbianLatin',
+        'Shona',
+        'Sioux',
+        'Slovak',
+        'Slovenian',
+        'Somali',
+        'Sorbian',
+        'Sotho',
+        'Spanish',
+        'Sunda',
+        'Swahili',
+        'Swazi',
+        'Swedish',
+        'Tabassaran',
+        'Tagalog',
+        'Tahitian',
+        'Tajik',
+        'Tatar',
+        'Thai',
+        'Tinpo',
+        'Tongan',
+        'Tswana',
+        'Tun',
+        'Turkish',
+        'Turkmen',
+        'Tuvin',
+        'Udmurt',
+        'UighurCyrillic',
+        'UighurLatin',
+        'Ukrainian',
+        'UzbekCyrillic',
+        'UzbekLatin',
+        'Vietnamese',
+        'Visayan',
+        'Welsh',
+        'Wolof',
+        'Xhosa',
+        'Yakut',
+        'Yiddish',
+        'Zapotec',
+        'Zulu'])
+});
+
+Ext.define('UBM.scanerSettings', {
+    extend: "Ext.form.Panel",
+    padding: 10,
+    layout: {
+        type: 'vbox'
+    },
+    items: [{
+        xtype: 'combobox',
+        fieldLabel: 'Сканируем с помощью:', //localize+-
+        ubID: 'CurrentScanType',
+        editable: false,
+        store: 'UBM.scanerSettings.scanType',
+        valueField: 'code',
+        displayField: 'name',
+        queryMode: 'local',
+        labelWidth: 200,
+        width: 550
+    }, {
+        xtype: 'tabpanel',
+        ubID: 'tabsAbbyy',
+        defaults: {
+            labelWidth: 200,
+            width: 550
+        },
+        items: [{
+            title: 'Сканирование', //localize+-
+            ubID: 'FRScan.tabScanning',
+            defaults: {
+                labelWidth: 200,
+                width: 500
+            },
+            items: [
+                {
+                    layout: 'hbox',
+                    items: [{
+                        xtype: 'combobox',
+                        flex: 1,
+                        fieldLabel: 'Сканер', //localize +-
+                        ubID: 'FRScan.LastUsedScanner',
+                        editable: false,
+                        store: 'UBM.scanerSettings.scanners',
+                        valueField: 'code',
+                        displayField: 'name',
+                        queryMode: 'local'
+                    },{
+                        xtype: 'button',
+                        //width: 25,
+                        ubID: 'FRScan.btnRefreshScaners',
+                        tooltip: UB.i18n('obnovit'), //'Перечитать сканеры',//localize+-
+                        //iconCls: 'iconRefresh'
+                        glyph: UB.core.UBUtil.glyphs.faRefresh
+                    }]
+                }, {
+                xtype: 'radiogroup',
+                fieldLabel: '',
+                columns: 2,
+                ubID: 'FRScan.CurrentScaner.MultiplePages',
+                items: [{
+                    name: 'FRScan.CurrentScaner.MultiplePages',
+                    boxLabel: 'Потоковый', //localize+-
+                    inputValue: true
+                }, {
+                    name: 'FRScan.CurrentScaner.MultiplePages',
+                    boxLabel: 'Планшетный', //localize+-
+                    inputValue: false
+                }]
+            }, {
+                xtype: 'combobox',
+                editable: false,
+                fieldLabel: 'Цвет сканирования', //localize+-
+                ubID: 'FRScan.CurrentScaner.PictureMode',
+                store: 'UBM.scanerSettings.pictireMode',
+                valueField: 'code',
+                displayField: 'name',
+                queryMode: 'local'
+            }, {
+                xtype: 'numberfield',
+                ubID: 'FRScan.CurrentScaner.Resolution',
+                fieldLabel: 'Качество сканирования в DPI', //localize+-
+                value: 300,
+                minValue: 200,
+                maxValue: 600,
+                step: 100,
+                validator: function(value ){   
+                    if (value%100===0) 
+                        {
+                            return true;
+                        } else {
+                            return UB.i18n('numberMustBeDivisibleBy100');
+                        }
+                                           }
+            }, {
+                xtype: 'checkboxgroup',
+                columns: 2,
+                items: [{
+                    xtype: 'checkbox',
+                    ubID: 'FRScan.CurrentScaner.DuplexMode',
+                    boxLabel: 'Двустроннее сканирование' //localize+-
+                }, {
+                    xtype: 'checkbox',
+                    ubID: 'FRScan.CurrentScaner.AllowAddPages',
+                    boxLabel: 'Добавлять страницы' //localize+-
+                }, {
+                    xtype: 'checkbox',
+                    ubID: 'FRScan.CurrentScaner.UseFeeder',
+                    boxLabel: 'Использовать лоток' //localize+-
+                }]
+            }]
+        }, {
+            title: 'ABBYY FineReader', //localize+-
+            ubID: 'FRScan.tabFineReader',
+            items: [{
+                xtype: 'panel',
+                title: 'Common', //localize+-
+                ubID: 'FRScan.tabFineReader.Common',
+                defaults: {
+                    labelWidth: 200,
+                    width: 500
+                },
+                items: [{
+                    xtype: 'combobox',
+                    fieldLabel: 'MessagesLanguage', //localize+-
+                    ubID: 'FRScan.FREngineSettings.MessagesLanguage',
+                    editable: false,
+                    store: 'UBM.scanerSettings.messagesLanguages',
+                    valueField: 'code',
+                    displayField: 'name',
+                    queryMode: 'local'
+                }]
+            }, {
+                xtype: 'panel',
+                title: 'recognizing', //localize+-
+                ubID: 'FRScan.tabFineReader.Recognizing',
+                defaults: {
+                    labelWidth: 200,
+                    width: 500
+                },
+                items: [{
+                    xtype: 'checkboxgroup',
+                    columns: 2,
+                    defaults: {
+                        width: 250
+                    },
+                    items: [
+                        'IsRecognitionEnabled',
+                        'DeleteEmptyPages',
+                        'DetectInvertedTexture',
+                        'DetectInvertedImage',
+                        'DetectOrientation',
+                        'DetectMatrixPrinter',
+                        'DetectTables',
+                        'DetectPictures',
+                        'FlexiFormsDA',
+                        'FastObjectsExtraction',
+                        'RemoveTexture',
+                        'FullTextIndexDA'].map(function(elem, index) {
+                            return {
+                                xtype: 'checkbox',
+                                boxLabel: elem, //localize+-
+                                ubID: (index < 2 ? 'FRScan.RecognitionSettings.' : 'FRScan.AnalysisSettings.') + elem
+                            };
+                        })
+                }, {
+                    xtype: 'checkbox',
+                    ubID: 'AnalysisSettings.AllowBarcodeValidation',
+                    boxLabel: 'Проверять штрихкод при распознавании'//localize+-
+                }, {
+                    xtype: 'combobox',
+                    fieldLabel: 'TextType', //localize+-
+                    ubID: 'FRScan.RecognitionSettings.TextType',
+                    editable: false,
+                    store: 'UBM.scanerSettings.TextType',
+                    valueField: 'code',
+                    displayField: 'name',
+                    queryMode: 'local'
+                }, {
+                    xtype: 'button',
+                    ubID: 'FRScan.btnSetRecognitionByDefault',
+                    text: 'default' //localize+-
+                }]
+            }, {
+                xtype: 'panel',
+                title: 'Export to PDF', // localize+-
+                ubID: 'FRScan.tabFineReader.PDF',
+                defaults: {
+                    labelWidth: 200,
+                    width: 500
+                },
+                items: [{
+                    xtype: 'combobox',
+                    fieldLabel: 'mode', //localize+-
+                    ubID: 'FRScan.ExportSettings.PDFExportMode',
+                    editable: false,
+                    store: 'UBM.scanerSettings.PDFExportMode',
+                    valueField: 'code',
+                    displayField: 'name',
+                    queryMode: 'local'
+                }, {
+                    xtype: 'numberfield',
+                    fieldLabel: 'PDFExportPictureResolution', //localize+-
+                    ubID: 'FRScan.ExportSettings.PDFExportPictureResolution',
+                    value: 300,
+                    minValue: 10,
+                    maxValue: 600,
+                    step: 10
+                }]
+            }]
+        }, {
+            title: 'recognization language', //localize+-
+            ubID: 'FRScan.tabRecognization',
+            items: [{
+                xtype: 'container',
+                layout: {
+                    type: 'hbox'
+                },
+                items: [{
+                    xtype: 'combobox',
+                    fieldLabel: 'aviableLanguages',//localize+-
+                    ubID: 'aviableLanguages',
+                    editable: false,
+                    store: 'UBM.scanerSettings.aviableRecognizationLanguages',
+                    valueField: 'code',
+                    displayField: 'name',
+                    queryMode: 'local',
+                    labelWidth: 200,
+                    width: 450
+                }, {
+                    xtype: 'button',
+                    ubID: 'btnAddRecogLang',
+                    glyph: UB.core.UBUtil.glyphs.faPlusCircle,
+                    tooltip: UB.i18n('Add')//localize+-
+                    //width: 100
+                }]
+            }, {
+                xtype: 'container',
+                layout: {
+                    type: 'hbox'
+                },
+                items: [{
+                    xtype: 'grid',
+                    ubID: 'FRScan.RecognitionSettings.RecognitionLanguage',
+                    title: 'lblSelectedLangs',//localize+-
+                    store: 'UBM.scanerSettings.recognizationLanguages',
+                    columns: [{
+                        text: 'Name',
+                        dataIndex: 'name',
+                        flex: 1
+                    }],
+                    height: 200,
+                    width: 450,
+                    hideHeaders: true
+                }, {
+                    xtype: 'container',
+                    width: 100,
+                    defaults: {
+                        width: 100
+                    },
+                    layout: {
+                        type: 'vbox'
+                    },
+                    items: [{
+                        xtype: 'button',
+                        ubID: 'btnRemoveRecogLang',
+                        text: 'Remove'//localize+-
+                    }, {
+                        xtype: 'button',
+                        ubID: 'btnMoveUpRecogLang',
+                        text: 'Move Up'//localize+-
+                    }, {
+                        xtype: 'button',
+                        ubID: 'btnMoveDownRecogLang',
+                        text: 'Move Down'//localize+-
+                    }]
+                }]
+            }]
+        }, {
+            title: 'Штрихкод',//localize+-
+            ubID: 'tabBarcode',
+            items: [{
+                xtype: 'panel',
+                ubID: 'tabBarcode.Common',
+                title: 'Common',//localize+-
+                defaults: {
+                    labelWidth: 200
+                    ,width: 500
+                },
+                items: [{
+                    xtype: 'combobox',
+                    fieldLabel: 'Printer',//localize+-
+                    ubID: 'BarcodeSettings.PrinterName',
+                    editable: false,
+                    store: 'UBM.scanerSettings.printers',
+                    valueField: 'code',
+                    displayField: 'name',
+                    queryMode: 'local'
+                }, {
+                    xtype: 'checkbox',
+                    ubID: 'BarcodeSettings.Rotate180',
+                    boxLabel: 'Rotate barcode on 180 grade'//localize+-
+                }, {
+                    xtype: 'combobox',
+                    fieldLabel: 'pagePosition',
+                    ubID: 'BarcodeSettings.pagePosition',
+                    editable: false,
+                    store: 'UBM.scanerSettings.pagePosition',
+                    valueField: 'code',
+                    displayField: 'name',
+                    queryMode: 'local'
+                }]
+            }, {
+                xtype: 'panel',
+                ubID: 'tabBarcode.Margins',
+                title: 'Margins',//localize+-
+                defaults: {
+                    labelWidth: 200
+                    ,width: 500
+                },
+                items: [{
+                    xtype: 'numberfield',
+                    fieldLabel: 'Left',//localize+-
+                    ubID: 'BarcodeSettings.LeftMargin',
+                    value: 5,
+                    minValue: 0,
+                    maxValue: 100
+                }, {
+                    xtype: 'numberfield',
+                    fieldLabel: 'Top',//localize+-
+                    ubID: 'BarcodeSettings.TopMargin',
+                    value: 5,
+                    minValue: 0,
+                    maxValue: 100
+                }, {
+                    xtype: 'numberfield',
+                    fieldLabel: 'Right',//localize+-
+                    ubID: 'BarcodeSettings.RightMargin',
+                    value: 5,
+                    minValue: 0,
+                    maxValue: 100
+                }, {
+                    xtype: 'numberfield',
+                    fieldLabel: 'bottom',//localize+-
+                    ubID: 'BarcodeSettings.BottomMargin',
+                    value: 5,
+                    minValue: 0,
+                    maxValue: 100
+                }]
+            }]
+        }]
+    }, {
+        xtype: 'tabpanel',
+        ubID: 'tabsUB',
+        items: [{
+            title: 'Сканирование',
+            ubID: 'UBScan.tabScanning',
+            defaults: {
+                labelWidth: 200,
+                width: 500
+            },
+            items: [{
+                layout: 'hbox',
+                items: [{
+                    xtype: 'combobox',
+                    flex: 1,
+                    editable: false,
+                    ubID: 'UBScan.LastUsedScanner',
+                    fieldLabel: 'Сканер',
+                    store: 'UBM.scanerSettings.scanners',
+                    valueField: 'name',
+                    displayField: 'name',
+                    queryMode: 'local'
+                }, {
+                    xtype: 'button',
+                    //width: 25,
+                    ubID: 'UBScan.btnRefreshScaners',
+                    tooltip: UB.i18n('obnovit'), //'Перечитать сканеры',
+                    //iconCls: 'iconRefresh'
+                    glyph: UB.core.UBUtil.glyphs.faRefresh
+                }]
+            }, {
+                xtype: 'radiogroup',
+                fieldLabel: '',
+                columns: 2,
+                ubID: 'UBScan.CurrentScaner.MultiplePages',
+                items: [{
+                    name: 'UBScan.CurrentScaner.MultiplePages',
+                    boxLabel: 'Потоковый',
+                    inputValue: true
+                }, {
+                    name: 'UBScan.CurrentScaner.MultiplePages',
+                    boxLabel: 'Планшетный',
+                    inputValue: false
+                }]
+
+            }, {
+                xtype: 'checkbox',
+                ubID: 'UBScan.ShowUI',
+                boxLabel: 'Показывать окно сканирования драйвера'
+
+            }, {
+                xtype: 'combobox',
+                editable: false,
+                fieldLabel: 'Цвет сканирования',
+                ubID: 'UBScan.CurrentScaner.PictureMode',
+                store: 'UBM.scanerSettings.pictireMode',
+                valueField: 'code',
+                displayField: 'name',
+                queryMode: 'local'
+            }, {
+                xtype: 'numberfield',
+                ubID: 'UBScan.CurrentScaner.Resolution',
+                fieldLabel: 'Качество сканирования в DPI',
+                value: 120,
+                minValue: 10,
+                maxValue: 300,
+                step: 10
+
+            }, {
+                xtype: 'checkboxgroup',
+                columns: 2,
+                items: [{
+                    xtype: 'checkbox',
+                    ubID: 'UBScan.CurrentScaner.DuplexMode',
+                    boxLabel: 'Двустроннее сканирование'
+                }, {
+                    xtype: 'checkbox',
+                    ubID: 'UBScan.CurrentScaner.AllowAddPages',
+                    boxLabel: 'Добавлять страницы'
+                }, {
+                    xtype: 'checkbox',
+                    ubID: 'UBScan.CurrentScaner.UseFeeder',
+                    boxLabel: 'Использовать лоток'
+                }]
+            }, {
+                xtype: 'radiogroup',
+                fieldLabel: 'Output format',
+                columns: 3,
+                ubID: 'UBScan.OutputFormat',
+                items: [{
+                    name: 'UBScan.OutputFormat',
+                    inputValue: 'JPEG',
+                    boxLabel: 'JPEG'
+                }, {
+                    name: 'UBScan.OutputFormat',
+                    boxLabel: 'PDF',
+                    inputValue: 'PDF'
+                }, {
+                    name: 'UBScan.OutputFormat',
+                    boxLabel: 'TIFF',
+                    inputValue: 'TIFF'
+                }]
+            }, {
+                xtype: 'numberfield',
+                fieldLabel: 'Качество JPEG',
+                value: 70,
+                minValue: 10,
+                maxValue: 100,
+                ubID: 'UBScan.jpegQuality',
+                step: 5
+            }]
+        }]
+
+    }],
+    buttons: [{
+        ubID: 'btnOK',
+        text: UB.i18n('Change'),
+        glyph: UB.core.UBUtil.glyphs.faSave,
+        formBind: true
+    }, {
+        ubID: 'btnCancel',
+        text: UB.i18n('cancel'),
+        glyph: UB.core.UBUtil.glyphs.faTimes
+    }],
+
+    addLanguage: function() {
+        var me = this,
+            lang = me.down('component[ubID="aviableLanguages"]').getValue(),
+            store = Ext.data.StoreManager.lookup('UBM.scanerSettings.recognizationLanguages');
+        if (store.findExact('name', lang) === -1) {
+            store.add({
+                name: lang,
+                code: store.getCount()
+            });
+        }
+    },
+    delLanguage: function() {
+        var i, me = this,
+            grid = me.down('component[ubID="FRScan.RecognitionSettings.RecognitionLanguage"]'),
+            lang = grid.getSelectionModel().getSelection(),
+            store = Ext.data.StoreManager.lookup('UBM.scanerSettings.recognizationLanguages');
+        store.remove(lang);
+        for (i=0; i < store.getCount(); i++){
+            store.getAt(i).data.code = i;
+        }
+        grid.getView().refresh();
+
+    },
+    moveLanguage: function(delta) {
+        var me = this,
+            grid = me.down('component[ubID="FRScan.RecognitionSettings.RecognitionLanguage"]'),
+            store = Ext.data.StoreManager.lookup('UBM.scanerSettings.recognizationLanguages'),
+            selIndex = grid.getSelectionModel().getSelection()[0].data.code;
+        if ((selIndex - delta >= 0)&&(selIndex - delta<store.getCount())) {
+            store.getAt(selIndex).data.code = selIndex - delta;
+            store.getAt(selIndex - delta).data.code = selIndex;
+            store.sort('code', 'ASC');
+            grid.getView().refresh();
+        }
+    },
+    moveUpLanguage: function() {
+        this.moveLanguage(1);
+    },
+    moveDownLanguage: function() {
+        this.moveLanguage(-1);
+    },
+
+    needSkipComponent: function(elem, path, isCurrentScaner){
+        return (elem.xtype == 'tabpanel' ||
+            elem.xtype == 'panel' ||
+            (!isCurrentScaner && path[1] == 'CurrentScaner') ||
+            path[path.length-1].substr(0,3)=='btn' ||
+            elem.ubID == 'aviableLanguages'
+            );
+    },
+
+    loadScanner: function(sender, newValue/*, oldValue*/) {
+        if (!newValue) return;
+        var me = this,
+            branch = sender.ubID.split('.')[0],
+            scannerParam = _.find(me.params[branch].ScanSettings,{Source: newValue}),
+            cmp = me.query('component[ubID^="'+branch+'.CurrentScaner"]');
+        if (!scannerParam) {
+            scannerParam = _.clone(me.defaultScanSettings, true);
+            scannerParam.Source = newValue;
+            me.params[branch].ScanSettings.push(scannerParam);
+        }
+
+        me.loadControls(cmp, scannerParam, 2);
+    },
+
+    loadControls: function(cmp, params, startWith) {
+        var me = this, i;
+        _.forEach(cmp, function(elem){
+            var path = elem.ubID.split('.'),
+                param = params,
+                valObj;
+            for (i = startWith; (i < path.length)&& (param !== undefined); i++) {
+                param = param[path[i]];
+            }
+            if (param !== undefined) {
+                if (elem.xtype === 'radiogroup') {
+                    valObj = {};
+                    valObj[elem.ubID] = param;
+                    elem.setValue(valObj);
+                } else if (elem.xtype === 'grid') {
+                    valObj = param.split(',');
+                    var store = elem.store;
+                    store.removeAll();
+                    valObj.forEach(function(elem, index){
+                        store.add({name: elem, code:index});
+                    });
+                } else if (elem.setValue) {
+                    elem.setValue(param);
+                }
+            } else if (!me.needSkipComponent(elem, path, startWith==2)){
+                UB.logError(elem.ubID + ' not found');
+            }
+        }, me);
+    },
+
+    loadFromParams: function() {
+        var me = this,
+            params = me.params,
+            cmp = me.query('component[ubID]');
+        me.isFormLoaded = false;
+        me.loadControls(cmp, params, 0);
+        me.isFormLoaded = true;
+        if (params.BarcodeSettings.UseDefaultPrinter)
+            me.down('component[ubID="BarcodeSettings.PrinterName"]').setValue(UB.i18n('desktopService.DefaultPrinter'));
+        me.down('component[ubID="CurrentScanType"]').fireEvent('change',null, params.CurrentScanType);
+    },
+
+    saveParams: function() {
+        var me = this,
+            params = me.params,
+            cmp = me.query('component[ubID$="LastUsedScanner"]');
+        cmp.forEach(function(elem){
+            me.saveScanner(elem, elem.getValue());
+        });
+        cmp = me.query('component[ubID]');
+        me.saveControls(cmp, params, 0);
+
+        params.BarcodeSettings.UseDefaultPrinter = (me.down('component[ubID="BarcodeSettings.PrinterName"]').getValue() ==
+            UB.i18n('desktopService.DefaultPrinter'));
+        me.successEnd = true;
+    },
+
+    saveControls: function(cmp, params, startWith) {
+        var me = this, i;
+        _.forEach(cmp, function(elem){
+            var path = elem.ubID.split('.'),
+                param = params;
+            for (i = startWith; (i < path.length - 1)&& (param !== undefined); i++) {
+                param = param[path[i]];
+            }
+            if (!me.needSkipComponent(elem, path, startWith==2)) {
+                if (param !== undefined) {
+                    if (elem.xtype === 'radiogroup') {
+                        param[path[path.length-1]] = elem.getValue()[elem.ubID]
+                    } else if (elem.xtype === 'grid') {
+                        var store = elem.store;
+                        param[path[path.length-1]] = [];
+                        for (i=0; i < store.getCount(); i++){
+                            param[path[path.length-1]].push(store.getAt(i).data.name);
+                        }
+                        param[path[path.length-1]] = param[path[path.length-1]].join(',');
+
+                    } else if (elem.setValue) {
+                        param[path[path.length-1]] = elem.getValue()
+                    }
+                } else if (!me.needSkipComponent(elem, path, startWith==2)){
+                    UB.logError(elem.ubID + ' not found');
+                }
+            }
+        }, me);
+    },
+
+    saveScanner: function(sender, value) {
+        if (value) {
+            var me = this,
+                branch = sender.ubID.split('.')[0],
+                scannerParam = _.find(me.params[branch].ScanSettings,{Source: value}),
+                cmp = me.query('component[ubID^="'+branch+'.CurrentScaner"]');
+
+            me.saveControls(cmp, scannerParam, 2);
+        }
+    },
+
+    refreshScanners: function() {
+        $App.scanService().then(function(nm) {
+            return nm.getScanners();
+        }).then(function(scanners) {
+            var
+                store = Ext.data.StoreManager.lookup('UBM.scanerSettings.scanners');
+            store.removeAll();
+            _.forEach(scanners, function(scannerName){
+                store.add({
+                    name: scannerName,
+                    code: scannerName
+                });
+            });
+        });
+    },
+
+    refreshPrinters: function() {
+        $App.scanService().then(function(nm) {
+            return nm.getPrinters();
+        }).then(function(printers) {
+            var store = Ext.data.StoreManager.lookup('UBM.scanerSettings.printers');
+            store.removeAll();
+            store.add({
+                name: UB.i18n('desktopService.DefaultPrinter'),
+                code: UB.i18n('desktopService.DefaultPrinter')
+            });
+            _.forEach(printers, function(printerName){
+                store.add({
+                    name: printerName,
+                    code: printerName
+                });
+            });
+        }).done();
+    },
+
+    doLocalize: function() {
+        var me = this,
+            cmp = me.query('component[ubID]'),
+            localizationKey, localeValue;
+        cmp.forEach(function(elem) {
+            localizationKey = 'desktopService.' + elem.ubID;
+            localeValue = UB.i18n(localizationKey);
+            if (localeValue !== localizationKey) {
+                if (elem.setBoxLabel) {
+                    elem.setBoxLabel(UB.i18n(localizationKey));
+                } else if (elem.setFieldLabel && elem.fieldLabel)
+                    elem.setFieldLabel(UB.i18n(localizationKey));
+                if (elem.setTitle)
+                    elem.setTitle(UB.i18n(localizationKey));
+                if (elem.setText)
+                    elem.setText(UB.i18n(localizationKey));
+            }
+            if (elem.xtype == 'radiogroup')
+                elem.items.items.forEach( function(box) {
+                    box.setBoxLabel(UB.i18n(localizationKey+'.'+box.inputValue));
+                });
+
+        });
+        me.down('button[ubID="btnOK"]').setText(UB.i18n('Change'));
+        me.down('button[ubID="btnCancel"]').setText(UB.i18n('cancel'));
+    },
+
+    setHandlers: function() {
+        var me = this;
+        //ok handler
+        me.down('button[ubID="btnOK"]').handler = function() {
+            me.saveParams();
+            me.commandConfig.deferred.resolve({
+                action: 'ok',
+                params: me.params
+            });
+            me.up('window').close();
+        };
+        //cancel handler
+        me.down('button[ubID="btnCancel"]').handler = function() {
+            me.commandConfig.deferred.resolve({
+                action: 'cancel'
+            });
+            me.up('window').close();
+        };
+        me.down('button[ubID="UBScan.btnRefreshScaners"]').handler = function() {
+            me.refreshScanners();
+        };
+        me.down('button[ubID="FRScan.btnRefreshScaners"]').handler = function() {
+            me.refreshScanners();
+        };
+        me.down('button[ubID="btnAddRecogLang"]').handler = function() {
+            me.addLanguage();
+        };
+        me.down('button[ubID="btnRemoveRecogLang"]').handler = function() {
+            me.delLanguage();
+        };
+        me.down('button[ubID="btnMoveUpRecogLang"]').handler = function() {
+            me.moveUpLanguage();
+        };
+        me.down('button[ubID="btnMoveDownRecogLang"]').handler = function() {
+            me.moveDownLanguage();
+        };
+
+        me.down('button[ubID="FRScan.btnSetRecognitionByDefault"]').handler = function() {
+            me.saveParams();
+            var params = _.clone(me.defaultParams, true);
+            delete me.params.FRScan.RecognitionSettings;
+            delete me.params.FRScan.AnalysisSettings;
+            me.params = _.merge(params, me.params);
+
+            me.loadFromParams();
+        };
+
+        me.down('component[ubID="UBScan.LastUsedScanner"]').on('change', me.loadScanner, me);
+        me.down('component[ubID="FRScan.LastUsedScanner"]').on('change', me.loadScanner, me);
+        function setPagePositionHandler() {
+            me.down('component[ubID="BarcodeSettings.pagePosition"]').on('change', function(sender, newVal, oldVal) {
+                me.down('component[ubID="BarcodeSettings.LeftMargin"]').setDisabled(newVal.indexOf('Left')===-1);
+                me.down('component[ubID="BarcodeSettings.TopMargin"]').setDisabled(newVal.indexOf('Top')===-1);
+                me.down('component[ubID="BarcodeSettings.RightMargin"]').setDisabled(newVal.indexOf('Right')===-1);
+                me.down('component[ubID="BarcodeSettings.BottomMargin"]').setDisabled(newVal.indexOf('Bottom')===-1);
+            });
+        }
+        setPagePositionHandler();
+        me.down('component[ubID="CurrentScanType"]').on('change', function(sender, newVal, oldVal) {
+            if (!me.isFormLoaded)
+                return;
+            me.saveParams();
+            var cfg = me.down('component[ubID="tabBarcode"]').initialConfig;
+            if (newVal == 'FineReader') {
+                me.down('component[ubID="tabsUB"]').hide();
+                me.down('component[ubID="tabsAbbyy"]').show();
+                if (me.down('component[ubID="tabsUB"]').down('component[ubID="tabBarcode"]')) {
+                    me.down('component[ubID="tabsUB"]').remove(me.down('component[ubID="tabBarcode"]'), true);
+                    me.down('component[ubID="tabsAbbyy"]').add(cfg);
+                }
+            } else {
+                me.down('component[ubID="tabsAbbyy"]').hide();
+                me.down('component[ubID="tabsUB"]').show();
+                if (me.down('component[ubID="tabsAbbyy"]').down('component[ubID="tabBarcode"]')) {
+                    me.down('component[ubID="tabsAbbyy"]').remove(me.down('component[ubID="tabBarcode"]'), true);
+                    me.down('component[ubID="tabsUB"]').add(cfg);
+                }
+            }
+            setPagePositionHandler();
+            cmp = me.down('component[ubID="tabBarcode"]').query('component[ubID]');
+            me.loadControls(cmp, me.params.BarcodeSettings, 1);
+            me.doLocalize();
+        }, me);
+
+        me.on('boxReady', function() {
+            me.up('window').setSize({width: 600, height: 610});
+        }, me);
+    },
+    defaultParams: {
+        CurrentScanType: 'UnityBase',
+        FRScan: {
+            AllowHandFindFREngine: true,
+            TempDir: '',
+            LastUsedScanner: '',
+            UploadToServer: true,
+            FREngineSettings: {
+                FREnginePath: '',
+                SerialNumber: 'FEDF-9014-0000-2590-5186',
+                CreateImageDocumentsInMemory: true,
+                MessagesLanguage: 'ML_English',
+                MultiProcessingMode: 'MPM_Auto',
+                RecognitionProcessesCount: 2,
+                RecognitionSpeedLimit: 0
+            },
+            ScanOptionsInterfaceType: 'SOIT_None',
+            ScanSettings: [],
+            RecognitionSettings: {
+                TextType: 'TT_Normal',
+                RecognitionLanguage: 'Ukrainian,Russian,English',
+                IsRecognitionEnabled: true,
+                DeleteEmptyPages: true,
+                BarCodeType: 'BT_EAN13'
+            },
+            AnalysisSettings: {
+                DetectBarcodes: true,
+                DetectInvertedImage: false,
+                DetectInvertedTexture: true,
+                DetectMatrixPrinter: true,
+                DetectOrientation: true,
+                DetectPictures: true,
+                DetectTables: true,
+                FastObjectsExtraction: false,
+                FlexiFormsDA: false,
+                FullTextIndexDA: false,
+                RemoveTexture: true,
+                AllowBarcodeValidation: true
+            },
+            ExportSettings: {
+                Format: 'FEF_PDF',
+                PDFExportMode: 'PEM_ImageOnText',
+                PDFExportPictureResolution: 300
+            }
+        },
+        UBScan: {
+            ShowUI: false,
+            LastUsedScanner: '',
+            UploadToServer: true,
+            OutputFormat: 'PDF',
+            jpegQuality: 70,
+            ScanSettings: []
+        },
+        BarcodeSettings: {
+            SupplementType: 'BS_5Digits',
+            PrinterName: '',
+            UseDefaultPrinter: true,
+            LeftMargin: 5,
+            TopMargin: 5,
+            RightMargin: 5,
+            BottomMargin: 5,
+            Rotate180: false,
+            pagePosition: 'bcppBottomRight'
+        }
+    },
+    defaultScanSettings:{
+        Source: '',
+        MultiplePages: true,
+        Resolution: 300,
+        PictureMode: 'SPM_BlackAndWhite',
+        UseFeeder: true,
+        DuplexMode: false,
+        AllowAddPages: true
+    },
+
+    initComponent: function() {
+        var me = this;
+        me.callParent(arguments);
+        me.params = _.clone(me.defaultParams, true);
+        //// Temporary. Delete in the next version
+        if (!me.customParams.BarcodeSettings) {
+            if (me.customParams.CurrentScanType === 'UnityBase') {
+                me.customParams.BarcodeSettings = me.customParams.UBScan? me.customParams.UBScan.BarcodeSettings:null;
+            } else {
+                me.customParams.BarcodeSettings = me.customParams.FRScan ? me.customParams.FRScan.BarcodeSettings: null;
+            }
+        }
+        if (me.customParams.FRScan){
+        if (!(me.customParams.FRScan && me.customParams.FRScan.AnalysisSettings&&
+              me.customParams.FRScan.AnalysisSettings.AllowBarcodeValidation))
+            me.customParams.FRScan.AnalysisSettings.AllowBarcodeValidation = me.customParams.BarcodeSettings.AllowBarcodeValidation;
+        if (!(me.customParams.FRScan &&me.customParams.FRScan.RecognitionSettings&&me.customParams.FRScan.RecognitionSettings.BarCodeType))
+            me.customParams.FRScan.RecognitionSettings.BarCodeType = me.customParams.BarcodeSettings.BarCodeType;
+            }
+        if (!me.customParams.BarcodeSettings) {
+            delete me.customParams.BarcodeSettings;
+        }
+        //// Temporary end
+        me.params = _.merge(me.params, me.customParams);
+        me.doLocalize();
+        me.setHandlers();
+        me.refreshScanners();
+        me.refreshPrinters();
+        me.loadFromParams();
+
+        me.on('afterrender',function(){
+            var win =  me.up('window');
+            win.on('close',function(){
+                if (!me.successEnd){
+                    me.commandConfig.deferred.resolve({
+                        action: 'cancel'
+                    });
+                }
+            });
+        });
+    }
+});

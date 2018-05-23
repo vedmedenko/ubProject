@@ -1,0 +1,22 @@
+﻿{
+    "caption": "Перераховані значення",
+    "description": "Перераховані значення",
+    "attributes": {
+        "eGroup": {
+            "caption": "Група"
+        },
+        "code": {
+            "caption": "Код",
+            "description": "Код значення"
+        },
+        "shortName": {
+            "caption": "Коротка назва"
+        },
+        "name": {
+            "caption": "Назва значення"
+        },
+        "sortOrder": {
+            "caption": "№ п/п"
+        }
+    }
+}

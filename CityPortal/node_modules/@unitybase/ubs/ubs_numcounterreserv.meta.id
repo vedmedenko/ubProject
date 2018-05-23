@@ -1,0 +1,18 @@
+﻿{
+    "caption": "counter disediakan untuk kunci pendaftaran",
+    "description": "counter disediakan untuk kunci pendaftaran",
+    "attributes": {
+        "regKey": {
+            "caption": "Kunci registrasi",
+            "description": "Kunci registrasi"
+        },
+        "counter": {
+            "caption": "Melawan",
+            "description": "Melawan"
+        },
+        "reservedDate": {
+            "caption": "tanggal milik",
+            "description": "tanggal disediakan untuk dokumen"
+        }
+    }
+}

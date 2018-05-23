@@ -1,0 +1,43 @@
+﻿{
+	"connectionName": "",
+	"sqlAlias": "gr",
+	"cacheType": "None",
+
+	"caption": "User groups",
+	"description": "User groups",
+	"descriptionAttribute": "name",
+
+	"mixins": {
+		"mStorage": {
+			"simpleAudit": true,
+			"safeDelete": false
+		},
+		"unity": {
+			"entity": "uba_subject",
+			"attributeList": ["code", "name"],
+			"defaults": {
+				"sType": "G"
+			}
+		}
+	},
+
+	"attributes": {
+		"code": {
+			"dataType": "String", "size": 50,
+			"caption": "Code",
+			"description": "Group code. Used by APIs and scripts",
+			"documentation": "Unique group code. Used by APIs and scripts",
+			"isUnique": true,
+			"allowNull": false
+		},
+		"name":	{
+			"dataType": "String", "size": 128,
+			"allowNull": false, "isUnique": true,
+			"caption": "Name"
+		},
+		"description": {
+			"dataType": "String", "size": 256,
+			"caption": "Description"
+		}
+	}
+}

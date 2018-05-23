@@ -1,0 +1,30 @@
+﻿{
+    "caption": "Scheduler run statistic",
+    "description": "Scheduler run statistic",
+    "attributes": {
+        "appName": {
+            "caption": "Application name"
+        },
+        "schedulerName": {
+            "caption": "Scheduler name"
+        },
+        "startTime": {
+            "caption": "Time of start scheduler item",
+            "description": "Time of start scheduler item"
+        },
+        "endTime": {
+            "caption": "Time of end scheduler item",
+            "description": "Time of end scheduler item"
+        },
+        "logText": {
+            "caption": "Log from runned script about all actions",
+            "description": "Log from runned script about all actions"
+        },
+        "resultError": {
+            "caption": "Result error code. 0=No error"
+        },
+        "resultErrorMsg": {
+            "caption": "Error text message if resultError > 1"
+        }
+    }
+}

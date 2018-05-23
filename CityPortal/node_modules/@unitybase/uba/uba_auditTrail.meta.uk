@@ -1,0 +1,41 @@
+﻿{
+    "caption": "Аудит",
+    "description": "Аудит змін",
+    "attributes": {
+        "entity": {
+            "caption": "Сутність",
+            "description": "Сутність"
+        },
+        "entityinfo_id": {
+            "caption": "ID запису сутності",
+            "description": "ID запису сутності"
+        },
+        "actionType": {
+            "caption": "Дія",
+            "description": "Дія"
+        },
+        "actionUser": {
+            "caption": "Користувач",
+            "description": "Користувач"
+        },
+        "actionTime": {
+            "caption": "Час дії",
+            "description": "Час дії"
+        },
+        "remoteIP": {
+            "caption": "IP адреса"
+        },
+        "fromValue": {
+            "caption": "Було значення"
+        },
+        "toValue": {
+            "caption": "Стало значення"
+        },
+        "parentEntity": {
+            "caption": "Батьківська сутність"
+        },
+        "parentEntityInfo_id": {
+            "caption": "ID запису батьківської сутності"
+        }
+    }
+}

@@ -1,0 +1,44 @@
+﻿{
+    "caption": "Форма",
+    "description": "Визначення інтерфейсних форм",
+    "attributes": {
+        "code": {
+            "caption": "Код форми",
+            "description": ""
+        },
+        "description": {
+            "caption": "Опис",
+            "description": ""
+        },
+        "caption": {
+            "caption": "Заголовок форми"
+        },
+        "formType": {
+            "caption": "Тип форми",
+            "description": "Тип визначення форми auto чи custom"
+        },
+        "formDef": {
+            "caption": "Визначення форми",
+            "description": "Визначення інтерфейсу форми"
+        },
+        "formCode": {
+            "caption": "Скрипт форми",
+            "description": "JS з клієнтської логіки форми"
+        },
+	"model": {
+	  "caption": "Модель",
+	  "description": "Модель куди зберігати",
+	  "documentation": "Модель куди зберігається форма. По замовчанню - модель сутності. Використовується для опису форм сутностей з інших моделей"
+	},
+        "entity": {
+            "caption": "Сутність",
+            "description": "Код сутності",
+            "documentation": "Використовується при автовизначенні форми для сутності"
+        },
+        "isDefault": {
+            "caption": "За замовчуванням",
+            "description": "Використовувати за замовчуванням",
+            "documentation": "При виклику команди showForm якщо не переданий код форми буде виконаний пошук форми по entity, та якщо таких декілька - взята та, у якої isDefault=true"
+        }
+    }
+}

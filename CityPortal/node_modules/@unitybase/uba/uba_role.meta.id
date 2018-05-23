@@ -1,0 +1,22 @@
+﻿{
+    "caption": "peran sistem",
+    "description": "Mengelola peran subsistem",
+    "attributes": {
+        "name": {
+            "caption": "Peran",
+            "description": "Peran"
+        },
+        "description": {
+            "caption": "Deskripsi",
+            "description": "Deskripsi"
+        },
+        "sessionTimeout": {
+            "caption": "durasi sesi",
+            "description": "Waktu setelah sesi dihapus oleh batas waktu (dalam menit)"
+        },
+        "allowedAppMethods": {
+            "caption": "Aplikasi yang metode tingkat diperbolehkan",
+            "description": "Aplikasi yang metode tingkat diperbolehkan"
+        }
+    }
+}

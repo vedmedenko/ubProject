@@ -1,0 +1,8 @@
+ <mxEditor>
+	<include name="resources/mxGraph/config/wfeditor-commons.xml"/>
+
+	<mxGraph as="graph" alternateEdgeStyle="verticalEdge" dropEnabled="1">
+		<include name="resources/mxGraph/config/wfgraph-commons.xml"/>
+	</mxGraph>
+
+</mxEditor>

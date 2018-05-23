@@ -1,0 +1,25 @@
+﻿{
+    "caption": "antrian pesan",
+    "description": "antrian pesan",
+    "attributes": {
+        "queueCode": {
+            "caption": "kode antrian",
+            "description": "Penerima determinate handler oleh kode ini. Untuk setiap queCode harus receiver yang menanganinya"
+        },
+        "msgCmd": {
+            "caption": "Perintah",
+            "description": "Perintah untuk penerima. Mengandung JSON serial objek dengan parameter perintah. Perintah harus berisi atribut penerima mengerti"
+        },
+        "msgData": {
+            "caption": "data pesan",
+            "description": "Data tambahan untuk pesan. Mungkin berisi Base64 data biner dikodekan"
+        },
+        "msgPriority": {
+            "caption": "Prioritas",
+            "description": "Prioritas pesan. 1 = Tinggi, 0 = Rendah, standar 1"
+        },
+        "completeDate": {
+            "caption": "tanggal lengkap"
+        }
+    }
+}

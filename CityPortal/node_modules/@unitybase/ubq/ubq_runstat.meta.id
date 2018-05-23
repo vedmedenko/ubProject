@@ -1,0 +1,30 @@
+﻿{
+    "caption": "Scheduler run statistik",
+    "description": "Scheduler run statistik",
+    "attributes": {
+        "appName": {
+            "caption": "Nama aplikasi"
+        },
+        "schedulerName": {
+            "caption": "nama scheduler"
+        },
+        "startTime": {
+            "caption": "Waktu item scheduler start",
+            "description": "Waktu item scheduler start"
+        },
+        "endTime": {
+            "caption": "Waktu item scheduler akhir",
+            "description": "Waktu item scheduler akhir"
+        },
+        "logText": {
+            "caption": "Log dari script runned tentang semua tindakan",
+            "description": "Log dari script runned tentang semua tindakan"
+        },
+        "resultError": {
+            "caption": "Hasil kode kesalahan. 0 = Tidak ada kesalahan"
+        },
+        "resultErrorMsg": {
+            "caption": "pesan teks kesalahan jika resultError> 1"
+        }
+    }
+}

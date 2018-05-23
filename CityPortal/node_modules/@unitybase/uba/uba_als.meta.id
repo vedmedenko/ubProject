@@ -1,0 +1,21 @@
+﻿{
+    "caption": "tingkat keamanan atribut (ALS)",
+    "description": "Atribut tingkat keamanan",
+    "attributes": {
+        "entity": {
+            "caption": "Kesatuan"
+        },
+        "attribute": {
+            "caption": "Atribut"
+        },
+        "state": {
+            "caption": "kode negara"
+        },
+        "roleName": {
+            "caption": "Nama peran"
+        },
+        "actions": {
+            "caption": "memungkinkan tindakan"
+        }
+    }
+}

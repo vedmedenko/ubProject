@@ -1,0 +1,53 @@
+<!--@name "Оборотно-сальдова відомість"-->
+<!--@report_code "report_turnoverBalance"-->
+<!--@model "SIA"-->
+<!--@ID "3000000122021"-->
+
+<!--%pageOrientation:landscape-->
+<table style="border-collapse: collapse; width: 100%; word-break: break-all;" border="1px" width="773" cellspacing="0" cellpadding="3px">
+    <tbody>
+    <tr>
+        <td style="width: 12.5%; text-align: center;" colspan="8">{{organization}}</td>
+    </tr>
+    <tr>
+        <td style="width: 12.5%; text-align: center;" colspan="8">Оборотно-сальдова відомість за період з {{dateFrom}} по {{dateTo}}</td>
+    </tr>
+    <tr>
+        <td style="width: 10%; text-align: center;" rowspan="2">Рахунок</td>
+        <td style="width: 30%; text-align: center;" rowspan="2">Найменування</td>
+        <td style="width: 20%; text-align: center;" colspan="2">Сальдо на початок періоду</td>
+        <td style="width: 20%; text-align: center;" colspan="2">Обороти за період</td>
+        <td style="width: 20%; text-align: center;" colspan="2">Сальдо на кінець періоду</td>
+    </tr>
+    <tr>
+        <td style="width: 10%; text-align: center;">Дебет</td>
+        <td style="width: 10%; text-align: center;">Кредит</td>
+        <td style="width: 10%; text-align: center;">Дебет</td>
+        <td style="width: 10%; text-align: center;">Кредит</td>
+        <td style="width: 10%; text-align: center;">Дебет</td>
+        <td style="width: 10%; text-align: center;">Кредит</td>
+    </tr>
+    <!--{{#balanceData.data}}-->
+    <tr>
+        <td style="width: 10%;"><a href="#" onclick="window.parent.GL.RI.openAccCard({{accID}})">{{accCode}}</a></td>
+        <td style="width: 30%;">{{#accName}}{{accID}}{{/accName}}</td>
+        <td style="width: 10%; text-align: right;">{{#crn}}{{dbS}}{{/crn}}</td>
+        <td style="width: 10%; text-align: right;">{{#crn}}{{crS}}{{/crn}}</td>
+        <td style="width: 10%; text-align: right;">{{#crn}}{{dbT}}{{/crn}}</td>
+        <td style="width: 10%; text-align: right;">{{#crn}}{{crT}}{{/crn}}</td>
+        <td style="width: 10%; text-align: right;">{{#crn}}{{dbE}}{{/crn}}</td>
+        <td style="width: 10%; text-align: right;">{{#crn}}{{crE}}{{/crn}}</td>
+    </tr>
+    <!--{{/balanceData.data}}-->
+    <tr>
+        <td style="width: 10%;" colspan="2"><strong>Разом</strong></td>
+        <td style="width: 10%; font-weight: bold; text-align: right;">{{#crn}}{{balanceData.totals.dbS}}{{/crn}}</td>
+        <td style="width: 10%; font-weight: bold; text-align: right;">{{#crn}}{{balanceData.totals.crS}}{{/crn}}</td>
+        <td style="width: 10%; font-weight: bold; text-align: right;">{{#crn}}{{balanceData.totals.dbT}}{{/crn}}</td>
+        <td style="width: 10%; font-weight: bold; text-align: right;">{{#crn}}{{balanceData.totals.crT}}{{/crn}}</td>
+        <td style="width: 10%; font-weight: bold; text-align: right;">{{#crn}}{{balanceData.totals.dbE}}{{/crn}}</td>
+        <td style="width: 10%; font-weight: bold; text-align: right;">{{#crn}}{{balanceData.totals.crE}}{{/crn}}</td>
+    </tr>
+    </tbody>
+</table>
+<p>&nbsp;</p>

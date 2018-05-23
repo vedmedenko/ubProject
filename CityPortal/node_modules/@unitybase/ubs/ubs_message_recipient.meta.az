@@ -1,0 +1,16 @@
+﻿{
+    "caption": "İsmarışı alanlar",
+    "description": "İsmarışı alanlar",
+    "documentation": "Получатели сообщений",
+    "attributes": {
+        "messageID": {
+            "caption": "İsmarış"
+        },
+        "userID": {
+            "caption": "İstifadəçi "
+        },
+        "acceptDate": {
+            "caption": "Təsdiq tarixi"
+        }
+    }
+}

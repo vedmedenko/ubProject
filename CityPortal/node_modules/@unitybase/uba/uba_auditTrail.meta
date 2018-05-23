@@ -1,0 +1,89 @@
+﻿{
+	"caption": "Audit",
+	"description": "Data changes audit trail",
+	"connectionName": "",
+	"sqlAlias": "aud",
+	"cacheType": "None",
+	"descriptionAttribute": "entity",
+	"documentation": "All DML statement for entity with mixin 'audit' logged here. Use 'autoimplementedMixins': ['audit'] in server config to apply audit for all entity",
+	"attributes": {
+		"entity": {
+			"dataType": "String",
+			"size": 32,
+			"caption": "Entity code",
+			"allowNull": false
+		},
+		"entityinfo_id": {
+			"dataType": "ID",
+			"caption": "Instance ID",
+			"allowNull": false
+		},
+		"actionType": {
+			"dataType": "Enum",
+			"enumGroup": "AUDIT_ACTION",
+			"caption": "Action",
+			"allowNull": false
+		},
+		"actionUser": {
+			"dataType": "Entity",
+			"associatedEntity": "uba_user",
+			"caption": "User",
+			"allowNull": false
+		},
+		"actionTime": {
+			"dataType": "DateTime",
+			"caption": "Action time",
+			"allowNull": false
+		},
+		"remoteIP": {
+			"dataType": "String",
+			"size": 40,
+			"caption": "Remote IP",
+            "documentation": "Caller remote IP address. NULL in case of localhost"
+		},
+		"fromValue": {
+			"dataType": "Text",
+			"caption": "Old values",
+			"allowNull": true
+		},
+		"toValue": {
+			"dataType": "Text",
+			"caption": "New values",
+			"allowNull": true
+		},
+		"parentEntity": {
+			"dataType": "String",
+			"size": 32,
+			"caption": "Parent entity name",
+			"allowNull": true
+		},
+		"parentEntityInfo_id": {
+			"dataType": "BigInt",
+			"caption": "Parent instance ID",
+			"allowNull": true
+		}
+	},
+	"mixins": {
+		"mStorage": {
+			"simpleAudit": false,
+			"safeDelete": false
+		},
+		"audit": {
+            		"enabled": false // implicity disable :)
+		}
+	},
+    "dbExtensions":{
+        "idx_aud_entity": {
+            "type": "INDEX",
+            "definition":{
+                "keys": { "entityinfo_id": {} }
+            }
+        },
+        "idx_aud_parententityinfoid": {
+            "type": "INDEX",
+            "definition":{
+                "keys": { "parentEntityInfo_id": {} }
+            }
+        }
+    }
+}

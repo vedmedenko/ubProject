@@ -1,0 +1,31 @@
+﻿{
+    "caption": "İstifadəçilər",
+    "description": "İstifadəçilər",
+    "attributes": {
+        "name": {
+            "caption": "Login"
+        },
+        "description": {
+            "caption": "Təsvir"
+        },
+        "uPasswordHashHexa": {
+            "caption": "ŞifrəHeşi",
+            "description": "ŞifrəHeşi"
+        },
+        "disabled": {
+            "caption": "De-aktiv edilmişdir"
+        },
+        "uData": {
+            "caption": "Əlavə məlumatlar",
+            "description": "Əlavə məlumatlar"
+        },
+        "isPending": {
+            "caption": "Təsdiqin gözləmə prosesi",
+            "description": "İstifadəçi qeydiyyatın təsdiqini gözləyir"
+        },
+        "lastPasswordChangeDate": {
+            "caption": "Şifrənin son dəyişdirilmə tarixi",
+            "description": "Şifrənin son dəyişdirilmə tarixi"
+        }
+    }
+}

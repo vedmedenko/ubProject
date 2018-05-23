@@ -1,0 +1,14 @@
+﻿{
+    "caption": "Адміністрування панелі навігації",
+    "description": "Опис",
+    "attributes": {
+        "instanceID": {
+            "caption": "Ярлик",
+            "description": ""
+        },
+        "admSubjID": {
+            "caption": "Суб'єкт адміністрування",
+            "description": ""
+        }
+    }
+}

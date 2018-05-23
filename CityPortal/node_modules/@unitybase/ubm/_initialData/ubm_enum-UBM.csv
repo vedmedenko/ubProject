@@ -1,0 +1,11 @@
+eGroup;code;name;sortOrder
+UBA_RULETYPE;A;Allow;10
+UBA_RULETYPE;C;Complements;15
+UBA_RULETYPE;D;Deny;20
+FORM_TYPE;auto;UB form;10
+FORM_TYPE;custom;Pure ExtJS form;20
+CMD_TYPE;showList;Show list;10
+CMD_TYPE;showForm;Show form;20
+CMD_TYPE;runCode;Code execution;30
+UBA_USER_GENDER;male;Male;10
+UBA_USER_GENDER;female;Female;20

@@ -1,0 +1,26 @@
+﻿{
+    "caption": "Soft lock",
+    "description": "Soft lock",
+    "attributes": {
+        "entity": {
+            "caption": "Entity",
+            "description": "Entity"
+        },
+        "lockID": {
+            "caption": "Instance ID",
+            "description": "Instance ID"
+        },
+        "lockUser": {
+            "caption": "User",
+            "description": "User, who locking record"
+        },
+        "lockType": {
+            "caption": "Lock type",
+            "description": "Lock type"
+        },
+        "lockTime": {
+            "caption": "Lock time",
+            "description": "Lock time"
+        }
+    }
+}

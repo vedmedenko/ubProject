@@ -1,0 +1,83 @@
+﻿<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no">
+        <title>{{uiSettings.adminUI.applicationTitle}}{{^uiSettings.adminUI.applicationTitle}}UnityBase {{/uiSettings.adminUI.applicationTitle}}(debug)</title>
+
+        <link rel="shortcut icon" href="models/UB/img/UBLogo16.ico" />
+        <link rel="icon" href="models/UB/img/UBLogo32.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="models/UB/img/UBLogo48.png" type="image/png" sizes="48x48" />
+        <link rel="icon" href="models/UB/img/UBLogo128.png" type="image/png" sizes="128x128" />
+
+        <script type="text/javascript">
+            window.__ubVersion = {
+                _web: '{{staticVersion}}'
+            {{#modelVersions}}
+            , '{{modelName}}': '{{modelVersion}}'
+            {{/modelVersions}}
+            };
+            window.isDeveloperMode = true;
+            window.IMAGE_PATH = 'res/mxGraph/images';
+            window.UB_API_PATH = '{{{UB_API_PATH}}}';
+            window.mxLoadResources = false;
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="{{#md5template}}models/adminui-pub/themes/{{uiSettings.adminUI.themeName}}/{{uiSettings.adminUI.themeName}}-all-debug.css{{/md5template}}" />
+        <link rel="stylesheet" href="{{#md5}}models/adminui-pub/ub-css-all.css{{/md5}}"/>
+        <link rel="stylesheet" href="clientRequire/font-awesome/css/font-awesome.css"/>
+        <link rel="stylesheet" type="text/css" href="{{#md5template}}models/adminui-pub/themes/{{uiSettings.adminUI.themeName}}/ub.css{{/md5template}}" />
+
+
+        <style>
+            .ub-logo-h {
+                position: absolute;
+                top: 40%;
+                left: 47%;
+		color: rgb(100, 149, 237);
+                font-size: 10em;
+            }
+            .x-body {
+                margin: 0;
+            }
+        </style>
+
+    </head>
+    <body class="x-body">
+        <div id="UBLogo" class="ub-logo-h">
+	    <i class="fa fa-spinner fa-pulse"></i>
+	    <span class="sr-only">Loading...</span>
+        </div>
+        <div id ="ubExtensionPageMessageObj"></div>
+
+        <!-- add promises to IE-->
+	<script src="/clientRequire/es6-promise/dist/es6-promise.auto.js"></script>
+
+        <script charset="utf-8" src="{{#md5}}models/adminui-pub/ext-all-debug-w-comments.js{{/md5}}"></script>
+        <script src="{{#md5}}clientRequire/systemjs/dist/system.src.js{{/md5}}" type="text/javascript"></script>
+
+
+        <script type="text/javascript">
+            // set our baseURL reference path
+            System.config({
+                baseURL: '/clientRequire',
+                map: {
+                    css: 'systemjs-plugin-css/css.js'
+                },
+                meta: {
+                  'tinymce*': { format: 'global' },
+                  '*.css': { loader: 'css' },
+                  '*.min.js':   { format: 'cjs' },
+                  'codemirror/*.js': { format: 'cjs' },
+                  'file-saver/*.js': { format: 'cjs' }
+                },
+                packageConfigPaths: ['@unitybase/*/package.json', '@ub-e/*/package.json', '@ub-d/*/package.json']
+            });
+
+            System.import('@unitybase/adminui-pub').then(function(adminUI){
+                return window.UB.inject('models/adminui-pub/themes/{{uiSettings.adminUI.themeName}}/{{uiSettings.adminUI.themeName}}-debug.js');
+            });
+        </script>
+    </body>
+</html>

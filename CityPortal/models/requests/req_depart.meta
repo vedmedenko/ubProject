@@ -1,0 +1,44 @@
+{
+ "caption": "department", // entity name
+ "description": "department",  // entity description
+ "descriptionAttribute": "name",
+  "attributes": {
+
+    "name": {
+      "dataType": "String",
+      "size": 255,
+      "caption": "Department Name",
+      "description": "Department Name",
+      "allowNull": false,
+      "isMultiLang": false,
+      "isUnique": true
+    },
+    "postAddr": {
+      "dataType": "String",
+      "size": 255,
+      "caption": "Department Address",
+      "description": "Department Address ",
+      "allowNull": false,
+      "isMultiLang": false
+    },
+    "phoneNum": {
+      "dataType": "String",
+      "size": 255,
+      "caption": "Department Phone",
+      "description": "Department Phone",
+      "allowNull": false,
+      "isMultiLang": false
+    },
+    "roleInSystem": {
+      "dataType": "Entity",
+      "associatedEntity": "uba_role", // association with other entity
+      "caption": "Role in System", // caption of the object on AdminUI
+      "allowNull": true //it can be empty.
+    }
+
+  },
+ "mixins": { // the mandatory section (can be empty)
+  "mStorage": {
+  }
+ }
+}

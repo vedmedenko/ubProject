@@ -1,0 +1,14 @@
+﻿{
+    "caption": "İstifadəçi rolları",
+    "description": "İstifadəçiyə təyin edilmiş rollar",
+    "attributes": {
+        "userID": {
+            "caption": "İstifadəçi",
+            "description": ""
+        },
+        "roleID": {
+            "caption": "Rol",
+            "description": ""
+        }
+    }
+}

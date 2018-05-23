@@ -1,0 +1,56 @@
+﻿{
+	"caption": "One time passwords",
+	"description": "One time passwords",
+	"connectionName": "",
+	"sqlAlias": "otp",
+	"cacheType": "None",
+	"descriptionAttribute": "",
+	"documentation": "One-time-password generation and verification",
+	"attributes": {
+		"otp":	{
+			"dataType": "String",
+			"size": 40,
+			"caption": "OTP",
+			"description": "Generated one time password",
+			"allowNull": false
+		},
+        "userID": {
+              "dataType": "Entity",
+              "associatedEntity": "uba_user",
+              "caption": "User",
+              "description": "",
+              "allowNull": false
+           },
+		"uData": {
+			"dataType": "String",
+			"size": 2000,
+			"caption": "uData",
+			"description": "Additional  data",
+			"documentation": "Any valid JSON object. This data transferred to client part as result of auth method. Also accessible in server methods vis Session.uData"
+		},           
+		"expiredDate": {
+			"dataType": "DateTime",
+			"caption": "Expired date",
+			"description": "",
+			"allowNull": false
+		},
+		"otpKind": {
+			"dataType": "Enum",
+			"caption": "Otp kind",
+			"description": "Kind of otp(Email, SMS, etc)",
+			"enumGroup": "UBA_OTPKIND",
+			"allowNull": false
+		}
+	},
+	"dbKeys": {
+		"uidx_otp": {
+                	"otp": {}
+		}
+	},
+	"mixins": {
+		"mStorage":	{
+			"safeDelete": true,
+			"simpleAudit": true
+		}
+	}
+}

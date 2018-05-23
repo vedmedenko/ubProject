@@ -1,0 +1,51 @@
+﻿{   
+	"caption": "Reserved counters for registration keys",
+	"description": "Reserved counters for registration keys",
+	"connectionName": "",
+	"sqlAlias": "ncre",
+	"descriptionAttribute": "",
+	"cacheType": "None",
+	"attributes": {
+		"regKey": {
+			"dataType": "String",
+			"size": 255,
+			"caption": "Reg key",
+			"description": "Registration key",
+			"allowNull": false,
+			"isMultiLang": false
+		},
+		"counter": {
+			"dataType": "ID",
+			"caption": "Counter",
+			"description": "Reserved counter value",
+			"allowNull": false
+		},
+        "reservedDate": {
+            "dataType": "String",
+            "size": 255,
+            "caption": "Reserved date",
+            "description": "Reserved date for document",
+            "allowNull": true
+        },
+	  "note": {
+		"dataType": "String",
+		"size": 255,
+		"caption": "Note",
+		"description": "Description of reserved number (Department name, etc)"
+	  },
+	},
+	"mixins": {
+		"mStorage": {
+			"simpleAudit":false,
+			"safeDelete":false
+        },
+		"audit": {"enabled": false}
+	},
+	"dbKeys":
+	{
+		"UK_UBS_NUMCOUNT_RKC": {
+			"regKey":{},
+			"counter": {}
+		}
+	}
+}

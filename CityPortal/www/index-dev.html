@@ -1,0 +1,291 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JsGrid with UBCore usage sample</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="http://getbootstrap.com/examples/sticky-footer-navbar/sticky-footer-navbar.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+
+    <!-- Jquery and jquery ui -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="src/app.js"></script>  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+    <!-- JsGrid plugin -->
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css"/>
+    <link type="text/css" rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
+
+    <!-- minified UB communication layer-->
+    <script src="models\ub-pub\dist\ub-pub.min.js"></script>
+
+<script>
+
+$(function() {
+  ubAuth()
+
+$('#btn-login-nav').click(function () {
+  ubAuth()
+})
+
+$('#btn-login-j').click(function () {
+  ubAuth()
+})
+
+$('#btn-get-req').click(function () {
+  window.getMyRequests()
+})
+
+$('#btn-logout-nav').click(function () {
+  if (window.$conn) window.$conn.logout().then(function () {
+    getNonAuthContainers()
+  })
+})
+
+
+//login with popUp dialog
+function customConfirm () {
+  return new Promise(function (resolve, reject) {
+    $("#popUp")
+      .html('<input type="text" class="form-control" placeholder="Username" id="login"  style = "margin: 10px">' +
+        '<input type="password" class="form-control" placeholder="Password" id="pwd" style = "margin: 10px">'
+      )
+      .dialog({
+        resizable: true,
+        modal: true,
+        buttons: {
+          "Login": function () {
+            $(this).dialog("close");
+            resolve({
+              authSchema: 'UB',
+              login: document.getElementById('login').value,
+              password: document.getElementById('pwd').value
+            })
+          },
+          "Cancel": function () {
+            $(this).dialog("close");
+            reject();
+          }
+        },
+        focus: function () {
+          //submit login form with Enter-key in password field
+          $('#pwd').keydown(function (eventObject) {
+            if (event.keyCode == 13) {
+              $('#popUp').dialog("close");
+              resolve({
+                authSchema: 'UB',
+                login: document.getElementById('login').value,
+                password: document.getElementById('pwd').value
+              })
+            }
+          });
+        },
+      })
+  })
+}
+
+//Create custom template MyDateField for Date formatting in jsGrid
+var MyDateField = function (config) {
+  jsGrid.Field.call(this, config);
+};
+MyDateField.prototype = new jsGrid.Field({
+  itemTemplate: function (value) {
+    return new Date(value).toDateString();
+  }
+})
+jsGrid.fields.myDateField = MyDateField;
+
+function objectDiff(original, modified) {
+  let diff = {};
+  let modifiedKeys = Object.keys(modified)
+
+  for (let i = 0, l = modifiedKeys.length; i < l; i++) {
+    let key = modifiedKeys[i];
+    if (original[key] !== modified[key])
+      diff[key] = modified[key];
+  }
+  return diff;
+}
+
+const REQ_ENTITY = 'req_reqList'
+const REQ_ATTRS = ['ID', 'reqDate', 'status', 'applicantInfo', 'reqText', 'answer', 'mi_modifyDate']
+function getMyRequests () {
+  window.$conn.Repository(REQ_ENTITY).attrs(REQ_ATTRS).select()
+    .then(function (data) {
+      $("#jsGrid").jsGrid({
+        width: "80%",
+        paging: true,
+        autoload: true,
+        editing: true,
+        controller: {
+          loadData: function () {
+            return data
+          },
+          updateItem: function(newData) {
+            var d = $.Deferred();
+            // To prevent unnecessary data modification we should pass only modified attributes
+            let original = _.find(data, {ID: newData.ID})
+            let diff = objectDiff(original, newData)
+            // add a ID to diff
+            diff.ID = newData.ID
+            // Since we know our entity support optimistic locks - pass a source modification date
+            diff.mi_modifyDate = original.mi_modifyDate
+            // see UBConnection.update documentation at https://unitybase.info/api/ubcore/UBConnection.html#update
+            //return 
+            window.$conn.update({
+              entity: REQ_ENTITY,
+              fieldList: REQ_ATTRS,
+              lockType: 'Temp', // pessimistic lock
+              execParams: diff
+            }).then((response) => {
+              //return response
+              let responseAsObject = UB.LocalDataStore.selectResultToArrayOfObjects(response)[0]
+              // TODO - !@#@ js-grid not exit from edit mode
+              // may be it wait for a jQuery promise ?
+              //return $.Deferred().resolve(responseAsObject)
+              d.resolve(responseAsObject)
+            })
+            return d.promise();
+          }
+        },
+        fields: [
+          { name: "reqDate", type: "myDateField", width: 100, editing: false, title: 'Request date' },
+          { name: "status", type: "text", width: 50, editing: false, title: 'Status' },
+          { name: "applicantInfo", type: "text", width: 50, editing: false, title: 'Applicant info' },
+          { name: "reqText", type: "text", width: 150, editing: false, title: 'Text of request' },
+          { name: "answer", type: "text", width: 150, title: 'Answer' },
+          { type: "control" ,
+            itemTemplate: function(value, item) {
+              var $result = $([]);        
+              return $result.add(this._createEditButton(item));
+            }
+          }
+        ]
+      });
+    })
+}
+
+function getAuthContainers () {
+  $("#btn-login-nav").css({ "display": "none" });
+  $("#btn-logout-nav").css({ "display": "inline" });
+  $("#welcome-container").css({ "display": "none" });
+  $("#requests-container").css({ "display": "inline" });
+}
+
+function getNonAuthContainers () {
+  $("#btn-login-nav").css({ "display": "inline" });
+  $("#btn-logout-nav").css({ "display": "none" });
+  $("#welcome-container").addClass("jumbotron").css({ "display": "block" });
+  $("#requests-container").css({ "display": "none" });
+}
+
+function ubAuth () {
+  UB.connect({
+    host: window.location.origin,
+    allowSessionPersistent: true,
+    onCredentialRequired: function (conn, isRepeat) {
+      return isRepeat
+        ? Promise.reject(new UB.UBAbortError('invalid password for user admin'))
+        : customConfirm();
+    },
+    onAuthorizationFail: function (reason) {
+      $("#errDialog")
+        .html('<b>' + reason + '</b>')
+        .dialog({
+          resizable: true,
+          modal: true,
+          buttons: {
+            "Retry": function () {
+              $(this).dialog("close");
+              customConfirm();
+            },
+            "Cancel": function () {
+              $(this).dialog("close");
+            }
+          }
+        })
+    }
+  }).then(function (conn) {
+    window.$conn = conn
+    if ($('#popUp').hasClass('ui-dialog-content')) {
+      $('#popUp').dialog("close");
+    }
+    getAuthContainers()
+    getMyRequests()
+  })
+}
+
+
+});
+
+
+</script>
+
+
+    
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://unitybase.info/">
+                <img alt="Brand" src="https://unitybase.info/logo.svg" height="30">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+                <li>
+                    <a href="https://git-pub.intecracy.com/unitybase/samples/tree/master/courses/tutorial-v4">Tutorials</a>
+                </li>
+            </ul>
+            <button type="button" class="btn btn-default navbar-btn navbar-right" style="display: none;"
+                    id="btn-logout-nav">Logout
+            </button>
+            <button type="button" class="btn btn-default navbar-btn navbar-right" id="btn-login-nav">LogIn</button>
+        </div>
+    </div>
+</nav>
+
+<div class="container theme-showcase" role="main">
+    <div class="jumbotron" id="welcome-container">
+        <h1>Welcome to CITY PORTAL!</h1>
+        <p>To leave a request, please call <i class="fa fa-phone-square" aria-hidden="true"></i> 2112</p>
+        <p>To get started with the portal, please
+            <button type="button" class="btn btn-primary" id="btn-login-j">LogIn</button>
+        </p>
+    </div>
+    <div id='requests-container' style="display: none;">
+        <h1>MY REQUESTS</h1>
+        <div id="jsGrid" style="margin-bottom: 20px"></div>
+        <button type="button" class="btn btn-primary" id="btn-get-req">Refresh my requests</button>
+    </div>
+
+</div>
+
+
+<div id='popUp' title="Enter the login and password"></div>
+<div id='errDialog' title="Error"></div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">© 2017 City Portal </p>
+    </div>
+</footer>
+</body>
+</html>

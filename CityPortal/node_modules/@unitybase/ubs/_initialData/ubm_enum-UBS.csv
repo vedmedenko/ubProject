@@ -1,0 +1,17 @@
+eGroup;code;name;sortOrder
+AUDIT_ACTION;INSERT;Insert;1
+AUDIT_ACTION;UPDATE;Update;2
+AUDIT_ACTION;DELETE;Delete;3
+AUDIT_ACTION;LOGIN;Logged into;4
+AUDIT_ACTION;LOGIN_FAILED;Login failed;5
+AUDIT_ACTION;LOGIN_LOCKED;Locked user login attempt failed;6
+AUDIT_ACTION;SECURITY_VIOLATION;Security violation;7
+AUDIT_ACTION;DOWNLOAD;File downloaded;8
+AUDIT_ACTION;PRINT;File printed;9
+SOFTLOCK_TYPE;ltNone;Not locked;10
+SOFTLOCK_TYPE;ltPersist;Persistent;20
+SOFTLOCK_TYPE;ltTemp;Temporary;30
+UBS_MESSAGE_TYPE;user;User;40
+UBS_MESSAGE_TYPE;system;System;45
+UBS_MESSAGE_TYPE;warning;Warning;50
+UBS_MESSAGE_TYPE;information;Information;55

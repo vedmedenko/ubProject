@@ -1,0 +1,23 @@
+﻿[
+  {
+	"name": "FTSReindexFromQueue",
+	"schedulingCondition": "App.serverConfig.application.fts && App.serverConfig.application.fts.enabled && App.serverConfig.application.fts.async",
+	"cron": "0 */1 * * * *",
+	"description": "In case async FTS is enabled in server config will call a fts reindex for a queued items (ubq_messages.code = 'ASYNCFTS') every minute",
+	"command": "UB.UBQ.FTSReindexFromQueue",
+	"singleton": true,
+	"runAs": "admin",
+	"logSuccessful": false
+  },
+  {
+	"name": "mail",
+	"schedulingCondition": "App.serverConfig.application.customSettings && App.serverConfig.application.customSettings.mailerConfig",
+	"cron": "0 */1 * * * *",
+	"description": "Send emails from queue every minute",
+	"command": "UB.UBQ.sendQueueMail",
+	"singleton": true,
+	"runAs": "admin",
+	"logSuccessful": false
+  }
+
+]

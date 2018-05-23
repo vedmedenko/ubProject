@@ -1,0 +1,45 @@
+{
+	"caption": "Message recipient",
+	"description": "System messanges recipient",
+	"connectionName": "",
+	"sqlAlias": "msg_rc",
+	"cacheType": "None",
+	"descriptionAttribute": "ID",
+	"documentation": "System messages recipient",
+	"attributes": {
+		"messageID": {
+			"dataType": "Entity",
+			"associatedEntity": "ubs_message", 
+			"caption": "Message",
+			"allowNull": false
+		},
+		"userID": {
+			"dataType": "Entity",
+			"associatedEntity": "uba_user", 
+			"caption": "User",
+			"allowNull": false
+		},
+		"acceptDate": {
+			"dataType": "DateTime",
+			"caption": "Accept date",
+			"allowNull": true
+		}
+	},
+	"mixins": {
+		"mStorage": {
+			"simpleAudit": false,
+			"safeDelete": false
+		},
+		"audit": {
+            		"enabled": false 
+		}
+	},
+    "dbExtensions":{
+        "uidx_ubsmsg_rc": {
+            "type": "INDEX",
+            "definition":{
+                "keys": { "messageID": {}, "userID": {} }
+            }
+        }
+    }
+}

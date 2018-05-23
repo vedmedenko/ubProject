@@ -1,0 +1,26 @@
+﻿{
+    "caption": "Soft lock",
+    "description": "Soft lock",
+    "attributes": {
+        "entity": {
+            "caption": "Obyekt",
+            "description": "Obyekt"
+        },
+        "lockID": {
+            "caption": "ID qeydləri",
+            "description": "Obyekt ID qeydləri"
+        },
+        "lockUser": {
+            "caption": "Istifadəçi",
+            "description": "Qeydi bloka salmış istifadəçi"
+        },
+        "lockType": {
+            "caption": "Blok tipi",
+            "description": "Blok tipi"
+        },
+        "lockTime": {
+            "caption": "Blok vaxtı",
+            "description": "Blok vaxtı"
+        }
+    }
+}

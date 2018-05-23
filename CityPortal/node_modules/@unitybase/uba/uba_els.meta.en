@@ -1,0 +1,34 @@
+﻿{
+    "caption": "Entity Level Security(ELS)",
+    "description": "Describe, which role have access permissions to Entities methods",
+    "documentation": "Administering of entity level. The system checks the access by the rule \"Allowed and NOT Prohibited\"",
+    "attributes": {
+        "code": {
+            "caption": "Rule code",
+            "description": "Code for ELS rule"
+        },
+        "description": {
+            "caption": "Description",
+            "description": "Rule description"
+        },
+        "disabled": {
+            "caption": "Disabled",
+            "description": "Rule is disabled"
+        },
+        "entityMask": {
+            "caption": "Entity mask"
+        },
+        "methodMask": {
+            "caption": "Method mask",
+            "description": "Method mask"
+        },
+        "ruleType": {
+            "caption": "Rule type",
+            "description": "Rule type"
+        },
+        "ruleRole": {
+            "caption": "Role",
+            "description": "Role for which the rule applies"
+        }
+    }
+}

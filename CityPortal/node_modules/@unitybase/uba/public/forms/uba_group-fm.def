@@ -1,0 +1,52 @@
+//@! "do not remove comments below unless you know what you do!"
+//@isDefault "true"
+//@entity "uba_group"
+//@model "UBA"
+//@formType "auto"
+//@caption "Group"
+//@description "Group"
+exports.formDef = {
+	size: {
+		width: 500,
+		height: 300
+	},
+	
+	items: [{
+		layout: 'hbox',
+		items: [
+			{
+				items: [
+					{attributeName: "name"},
+					{attributeName: "description"},
+				]
+			},
+			{
+				items: [
+					{attributeName: "code"}
+				]
+			}
+		],
+	}, {
+		layout: "fit",
+		xtype: "ubdetailgrid",
+		entity: "uba_usergroup",
+		entityConfig: {
+			entity: "uba_usergroup",
+			method: "select",
+			fieldList: ["userID"]
+		},
+		masterFields: ["ID"],
+		detailFields: ["groupID"]
+	}, {
+		layout: "fit",
+		xtype: "ubdetailgrid",
+		entity: "uba_grouprole",
+		entityConfig: {
+			entity: "uba_grouprole",
+			method: "select",
+			fieldList: ["roleID"]
+		},
+		masterFields: ["ID"],
+		detailFields: ["groupID"]
+	}]
+}

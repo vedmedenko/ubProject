@@ -1,0 +1,44 @@
+﻿{
+    "caption": "Аудит",
+    "description": "Аудит змін",
+    "attributes": {
+        "entity": {
+            "caption": "Сутність",
+            "description": "Сутність"
+        },
+        "entityinfo_id": {
+            "caption": "ID запису сутності",
+            "description": "ID запису сутності"
+        },
+        "actionType": {
+            "caption": "Дія",
+            "description": "Дія"
+        },
+        "actionUser": {
+            "caption": "Користувач",
+            "description": "Користувач"
+        },
+        "actionTime": {
+            "caption": "Час дії",
+            "description": "Час дії"
+        },
+        "remoteIP": {
+            "caption": "IP адреса",
+            "description": "IP адреса сторони, з якої здійснено виклик"
+        },
+        "fromValue": {
+            "caption": "Було значення"
+        },
+        "toValue": {
+            "caption": "Стало значення"
+        },
+        "targetUser": {
+            "caption": "Цільовий користувач",
+            "description": "Ім'я користувача, який змінив дані"
+        },
+        "targetRole": {
+            "caption": "Цільова роль",
+            "description": "Роль користувача, який змінив дані"
+        }
+    }
+}

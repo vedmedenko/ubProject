@@ -1,0 +1,114 @@
+{
+ "httpServer": { // Built-in HTTP server configuration
+   "host": "+", // Host name for server. +' will bound to all domain names for the specified port
+   "port": "888" //port to listen on
+ },
+ "logging": { //Logging configuration
+   "levels": [ // Type of events to put to log file. If * all types of errors
+     "*"
+   ],
+   "path": ".\\logs" //Path to folder where server place flog files (including rotated logs)
+ },
+ "security":{ //List of supported authentication methods
+   "authenticationMethods": ["UB"] //can be used as default method
+ },
+ "application": { //Business logic configuration
+   "defaultLang": "en",
+   "domain": { //Domain models. Loaded in the order in which they appear in this array
+        "models": [ // list of models which should be loaded 
+                {
+                    "name": "UB",
+                    "path": "./node_modules/@unitybase/ub",
+                    "moduleName": "@unitybase/ub"
+                },
+                {
+                    "name": "UBA",
+                    "path": "./node_modules/@unitybase/uba",
+                    "moduleName": "@unitybase/uba"
+                },
+                {
+                    "name": "UBS",
+                    "path": "./node_modules/@unitybase/ubs",
+                    "moduleName": "@unitybase/ubs"
+                },
+                {
+                    "name": "UBM",
+                    "path": "./node_modules/@unitybase/ubm",
+                    "moduleName": "@unitybase/ubm"
+                },
+     {
+     "name": "UBE",
+     "publicPath": "./node_modules/@ub-e/ube-pub",
+     "path": "_public_only_",
+     "moduleName": "@ub-e/ube-pub"
+    },
+           {
+                    "name": "ub-pub",
+                    "publicPath": "./node_modules/@unitybase/ub-pub",
+                    "path": "_public_only_",
+                    "moduleName": "@unitybase/ub-pub"
+                },
+                {
+                    "name": "adminui-pub",
+                    "publicPath": "./node_modules/@unitybase/adminui-pub",
+                    "path": "_public_only_",
+                    "moduleName": "@unitybase/adminui-pub"
+                },
+                {
+                    "name": "adminui-reg",
+                    "path": "./node_modules/@unitybase/adminui-reg",
+                    "moduleName": "@unitybase/adminui-reg"
+                },
+       {
+         "name": "RequestList", //The model which has been created
+         "path": "./models/requests" //path to the created our model 
+       }
+
+     ]
+   },
+
+  "connections": [ // Here define the database connections
+    {
+       "name": "main", //Unique connection name
+       "isDefault": true, //Is this connection is default for application 
+       "driver": "SQLite3", //Database driver used for connection       
+       "dialect": "SQLite3",//Database dialect
+       "databaseName": "./mainDB.db", // Name of the database
+       "supportLang": [ //Array of supported locales
+         "en"
+,"uk"       ]
+     }
+   ], 
+
+   "blobStores": [
+     {
+       "name": "avatars", // Unique blobStore name. 
+       "path": "./avatars", // The path to store root folder
+       "storeSize": "Simple", // Approximate number of files to store. Simple = up to    10000
+       "isDefault": true   },
+     {
+       "name": "attach",  "path": ".\\docs\\attach\\",  "storeSize": "Medium", // Approximate number of files to store. Simple = up to    10000
+       "isDefault": false, //Is this store default for application
+    "historyDepth":2
+     },
+     {
+       "name": "mdb",
+       "storeType": "Virtual"
+     }, {"name": "attach",             // Unique blobStore name.
+  "path": ".\\docs\\attach\\",  // The path to store root folder
+  "storeSize": "Medium",        // Approximate number of files to store. Simple = up to  10000
+  "isDefault": false,           // Is this store default for application
+  "historyDepth": 2}
+
+   ]
+ },
+
+ "uiSettings": {
+   "adminUI": { //Settings for admin UI
+     "endpoint": "adm",
+     "applicationName": "City Portal", //Name of application for show on the login form
+     "applicationTitle": "Requests", //Title of HTML page for adminUI
+     "defaultPasswordForDebugOnly": "admin" //For development purpose only
+   }
+ }
+}

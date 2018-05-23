@@ -1,0 +1,74 @@
+//@! "do not remove comments below unless you know what you do!"
+//@isDefault "false"
+//@entity "ubs_message_edit"
+//@formType "auto"
+//@caption ""
+//@description ""
+exports.formDef = {
+    parentConfig: {
+        /*layout: { 
+            type: "vbox"
+        }*/
+    },
+    items: [
+        { 
+            layout: 'hbox', 
+         	items: [
+                { attributeName: "complete" /*Готово к отправке*/},
+                { attributeName: "messageType" /*Тип*/, labelWidth: 50, width: 250 },
+                { attributeName: "startDate" /*Действительно с*/},
+                { attributeName: "expireDate" /*Действительно по*/}
+			]
+        },    
+        {
+            attributeName: "messageBody", xtype: "ubhtmleditor" /*Сообщение*/
+        }, {
+            xtype: 'ubfieldset', title: UB.i18n('recipients'), collapsible: false,
+            items: [{
+                layout: {
+                    type: 'hbox'
+                },
+                items: [
+                    {
+                        xtype: 'ubcombobox',
+                        itemId: 'roleCombo',
+                        ubRequest: {
+                                entity: 'uba_role',
+                                method: 'select',
+                                fieldList: ['ID','name']
+                        },
+                        valueField: 'ID',
+                        displayField: 'name',
+                        fieldLabel: UB.i18n('forAllRoleUsers'),
+                        labelWidth: 200,
+                        width: 350
+                    },{
+                        xtype: 'button',
+                        text: UB.i18n('actionAdd'),
+                        itemId: 'addRole'
+                    },{
+                        xtype: 'button',
+                        text: UB.i18n('actionDelete'),
+                        itemId: 'removeRole'
+                    }
+                    
+                ]
+            },{
+                xtype: "ubdetailgrid",
+                flex: 1,
+                itemId: 'recipientGrid',
+                commandData: {
+                    formCode: 'ubs_message_recipient'
+                },
+                entityConfig: {
+                    entity: "ubs_message_recipient",
+                    method: "select",
+                    fieldList: ['userID.name', 'acceptDate']
+                },
+                masterFields: ['ID'],
+                detailFields: ['messageID'],
+                hideActions: ['addNewByCurrent']
+            }]
+        }
+    ]
+};

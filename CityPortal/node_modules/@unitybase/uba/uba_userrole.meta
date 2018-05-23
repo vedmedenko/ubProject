@@ -1,0 +1,40 @@
+﻿{
+    "caption": "User Roles",
+    "description": "Roles assigned to users",
+    "connectionName": "",
+    "sqlAlias": "usrole",
+    "cacheType": "None",
+    "descriptionAttribute": "",
+    "documentation": "",
+    "attributes": {
+        "userID": {
+            "dataType": "Entity",
+            "associatedEntity": "uba_user",
+            "caption": "User",
+            "description": "",
+            "cascadeDelete": true, // remove all user roles while user deleted
+            "defaultView": true,
+            "allowNull": false
+        },
+        "roleID": {
+            "dataType": "Entity",
+            "associatedEntity": "uba_role",
+            "caption": "Role",
+            "description": "",
+            "defaultView": true,
+            "allowNull": false
+        }
+    },
+    "mixins": {
+        "mStorage": {
+            "simpleAudit": true,
+            "safeDelete": false
+        }
+    },
+    "dbKeys": {
+		"UK_USRROLE_USER_ROLE": {
+			"userID":{},
+			"roleID": {}
+		}
+	}
+}

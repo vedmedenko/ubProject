@@ -1,0 +1,35 @@
+﻿{
+    "caption": "Entity Level Security(ELS)",
+    "description": "Які ролі мають права доступу до методів метабази",
+    "documentation": "Адміністрування рівня сутності. Система перевіряє доступ за правилом 'Дозволено та НЕ Заборонено'",
+    "attributes": {
+        "code": {
+            "caption": "Код правила",
+            "description": "Код ELS правила"
+        },
+        "description": {
+            "caption": "Опис",
+            "description": "Опис правила"
+        },
+        "disabled": {
+            "caption": "Відключено",
+            "description": "Правило відключено"
+        },
+        "entityMask": {
+            "caption": "Маска сутності",
+            "description": ""
+        },
+        "methodMask": {
+            "caption": "Маска методів",
+            "description": ""
+        },
+        "ruleType": {
+            "caption": "Тип правила",
+            "description": "Тип правила"
+        },
+        "ruleRole": {
+            "caption": "Роль",
+            "description": "Роль, для якої застосовувати правило"
+        }
+    }
+}

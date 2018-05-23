@@ -1,0 +1,34 @@
+﻿{
+    "caption": "Entity Level Security (ELS)",
+    "description": "Jelaskan, yang peran memiliki izin akses ke metode Entitas",
+    "attributes": {
+        "code": {
+            "caption": "kode aturan",
+            "description": "Kode untuk aturan ELS"
+        },
+        "description": {
+            "caption": "Deskripsi",
+            "description": "deskripsi aturan"
+        },
+        "disabled": {
+            "caption": "Cacat",
+            "description": "Aturan dinonaktifkan"
+        },
+        "entityMask": {
+            "caption": "masker badan",
+            "description": "masker badan"
+        },
+        "methodMask": {
+            "caption": "metode masker",
+            "description": "metode masker"
+        },
+        "ruleType": {
+            "caption": "jenis aturan",
+            "description": "jenis aturan"
+        },
+        "ruleRole": {
+            "caption": "Peran",
+            "description": "Peran yang aturan berlaku"
+        }
+    }
+}

@@ -1,0 +1,63 @@
+﻿{
+	"caption": "Settings",
+	"description": "Entity with information about system settings",
+	"connectionName": "",
+	"sqlAlias": "stngs",
+	"cacheType": "SessionEntity",
+	"descriptionAttribute": "settingKey",
+	"attributes": {
+		"settingKey": {
+			"dataType": "String",
+			"size": 150,
+			"caption": "Key",
+			"description": "Setting key. To prevent key conflicts key name must start with a model code where key is used. `ubs.numcounter.autoRegWithDeletedNumber`",
+			"allowNull": false,
+            "isUnique":true
+		},
+        "name": {
+            "dataType": "String",
+            "size": 150,
+            "caption": "Name",
+            "description": "Setting name",
+            "allowNull": false,
+            "isMultiLang":true
+        },
+        "description": {
+            "dataType": "String",
+            "size": 1024,
+            "caption": "Description",
+            "description": "Description",
+            "allowNull": true,
+            "isMultiLang":true
+        },
+        "type": {
+            "dataType": "String",
+            "size": 32,
+            "caption": "Type",
+            "description": "Value type",
+            "allowNull": true
+        },
+        "settingValue": {
+            "dataType": "String",
+            "size": 2000,
+            "caption": "Value",
+            "description": "Value",
+            "allowNull": true,
+            "isMultiLang":true
+        },
+        "defaultValue": {
+            "dataType": "String",
+            "size": 150,
+            "caption": "Default value",
+            "description": "Default value (setted by developer)",
+            "allowNull": true,
+            "isMultiLang":true
+        }
+	},
+	"mixins": {
+		"mStorage": {
+			"simpleAudit": true,
+			"safeDelete": false
+		}
+	}
+}

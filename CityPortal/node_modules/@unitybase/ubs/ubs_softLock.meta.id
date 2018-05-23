@@ -1,0 +1,26 @@
+﻿{
+    "caption": "lembut kunci",
+    "description": "lembut kunci",
+    "attributes": {
+        "entity": {
+            "caption": "Kesatuan",
+            "description": "Kesatuan"
+        },
+        "lockID": {
+            "caption": "instance ID",
+            "description": "instance ID"
+        },
+        "lockUser": {
+            "caption": "pemakai",
+            "description": "Pengguna, rekor yang mengunci"
+        },
+        "lockType": {
+            "caption": "jenis kunci",
+            "description": "jenis kunci"
+        },
+        "lockTime": {
+            "caption": "waktu kunci",
+            "description": "waktu kunci"
+        }
+    }
+}

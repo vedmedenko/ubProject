@@ -1,0 +1,40 @@
+﻿{
+    "caption": "Audit",
+    "description": "Audit perubahan keamanan",
+    "attributes": {
+        "entity": {
+            "caption": "Kesatuan"
+        },
+        "entityinfo_id": {
+            "caption": "instance ID"
+        },
+        "actionType": {
+            "caption": "Tindakan"
+        },
+        "actionUser": {
+            "caption": "pemakai",
+            "description": "pemakai"
+        },
+        "actionTime": {
+            "caption": "waktu Action"
+        },
+        "remoteIP": {
+            "caption": "terpencil IP",
+            "description": "Caller alamat IP remote"
+        },
+        "targetUser": {
+            "caption": "Target pengguna",
+            "description": "Nama pengguna yang datanya telah berubah"
+        },
+        "targetRole": {
+            "caption": "peran Target",
+            "description": "Nama peran yang datanya telah berubah"
+        },
+        "fromValue": {
+            "caption": "nilai-nilai lama"
+        },
+        "toValue": {
+            "caption": "nilai-nilai baru"
+        }
+    }
+}

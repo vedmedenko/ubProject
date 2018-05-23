@@ -1,0 +1,30 @@
+﻿{
+    "caption": "sertifikat pengguna",
+    "description": "sertifikat pengguna",
+    "attributes": {
+        "userID": {
+            "caption": "pemakai"
+        },
+        "issuer_serial": {
+            "caption": "nomor seri Emiten"
+        },
+        "issuer_cn": {
+            "caption": "Emiten caption"
+        },
+        "serial": {
+            "caption": "Nomor seri"
+        },
+        "certificate": {
+            "caption": "Sertifikat"
+        },
+        "description": {
+            "caption": "Deskripsi"
+        },
+        "disabled": {
+            "caption": "Cacat"
+        },
+        "revoked": {
+            "caption": "dicabut"
+        }
+    }
+}

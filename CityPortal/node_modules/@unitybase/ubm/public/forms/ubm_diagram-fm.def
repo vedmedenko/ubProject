@@ -1,0 +1,44 @@
+// @! "do not remove comments below unless you know what you do!"
+// @isDefault "true"
+// @entity "ubm_diagram"
+// @model "UBM"
+// @formType "auto"
+// @caption "ER diagram"
+// @description "ER diagram"
+/*global UB, Ext */
+exports.formDef = {
+    size: {
+        width: 1000,
+        height:  600
+    },
+    parentConfig: {
+        layout: { // выравниваем 
+            type: "vbox",
+            align: "stretch" //max 
+        }
+    },
+    items: [{
+        xtype: 'panel',
+        layout: 'hbox',
+        height: 35,
+        items: [{
+            attributeName: "model",
+            flex: 1
+        },{
+            attributeName: "name",
+			flex: 3,
+            labelWidth: 120,
+            //width: 350,
+            margins: '0 10 0 0'
+        }
+        ]
+    }, {
+			layout: 'fit',
+			flex: 1,
+      margins: '10 0 0 0',
+      expanded: true,
+      attributeName: "document",
+      forceMIME: "application/ubMetaDiagram",
+      documentMIME: "application/ubMetaDiagram"
+    }]
+}

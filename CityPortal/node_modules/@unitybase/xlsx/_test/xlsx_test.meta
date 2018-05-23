@@ -1,0 +1,7 @@
+﻿{
+    "caption": "XLSX test",
+    "description": "XLSX test entity",
+    "dsType": "Virtual",
+    "attributes": {
+    }
+}      

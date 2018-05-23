@@ -1,0 +1,102 @@
+﻿{
+  "caption": "Schedulers",
+  "description": "Scheduled jobs",
+  "cacheType": "None",
+  "dsType": "Virtual",
+  "descriptionAttribute": "name",
+  "documentation": "Virtual entity for show configured schedulers. Schedulers are placed in files MODEL_FOLDER/_schedulers.json. To override a existed scheduler do not modify it directly, instead create the scheduler with the same name inside your model",
+  "attributes": {
+    "ID": {
+      "dataType": "ID",
+      "allowNull": false,
+      "isUnique": true,
+      "description": "crc32(name)"
+    },
+    "name": {
+      "dataType": "String",
+      "size": 64,
+      "caption": "Job name",
+      "description": "Unique job name. Models will override a jobs with the same name in order models are listen in server configuration",
+      "allowNull": false,
+      "isUnique": true
+    },
+    "schedulingCondition": {
+      "dataType": "String",
+      "size": 1024,
+      "caption": "Condition to schedule a job",
+      "description": "Expression to be evaluated during server startup. In case result is empty or evaluated to `true` job will be scheduled",
+      "allowNull": true,
+      "defaultValue": ""
+    },
+    "cron": {
+      "dataType": "String",
+      "size": 64,
+      "caption": "Cron record",
+      "description": "A cron for job as in unix systems. Format: 'Seconds(0-59) Minutes(0-59) Hours(0-23) DayOfMonth(1-31) Months(0-11) DayOfWeek(0-6)'",
+      "allowNull": false
+    },
+    "description": {
+      "dataType": "String",
+      "size": 512,
+      "caption": "Description",
+      "description": "Job description"
+    },
+    "command": {
+      "dataType": "String",
+      "size": 256,
+      "caption": "Command",
+      "description": "Name of function to be executed in a server context"
+    },
+    "module": {
+      "dataType": "String",
+      "size": 256,
+      "caption": "Module",
+      "description": "Name of module to require with scheduler job function as a default export"
+    },
+    "singleton": {
+      "dataType": "Boolean",
+      "caption": "Singleton",
+      "description": "If `1` - only single instance of a running job is allowed",
+      "defaultValue": "1",
+      "allowNull": false
+    },
+    "runAs": {
+      "dataType": "String",
+      "size": 128,
+      "caption": "runAs",
+      "description": "A user name for a job execution",
+      "defaultValue": "admin"
+    },
+    "logSuccessful": {
+      "dataType": "Boolean",
+      "caption": "Log a Successful execution",
+      "description": "If 1 (default) then successful job execution result will be logged into `ubq_runstat`, otherwise - only errors",
+      "defaultValue": "1"
+    },
+    "overridden": {
+      "dataType": "Boolean",
+      "caption": "Overridden",
+      "description": "Indicate original job is overridden by other models",
+      "defaultValue": "0",
+      "allowNull": false
+    },
+    "originalModel": {
+      "dataType": "String",
+      "size": 256,
+      "caption": "OriginalModel",
+      "description": "A model name where original job definition file is stored",
+      "defaultValue": "",
+      "allowNull": false
+    },
+    "actualModel": {
+      "dataType": "String",
+      "size": 256,
+      "caption": "Actual model",
+      "description": "A name of model where actual job definition file is stored. Can de not equal to `originalModel` if someone overrides the job",
+      "defaultValue": "",
+      "allowNull": false
+    }
+  },
+  "mixins": {
+  }
+}

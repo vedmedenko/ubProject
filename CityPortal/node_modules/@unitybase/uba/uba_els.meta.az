@@ -1,0 +1,34 @@
+﻿{
+    "caption": "Entity Level Security(ELS)",
+    "description": "Metabaza üsullarına çıxış hüququna malik rollar",
+    "documentation": "Maddə səviyyəsinin inzibatlaşdırılması. Sistem çıxışı \"İcazə verilib və Qadağan EDİLMƏYİB\" qaydasına uyğun olaraq yoxlayır",
+    "attributes": {
+        "code": {
+            "caption": "Qayda kodu",
+            "description": "Qaydanın ELS kodu"
+        },
+        "description": {
+            "caption": "Təsvir",
+            "description": "Qaydanın təsviri"
+        },
+        "disabled": {
+            "caption": "De-aktiv edilmişdir",
+            "description": "Qayda de-aktiv edilmişdir"
+        },
+        "entityMask": {
+            "caption": "Maddənin maskası"
+        },
+        "methodMask": {
+            "caption": "Üsullar maskası",
+            "description": ""
+        },
+        "ruleType": {
+            "caption": "Qayda tipi",
+            "description": "Qayda tipi"
+        },
+        "ruleRole": {
+            "caption": "Rol",
+            "description": "Qaydanın tətbiq edildiyi rol"
+        }
+    }
+}

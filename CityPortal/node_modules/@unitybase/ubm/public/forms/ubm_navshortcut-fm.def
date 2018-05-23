@@ -1,0 +1,110 @@
+// @! "do not remove comments below unless you know what you do!"
+// @isDefault "true"
+// @entity "ubm_navshortcut"
+// @model "UBM"
+// @formType "auto"
+// @caption ""
+// @description ""
+exports.formDef = {
+    //requiredFields: ['desktopID.code', 'parentID.code'],
+    requiredFields: ['mi_treePath'],
+    size: {
+        width: 1000,
+        height: 600
+    },
+    parentConfig: {
+        layout: {
+            type: "vbox",
+            align: 'stretch'
+        },
+        defaults: {
+            layout: 'fit'
+        }
+    },
+    dockedItems: [{
+        xtype: "toolbar",
+        dock: "top",
+        items: [{
+            orderId: 6,
+            actionId: "ActionGenerateUpdateScript"
+        }]
+    }],
+    items: [{
+        attributeName: "ID",
+        readOnly: true
+    }, {
+        attributeName: "desktopID"
+    }, {
+        attributeName: "parentID",
+        fieldList: ["caption", "isFolder"],
+        whereList: {
+            onlyFolders: {
+                expression: "[isFolder]",
+                condition: "equal",
+                values: {
+                    "isFolder": true
+                }
+            }
+        }
+    }, {
+        attributeName: "caption"
+    }, {
+        attributeName: "code"
+    }, {
+      layout: 'hbox',
+      items: [
+        {attributeName: "iconCls"},
+        {html: 'Use build-in <a href="http://fontawesome.io/icons/" target="blank">Font Awersome</a> for icon classes. Example: fa fa-circle', margin: '15px 0 0 0'}
+      ]
+    }, {
+        layout: "hbox",
+        items: [{
+            attributeName: "isFolder"
+        }, {
+            attributeName: "inWindow", labelWidth: 150
+        }, {
+            attributeName: "isCollapsed"
+        }, {
+            attributeName: "displayOrder"
+        }]
+    }, {
+        xtype: 'tabpanel',
+        layout: "fit",
+        flex: 1,
+        items: [{
+            title: UB.i18n('navShortcutCode'),
+            layout: 'hbox',
+            items: [{
+                xtype: "commandbuilderentitytreepanel",
+                ubID: "entitygrid",
+                width: 150,
+                height: "100%"
+            }, {
+                xtype: "splitter"
+            }, {
+                xtype: "ubcodemirror",
+                mode: "application/x-javascript",
+                attributeName: "cmdCode",
+                style: {
+                    background: "white"
+                },
+                labelAlign: "top",
+                hideLabel: true,
+                flex: 1,
+                height: "100%"
+            }]
+        }, {
+            title: UB.i18n('navShortcutRights'),
+            xtype: "ubdetailgrid",
+            //layout: 'fit',
+            flex: 1,
+            entityConfig: {
+                entity: "ubm_navshortcut_adm",
+                method: "select",
+                fieldList: ["admSubjID"]
+            },
+            masterFields: ["ID"],
+            detailFields: ["instanceID"]
+        }]
+    }]
+}

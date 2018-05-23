@@ -1,0 +1,38 @@
+﻿{
+    "caption": "Group Roles",
+    "description": "Roles assigned to groups",
+    "connectionName": "",
+    "cacheType": "None",
+    "descriptionAttribute": "",
+    "documentation": "",
+    "attributes": {
+        "groupID": {
+            "dataType": "Entity",
+            "associatedEntity": "uba_group",
+            "caption": "Group",
+            "cascadeDelete": true, // remove all group roles while group deleted
+            "defaultView": true,
+            "allowNull": false
+        },
+        "roleID": {
+            "dataType": "Entity",
+            "associatedEntity": "uba_role",
+            "caption": "Role",
+            "description": "",
+            "defaultView": true,
+            "allowNull": false
+        }
+    },
+    "mixins": {
+        "mStorage": {
+            "simpleAudit": true,
+            "safeDelete": false
+        }
+    },
+    "dbKeys": {
+		"UK_GRPROLE_USER_ROLE": {
+			"groupID":{},
+			"roleID": {}
+		}
+	}
+}

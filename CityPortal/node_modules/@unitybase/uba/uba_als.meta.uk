@@ -1,0 +1,22 @@
+﻿{
+    "caption": "Attribute level security (ALS)",
+    "description": "Рівень атрибутивної безпеки",
+    "documentation": "",
+    "attributes": {
+        "entity": {
+            "caption": "Сутність"
+        },
+        "attribute": {
+            "caption": "Атрибут"
+        },
+        "state": {
+            "caption": "Код стану"
+        },
+        "roleName": {
+            "caption": "Назва ролі"
+        },
+        "actions": {
+            "caption": "Дозволені дії"
+        }
+    }
+}

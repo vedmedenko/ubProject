@@ -1,0 +1,93 @@
+﻿{
+	"caption": "Form",
+	"description": "Definition of interface forms",
+	"connectionName": "",
+	"sqlAlias": "form",
+	"cacheType": "SessionEntity", //Warning! do not change cache type for this entity - in case of not "SessionEntity" type local client cache clear is fail and you can got old forms on client
+	"descriptionAttribute": "code",
+	"dsType": "Virtual",
+	"documentation": "",
+	"attributes": {
+		"ID": {
+			"dataType": "ID",
+			"allowNull": false,
+			"isUnique": true
+		},
+		"code": {
+			"dataType": "String",
+			"size": 64,
+			"caption": "Form code",
+			"description": "",
+			"allowNull": false,
+			"isUnique": true
+		},
+		"description": {
+			"dataType": "String",
+			"size": 255,
+			"caption": "Description",
+			"description": ""
+		},
+		"caption": {
+			"dataType": "String",
+			"size": 128,
+			"caption": "Form caption",
+			"description": "Keep it empty to use entity name as form caption"
+		},
+		"formType": {
+			"dataType": "Enum",
+			"enumGroup": "FORM_TYPE",
+			"caption": "Form type",
+			"allowNull": false,
+			"defaultValue": "auto"
+		},
+		"formDef": {
+			"dataType": "Document",
+			"caption": "Form definition",
+			"description": "Form interface definition",
+			"storeName": "mdb"
+		},
+		"formCode":
+		{
+			"dataType": "Document",
+			"caption": "Form script",
+			"description": "JS form client logic",
+			"storeName": "mdb"
+		},
+		"model":
+		{
+			"dataType": "String",
+			"size": 32,
+			"caption": "Model",
+			"description": "Model where form is stored",
+			"documentation": "Model where form is stored. If empty - entity model is used. The purpose of this attribute is to develop a form for entities form other models"
+		},
+		"entity":
+		{
+			"dataType": "String",
+			"size": 32,
+			"caption": "Entity",
+			"description": "Entity code",
+			"documentation": "This value is used for fount default entity form"
+		},
+		"isDefault":
+		{
+			"dataType": "Boolean",
+			"caption": "Is default",
+			"description": "Is this is default entity form",
+			"documentation": "Whlie call doCmd.showForm if form code not passed as parameter client seek for form 
+							  for entity, and if exist > 1 form - form with isDefault=true is selected",
+			"allowNull": false,
+			"defaultValue": "0"
+		}
+	},
+	"mixins": {
+		"mStorage":	{
+			"simpleAudit": true,
+			"safeDelete" : false
+		}/*,
+		"softLock": {
+			"lockIdentifier": "ID",
+			"lockEntity": "ubm_form"
+		}*/
+	}
+}

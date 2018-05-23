@@ -1,0 +1,12 @@
+﻿{
+    "caption": "peran pengguna",
+    "description": "Peran ditugaskan untuk pengguna",
+    "attributes": {
+        "userID": {
+            "caption": "pemakai"
+        },
+        "roleID": {
+            "caption": "Peran"
+        }
+    }
+}

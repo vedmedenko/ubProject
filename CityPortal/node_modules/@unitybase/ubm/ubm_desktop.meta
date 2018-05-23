@@ -1,0 +1,52 @@
+﻿{
+  "caption": "Desktops",
+  "description": "Application desktops",
+  "connectionName": "",
+  "sqlAlias": "desk",
+  "cacheType": "Session",
+  "descriptionAttribute": "caption",
+  "documentation": "",
+  "attributes": [
+    {
+      "name": "caption",
+      "dataType": "String",
+      "size": 255,
+      "caption": "Desktop name",
+      "description": "",
+      "allowNull": false,
+      "isMultiLang": true
+    },
+    {
+      "name": "code",
+      "dataType": "String",
+      "size": 50,
+      "caption": "Code",
+      "documentation": "Unique desktop code. Used for version upgrade",
+      "allowNull": false,
+      "isUnique": true
+    },
+    {
+      "name": "url",
+      "dataType": "String",
+      "size": 255,
+      "caption": "URL",
+      "description": "Static server page URL which is displayed in screen centre of selected desktop"
+    },
+    {
+      "name": "isDefault",
+      "dataType": "Boolean",
+      "caption": "Dy default?",
+      "allowNull": false,
+      "defaultValue": "0"
+    }
+  ],
+  "mixins": {
+    "mStorage": {
+      "simpleAudit": true,
+      "safeDelete": true
+    },
+    "rls": {
+      "expression": "([$.currentOwner()] OR [$.currentUserInGroup(ubm_desktop,'Admin')] OR [$.currentUserOrUserGroupInAdmSubtable(ubm_desktop)])"
+    }
+  }
+}

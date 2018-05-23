@@ -1,0 +1,15 @@
+{
+ "caption": "Підрозділ", // entity name
+ "description": "Підрозділ",  // entity description
+  "attributes": {
+   "name": {
+     "caption": "Назва підрозділу",
+     "description": "Назва підрозділу"
+    },
+   "department":{
+      "caption": "Департамент"
+       }
+ 
+	
+ }
+}

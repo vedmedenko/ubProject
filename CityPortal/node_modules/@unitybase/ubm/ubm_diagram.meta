@@ -1,0 +1,41 @@
+﻿{
+	"caption": "Entity diagrams",
+	"description": "Entity relation diagrams",
+    "dsType": "Virtual",
+	"cacheType": "SessionEntity",
+	"descriptionAttribute": "name",
+	"documentation": "",
+	"attributes": {
+		"ID": {
+			"dataType": "ID",
+			"allowNull": false,
+			"isUnique": true
+		},
+		"model": {
+			"dataType": "String",
+			"size": 16,
+			"allowNull": false,
+            		"defaultValue": "UBM",
+			"caption": "Model",
+			"description": "Model code where to store diagram"
+		},
+		"name": {
+			"dataType": "String",
+			"size": 64,
+			"caption": "Name",
+			"allowNull": false
+		},
+		"document": {
+			"dataType": "Document",
+			"caption": "Diagram",
+			"description": "Diagram",
+			"allowNull": true,
+            		"storeName": "mdb"
+		}
+	},
+	"mixins": {
+		"mStorage": {
+			"simpleAudit": true
+		}
+	}
+}

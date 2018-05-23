@@ -1,0 +1,22 @@
+﻿{
+    "caption": "Messages",
+    "description": "System messages",
+    "documentation": "System messages",
+    "attributes": {
+        "messageBody": {
+            "caption": "Message"
+        },
+        "complete": {
+            "caption": "Ready to send"
+        },
+        "messageType": {
+            "caption": "Type"
+        },
+        "startDate": {
+            "caption": "Valid from"
+        },
+        "expireDate": {
+            "caption": "Valid to"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+﻿{
+    "caption": "Birdəfəlik şifrələr",
+    "description": "Birdəfəlik şifrələr",
+    "attributes": {
+        "otp": {
+            "caption": "Parol",
+            "description": "Generasiya edilmiş birdəfəlik şifrə"
+        },
+        "userID": {
+            "caption": "İstifadəçi",
+            "description": "Şifrənin generasiya edildiyi istifadəçi"
+        },
+        "uData": {
+            "caption": "Əlavə məlumatlar",
+            "description": "Əlavə məlumatlar"
+        },
+        "expiredDate": {
+            "caption": "Qüvvədə olma müddəti",
+            "description": "Qüvvədə olma müddəti"
+        },
+        "otpKind": {
+            "caption": "Şifrənin növü",
+            "description": "Şifrənin növü(Email, SMS və s.)"
+        }
+    }
+}

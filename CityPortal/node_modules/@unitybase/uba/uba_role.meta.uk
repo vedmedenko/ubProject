@@ -1,0 +1,22 @@
+﻿{
+    "caption": "Системні ролі",
+    "description": "Ролі підсистеми адміністрування",
+    "attributes": {
+        "name": {
+            "caption": "Роль",
+            "description": ""
+        },
+        "description": {
+            "caption": "Опис",
+            "description": ""
+        },
+        "sessionTimeout": {
+            "caption": "Час дії сесії",
+            "description": "Час, після якого сесія видаляється по таймауту (в хвилинах)"
+        },
+        "allowedAppMethods": {
+            "caption": "Які методи застосування можна виконувати",
+            "description": ""
+        }
+    }
+}

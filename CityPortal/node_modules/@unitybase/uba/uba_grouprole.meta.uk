@@ -1,0 +1,14 @@
+﻿{
+    "caption": "Ролі груп",
+    "description": "Ролі, призначені групам користувачів",
+    "attributes": {
+        "groupID": {
+            "caption": "Група",
+            "description": ""
+        },
+        "roleID": {
+            "caption": "Роль",
+            "description": ""
+        }
+    }
+}

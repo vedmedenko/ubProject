@@ -1,0 +1,24 @@
+﻿{
+    "caption": "Hesabat şablonları",
+    "description": "Hesabat şablonları",
+    "attributes": {
+        "model": {
+            "caption": "Model",
+            "description": "Hesabatın saxlanıldığı model"
+        },
+        "report_code": {
+            "caption": "Hesabatın şifrəsi"
+        },
+        "name": {
+            "caption": "Ad"
+        },
+        "template": {
+            "caption": "Şablon",
+            "description": "Hesabatın şablonu"
+        },
+        "code": {
+            "caption": "Javascript code",
+            "description": "Javascript code"
+        }
+    }
+}

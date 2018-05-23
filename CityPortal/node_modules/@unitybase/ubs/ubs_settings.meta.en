@@ -1,0 +1,30 @@
+﻿{
+    "caption": "Settings",
+    "description": "Entity with information about system settings",
+    "attributes": {
+        "settingKey": {
+            "caption": "Key",
+            "description": "Setting key"
+        },
+        "name": {
+            "caption": "Name",
+            "description": "Setting name"
+        },
+        "description": {
+            "caption": "Description",
+            "description": "Description"
+        },
+        "type": {
+            "caption": "Type",
+            "description": "Value type"
+        },
+        "settingValue": {
+            "caption": "Value",
+            "description": "Value"
+        },
+        "defaultValue": {
+            "caption": "Default value",
+            "description": "Default value"
+        }
+    }
+}

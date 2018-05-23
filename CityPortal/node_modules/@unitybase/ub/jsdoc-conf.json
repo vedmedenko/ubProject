@@ -1,0 +1,36 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "source": {
+    "include": ["./", "./modules"],
+    "includePattern": ".+\\.js(m|x)?$"
+  },
+  "plugins": [
+    "plugins/markdown",
+    "../ub-jsdocs/plugins/sripPFromDescription"
+  ],
+  "opts": {
+    "template": "../ub-jsdocs",
+    "readme": "./readme.md",
+    "encoding": "utf8",
+    "destination": "./doc-html"
+  },
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": false,
+    "buildInURL": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/",
+    "buildins": ["array", "arraybuffer", "boolean", "date", "error", "function", "json", "number", "object", "regexp", "string", "null"],
+    "smallSourceLink": true, // go to sources by click on the function/prop name
+    "fullTextSearch": true,
+    "hideAuthor": true, // do not show a @author tag
+    "stylesheet": "styles/ub-jsdoc.css",
+    // custom css
+    "default": {
+      "outputSourceFiles": true,
+      "staticFiles": {
+        "excludePattern": "\\.md$"
+      }
+    }
+  }
+}

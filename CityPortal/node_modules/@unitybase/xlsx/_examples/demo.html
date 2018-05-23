@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <title>Title</title>
+</head>
+<body>
+
+<table style="word-break: break-all;" border="1px" width="773" cellspacing="0" cellpadding="3px">
+    <tbody>
+    <tr style="height: 80px">
+        <td colspan="4" style="text-align: center; vertical-align: middle" >Заголовок таблицы</td>
+    </tr>
+    <tr style="height: 40px">
+        <td style="width: 3px"></td>
+        <td style="width: 180px; background-color: #becdd4; font-weight: bold; text-align: center; vertical-align: middle;">Name</td>
+        <td style="background-color: #becdd4; text-align: center; vertical-align: middle;"><strong>count</strong></td>
+        <td style="background-color: #becdd4; text-align: center; vertical-align: middle;"><strong>Sum</strong></td>
+    </tr>
+    <!--{{#data}}-->
+    <!--{{^footer}}-->
+    <tr class="tinymce_templated" data-iterate-over="data">
+        <td></td>
+        <td ><em>{{name}} - <span style="color: #ff0000;">да</span></em></td>
+        <td style="border: 1px solid #28b449; text-align: right">{{count}} <b>no</b></td>
+        <td style="text-align: right">{{sum}}</td>
+    </tr>
+    <!--{{/footer}}-->
+    <!--{{#footer}}-->
+    <tr style="height: 30px">
+        <td></td>
+        <td style="border-left: 1px solid #ff7f7f;"><em>{{name}}</em></td>
+        <td style="text-align: right">{{count}}</td>
+        <td style="border-right: 1px solid #FF7F7F; text-align: right">{{#$f}}"sum","#,##0.00"{{/$f}}</td>
+    </tr>
+    <!--{{/footer}}--> <!--{{/data}}-->
+    <tr >
+        <td colspan="3"></td>
+        <td style="text-align: center">{{#$f}}"reportDate","dd/mm/yyyy\\ h:mm"{{/$f}}</td>
+    </tr>
+    </tbody>
+</table>
+<div ></div>
+<table >
+    <tbody>
+      <tr>
+          <td style="border: 1px solid">1</td>
+          <td style="border: 1px solid">2</td>
+      </tr>
+      <tr>
+          <td colspan="2" style="border: 1px solid">3</td>
+      </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+﻿{
+    "caption": "Bentuk",
+    "description": "Definisi bentuk antarmuka",
+    "attributes": {
+        "code": {
+            "caption": "kode formulir"
+        },
+        "description": {
+            "caption": "Deskripsi"
+        },
+        "caption": {
+            "caption": "title bentuk"
+        },
+        "formType": {
+            "caption": "Jenis bentuk"
+        },
+        "formDef": {
+            "caption": "definisi bentuk",
+            "description": "definisi bentuk antarmuka"
+        },
+        "formCode": {
+            "caption": "Script Form",
+            "description": "JS logika worm klien"
+        },
+	"model": {
+	  "caption": "Model"
+	},
+        "entity": {
+            "caption": "Kesatuan",
+            "description": "kode entitas"
+        },
+        "isDefault": {
+            "caption": "Secara default",
+            "description": "bentuk badan standar"
+        }
+    }
+}

@@ -1,0 +1,86 @@
+{
+	"caption": "Entity Level Security(ELS)",
+	"description": "Describe, which role have access permissions to Entities methods",
+	"connectionName": "",
+	"cacheType": "None",
+	"sqlAlias": "els",
+	"descriptionAttribute": "",
+	"documentation": "Administering of entity level. The system checks the access by the rule (A)llowed and NOT (D)eny.
+			  User have access to method in case any user role exist in Allowed and no one user role exist in Deny.
+			  Deny enties take precedence over allow entries. This mean that if a user is a member of two groups, 
+			  one that is allowed a permission and another that is a denied the same permission, 
+			  then user is denied that permission.
+			  Rule type (C)omplement http://en.wikipedia.org/wiki/Complement_(set_theory) complement specified rights 
+			  from role Allowed methods",
+	"attributes": {
+		"code": {
+            "dataType": "String",
+            "size": 128,
+            "caption": "Rule code",
+            "description": "Code for ELS rule",
+            "documentation": "This field is used by migrations for automatically update rules. It recommended to use your model code as rule prefix.
+							We do not set this attribute to unique, because some external models use the same code for different rules.
+							But all UnityBase models set this attribute to unique value",
+            "allowNull": true
+        },
+		"description": {
+			"dataType": "String",
+			"size": 255,
+			"caption": "Description",
+			"description": "Rule description",
+			"allowNull": false		
+		},
+		"disabled":	{
+			"dataType": "Boolean",
+			"caption": "Disabled",
+			"description": "Rule is disabled",
+			"allowNull": false,
+			"defaultValue": "0"
+		},
+		"entityMask": {
+			"dataType": "String",
+			"size": 128,
+			"caption": "Entity mask",
+			"description": "",
+			"documentation": "<h4>Masks wildchars:</h4> <ul>
+					<li>*	   	Matches any contiguous characters</li>
+					<li>?	   	Matches any single characer</li>
+					<li>[abc]  	Matches a or b or c at that position</li>
+					<li>[^abc]	Matches anything but a or b or c at that position</li>
+					<li>[!abc]	Matches anything but a or b or c at that position</li>
+					<li>[a-e]  	Matches a through e at that position</li>
+					<li>[abcx-z]  Matches a or b or c or x or y or or z, as does [a-cx-z]</li>
+				</ul>
+				Example: [iu]* match any string start from either 'i' or 'u' like: 'insetr', 'inner', 'update',...",
+			"allowNull": false
+		},
+		"methodMask": {
+			"dataType": "String",
+			"size": 128,
+			"caption": "Method mask",
+			"description": "",
+			"allowNull": false
+		},
+		"ruleType": {
+			"dataType": "Enum",
+			"caption": "Rule type",
+			"description": "Is this ALLOW rule(A) or DENY rule(D) or Complements(C) rule",
+			"enumGroup": "UBA_RULETYPE",
+			"allowNull": false,
+			"defaultValue": "A"
+		},
+		"ruleRole": {
+			"dataType": "Entity",
+			"associatedEntity": "uba_role",
+			"caption": "Role",
+			"description": "Role for which the rule applies",
+			"allowNull": false
+		}
+	},
+	"mixins": {
+		"mStorage":{
+			"simpleAudit": true,
+			"safeDelete": false
+		}
+	}
+}

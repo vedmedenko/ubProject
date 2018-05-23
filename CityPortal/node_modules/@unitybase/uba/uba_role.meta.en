@@ -1,0 +1,23 @@
+﻿{
+    "caption": "System roles",
+    "description": "Administering subsystem roles",
+    "attributes": {
+        "name": {
+            "caption": "Role",
+            "description": "Role"
+        },
+        "description": {
+            "caption": "Description",
+            "description": "Description"
+        },
+        "sessionTimeout": {
+            "caption": "Session duration",
+            "description": "Time after which the session is deleted by timeout (in minutes)"
+        },
+        "allowedAppMethods": {
+            "caption": "Which application level methods are allowed",
+            "documentation": "",
+            "description": "Which application level methods are allowed"
+        }
+    }
+}

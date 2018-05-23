@@ -1,0 +1,40 @@
+﻿{
+  "caption": "Administering of desktops",
+  "sqlAlias": "admdesk",
+  "cacheType": "None",
+  "descriptionAttribute": "ID",
+  "documentation": "Administering of desktops",
+  "attributes": [
+    {
+      "name": "instanceID",
+      "dataType": "Entity",
+      "associatedEntity": "ubm_desktop",
+      "caption": "Desktop",
+      "cascadeDelete": true,
+      "description": "",
+      "allowNull": false
+    },
+    {
+      "name": "admSubjID",
+      "dataType": "Entity",
+      "associatedEntity": "uba_subject",
+      "caption": "Admin subject",
+      "cascadeDelete": true,
+      // allow delete rights for desktop while uba_role | uba_used deleted
+      "description": "",
+      "allowNull": false
+    }
+  ],
+  "mixins": {
+    "mStorage": {
+      "simpleAudit": false,
+      "safeDelete": false
+    }
+  },
+  "dbKeys": {
+    "UK_ADMDESC_INST_ADMSUBJ": {
+      "instanceID": {},
+      "admSubjID": {}
+    }
+  }
+}

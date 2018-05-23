@@ -1,0 +1,22 @@
+{
+ "caption": "Департамент", // entity name
+ "description": "Департамент",  // entity description
+ "attributes": {
+   "name": {
+     "caption": "Назва департаменту",
+     "description": "Назва департаменту"
+    },
+   "postAddr": {
+     "caption": "Адреса департаменту",
+     "description": "Адреса департаменту"
+    },
+   "phoneNum": {
+     "caption": "Телефон департаменту",
+     "description": "Телефон департаменту"
+     },
+   "roleInSystem": {
+    "caption": "Роль у системі" // caption of the object on AdminUI  
+
+    } 
+}
+}

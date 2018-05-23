@@ -1,0 +1,54 @@
+﻿{
+    "caption": "Користувачі",
+    "description": "Користувачі",
+    "attributes": {
+        "name": {
+            "caption": "Логін"
+        },
+        "description": {
+            "caption": "Опис"
+        },
+        "firstName": {
+            "caption": "Ім'я"
+        },
+        "lastName": {
+            "caption": "Прізвище"
+        },
+        "fullName": {
+            "caption": "ПІБ"
+        },
+        "gender": {
+            "caption": "Стать"
+        },
+        "email": {
+            "caption": "Email",
+            "description": "Email користувача (може бути виконистано для повідомленнь)"
+        },
+        "phone": {
+            "caption": "Телефон",
+            "description": "Телефон користувача (може бути виконистано для СМС)"
+        },
+		"avatar": {
+			"caption": "Аватар",
+			"description": "Аватар користувача (рекомендується 128x128)"
+		},
+        "uPasswordHashHexa": {
+            "caption": "Хеш пароля"
+        },
+        "disabled": {
+            "caption": "Відключений"
+        },
+        "isPending": {
+            "caption": "Очікує підтвердження",
+            "description": "Користувач очікує на підтверждення реєстрації"
+        },
+        "uData": {
+            "caption": "Додаткові дані",
+            "description": "Додаткові дані"
+        },
+        "lastPasswordChangeDate": {
+            "caption": "Дата останньої зміни пароля",
+            "description": "Дата останньої зміни пароля"
+        }
+    }
+}

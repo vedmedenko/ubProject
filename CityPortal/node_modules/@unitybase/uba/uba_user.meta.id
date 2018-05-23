@@ -1,0 +1,36 @@
+﻿{
+    "caption": "Pengguna",
+    "description": "Pengguna",
+    "attributes": {
+        "name": {
+            "caption": "Masuk",
+            "description": "Nama pengguna dalam huruf kecil"
+        },
+        "description": {
+            "caption": "Deskripsi"
+        },
+        "uPasswordHashHexa": {
+            "caption": "Password hash",
+            "description": "hash password"
+        },
+        "disabled": {
+            "caption": "Cacat",
+            "description": "Cacat"
+        },
+        "isPending": {
+            "caption": "tertunda Pendaftaran",
+            "description": "pengguna menunggu konfirmasi pendaftaran"
+        },
+        "trustedIP": {
+            "caption": "IP terbesar"
+        },
+        "uData": {
+            "caption": "uData",
+            "description": "Data tambahan"
+        },
+        "lastPasswordChangeDate": {
+            "caption": "Last password change date",
+            "description": "Last password change date"
+        }
+    }
+}

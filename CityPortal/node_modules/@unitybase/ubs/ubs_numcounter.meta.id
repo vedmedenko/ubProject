@@ -1,0 +1,14 @@
+﻿{
+    "caption": "Pendaftaran kunci meja",
+    "description": "Pendaftaran kunci meja",
+    "attributes": {
+        "regKey": {
+            "caption": "Kunci registrasi",
+            "description": "Kunci registrasi"
+        },
+        "counter": {
+            "caption": "Melawan",
+            "description": "Melawan"
+        }
+    }
+}

@@ -1,0 +1,54 @@
+﻿{
+	"caption": "Report templates",
+	"description": "Report templates",
+        "dsType": "Virtual",
+	"cacheType": "SessionEntity",
+	"descriptionAttribute": "name",
+	"documentation": "",
+	"attributes": {
+		"ID": {
+			"dataType": "ID",
+			"allowNull": false,
+			"isUnique": true
+		},
+		"model": {
+			"dataType": "String",
+			"size": 16,
+			"allowNull": false,
+		        "defaultValue": "UBS",
+			"caption": "Model",
+			"description": "Model code where to store report"
+		},
+		"report_code": {
+			"dataType": "String",
+			"size": 64,
+			"caption": "Report code",
+			"allowNull": false
+		},
+		"name": {
+			"dataType": "String",
+			"size": 64,
+			"caption": "Name",
+			"allowNull": false
+		},
+		"template": {
+			"dataType": "Document",
+			"caption": "Template",
+			"description": "Template",
+			"allowNull": true,
+            "storeName": "mdb"
+		},
+		"code": {
+			"dataType": "Document",
+			"caption": "Javascript code",
+			"description": "Javascript code",
+			"allowNull": true,
+            "storeName": "mdb"
+		}
+	},
+	"mixins": {
+		"mStorage": {
+			"simpleAudit": true
+		}
+	}
+}

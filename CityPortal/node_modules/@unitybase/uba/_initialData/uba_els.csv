@@ -1,0 +1,14 @@
+code;entityMask;methodMask;ruleType;ruleRole;description
+UBA_USER_LANGCH_EVERYONE;uba_user;changeLanguage;A;User;Allow change language for Everyone
+UBA_USER_READ_USERS;uba_user;select;A;User;Allow read users for registered user
+UBA_USER_EDIT_SUPERVISOR;uba_user;[iuda]*;A;Supervisor;Allow CUD operations on users for supervisor
+UBA_GROUP_EDIT_SUPERVISOR;uba_group;[iuda]*;A;Supervisor;Allow CUD operations on security groups for supervisor
+UBA_USER_ROLE_EDIT_SUPERVISOR;uba_userrole;[iuda]*;A;Supervisor;Allow grant a role to user for supervisor
+UBA_USER_GROUP_EDIT_SUPERVISOR;uba_usergroup;[iuda]*;A;Supervisor;Allow grant agroup to user for supervisor
+UBA_AUDIT_SELECT_ONLY;uba_audit;[^s]*;D;Everyone;Deny direct security audit operation even for all roles
+UBA_AUDIT_SECURE_EVENT;uba_audit;secureBrowserEvent;A;User;Allow insert secureBrowserEvent for authorized user
+UBA_SUBJECT_DENY;uba_subject;[iuda]*;D;Everyone;Deny direct modification of UNITY uba_subject
+UBA_AUDITTRAIL_SEL_ONLY;uba_auditTrail;[iuda]*;D;Everyone;Deny direct audit operation even for all roles
+UBA_ADVSEC_EDIT_SUPERVISOR;uba_advSecurity;[iuda]*;A;Supervisor;Allow CUD operations on advanced security for supervisor
+UBA_USERCERT_READ;uba_usercertificate;select;A;User;Allow read user certificates for registered users
+UBA_USERCERT_READ_CERT_BIN;uba_usercertificate;getCertificate;A;User;Allow read base64 representation of cert for registered users

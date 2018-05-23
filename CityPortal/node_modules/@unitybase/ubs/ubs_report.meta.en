@@ -1,0 +1,24 @@
+﻿{
+    "caption": "Report templates",
+    "description": "Report templates",
+    "attributes": {
+        "model": {
+            "caption": "Model",
+            "description": "Model code where to store report"
+        },
+        "report_code": {
+            "caption": "Report code"
+        },
+        "name": {
+            "caption": "Name"
+        },
+        "template": {
+            "caption": "Template",
+            "description": "Template"
+        },
+        "code": {
+            "caption": "Javascript code",
+            "description": "Javascript code"
+        }
+    }
+}

@@ -1,0 +1,22 @@
+﻿{
+    "caption": "Köçürülən qiymətlər",
+    "description": "Köçürülən qiymətlər",
+    "attributes": {
+        "eGroup": {
+            "caption": "Qrup"
+        },
+        "code": {
+            "caption": "Коd",
+            "description": "Qiymətin kodu"
+        },
+        "shortName": {
+            "caption": "Qısa ad"
+        },
+        "name": {
+            "caption": "Qiymətin adı"
+        },
+        "sortOrder": {
+            "caption": "Sıra №si"
+        }
+    }
+}

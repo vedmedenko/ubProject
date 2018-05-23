@@ -1,0 +1,72 @@
+// @! "do not remove comments below unless you know what you do!"
+// @isDefault "false"
+// @entity "req_depart"
+// @model "RequestList"
+// @formType "auto"
+// @caption "Departments"
+// @description "Departments"
+ //@! "do not remove comments below unless you know what you do!"
+exports.formDef = {
+    dockedItems: [{ //add method button
+        xtype: "toolbar",
+        dock: "top",
+        items: [{
+            orderId: 5,
+            actionId: "ActionReassignedAll" 
+        }]
+    }],
+    items: [
+            {
+        layout: 'hbox',
+        items: [{
+                items: [
+                    {attributeName: "ID" /**/},
+                    {attributeName: "name" /*Department Name*/},
+                    {attributeName: "roleInSystem", width:300 /*Role in System*/}
+                   ]
+             }, {
+                items: [
+                     { attributeName: "postAddr" /*Department Address*/},
+                     { attributeName: "phoneNum" /*Department Phone*/}
+
+                ]
+             }]
+
+    },
+
+         { //SubDepartment Detail Grid
+                    xtype: "ubdetailgrid",
+                    title:'Subdepartments',
+                    entityConfig: {
+                        "entity": "req_subDepart", //assotiated entity
+                        "method": "select",
+                        "fieldList": [ // displayed fields
+                            "ID",
+                            "name"
+                        ]
+                    },
+                    masterFields: ["ID"], 
+                    detailFields: ["department"] //assotiated field
+                },
+        { //Request List detail grid
+                    xtype: "ubdetailgrid",
+                    title:'Request List',
+                    entityConfig: {
+                        "entity": "req_reqList", //entity to view
+                        "method": "select",
+                        "fieldList": [ // fields to view
+                            "ID",
+                            "reqDate",
+                            "status",
+                            "reqText",
+                            "answer"
+
+                        ]
+                    },
+                    masterFields: ["ID"], 
+                    detailFields: ["department"] //filter field
+                }
+
+
+    ]
+};

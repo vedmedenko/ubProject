@@ -1,0 +1,17 @@
+﻿{
+    "caption": "Diaqramlar",
+    "description": "Maddələrin diaqramları",
+    "attributes": {
+        "model": {
+            "caption": "Model",
+            "description": "Model"
+        },
+        "name": {
+            "caption": "Ad"
+        },
+        "document": {
+            "caption": "Diaqram",
+            "description": "Maddələrin diaqramı"
+        }
+    }
+}

@@ -1,0 +1,36 @@
+﻿{
+    "caption": "Jalan pintas",
+    "description": "Shortcut untuk memulai fungsi",
+    "attributes": {
+        "desktopID": {
+            "caption": "Desktop"
+        },
+        "parentID": {
+            "caption": "folder shortcut"
+        },
+        "code": {
+            "caption": "Kode"
+        },
+        "isFolder": {
+            "caption": "Apakah folder?"
+        },
+        "caption": {
+            "caption": "caption shortcut"
+        },
+        "cmdCode": {
+            "caption": "kode perintah"
+        },
+        "inWindow": {
+            "caption": "Di jendela baru",
+            "description": "Tampilan di jendela baru"
+        },
+        "isCollapsed": {
+            "caption": "Jatuh",
+            "description": "Tampilkan runtuh pada awal pertama"
+        },
+        "displayOrder": {
+            "caption": "№ rangka",
+            "description": "Agar tampilan (dalam node saat)"
+        }
+    }
+}

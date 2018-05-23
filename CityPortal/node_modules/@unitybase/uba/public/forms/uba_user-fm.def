@@ -1,0 +1,117 @@
+// @! "do not remove comments below unless you know what you do!"
+// @isDefault "true"
+// @entity "uba_user"
+// @model "UBA"
+// @formType "auto"
+// @caption "User"
+// @description "User"
+exports.formDef = {
+    size: {
+        width: 500,
+        height: 300
+    },
+    dockedItems: [{
+        xtype: "toolbar",
+        dock: "top",
+        items: [{
+            orderId: 5,
+            actionId: "ActionChangePasswordID"
+        }]
+    }],
+    parentConfig: {
+        layout: {
+            type: "vbox",
+            align: "stretch"
+        }
+    },
+    items: [{
+        layout: {
+            type: "hbox",
+            align: "stretch"
+        },
+        items: [{
+            layout: {
+                type: "vbox",
+                align: "stretch"
+            },
+            items: [{
+                attributeName: "name"
+            }, {
+                attributeName: "firstName"
+            }, {
+                attributeName: "lastName"
+            }, {
+              attributeName: "fullName"
+            }, {
+                attributeName: "gender"
+            }, {
+                attributeName: "email"
+            }, {
+                attributeName: "phone"
+            }]
+        }, {
+            layout: {
+                type: "vbox",
+                align: "stretch"
+            },
+            items: [{
+                attributeName: "description"
+            }, {
+                attributeName: "disabled"
+            }, {
+                attributeName: "isPending"
+            }, {
+                attributeName: "trustedIP"
+            }, {
+                attributeName: "uData"
+            }]
+        }, {
+            items: [{
+                attributeName: "avatar",
+                expanded: true,
+                width: 128,
+                height: 128
+            }]
+        }]
+    }, {
+        flex: 1,
+        xtype: 'tabpanel',
+        items: [{
+            flex: 1,
+            title: 'Role',
+            xtype: "ubdetailgrid",
+            entity: "uba_userrole",
+            entityConfig: {
+                entity: "uba_userrole",
+                method: "select",
+                fieldList: ["roleID"]
+            },
+            masterFields: ["ID"],
+            detailFields: ["userID"]
+        }, {
+            flex: 1,
+            xtype: "ubdetailgrid",
+            title: 'Group',
+            entity: "uba_usergroup",
+            entityConfig: {
+                entity: "uba_usergroup",
+                method: "select",
+                fieldList: ["groupID"]
+            },
+            masterFields: ["ID"],
+            detailFields: ["userID"]
+        },{
+            flex: 1,
+            title: 'Certificate',
+            xtype: "ubdetailgrid",
+            entity: "uba_usercertificate",
+            entityConfig: {
+                entity: "uba_usercertificate",
+                method: "select",
+                fieldList: ["issuer_serial", "serial", "description", "disabled", "revoked"]
+            },
+            masterFields: ["ID"],
+            detailFields: ["userID"]
+         }]
+    }]
+};

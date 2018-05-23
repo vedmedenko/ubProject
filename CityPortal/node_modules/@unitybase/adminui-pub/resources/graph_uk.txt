@@ -1,0 +1,11 @@
+alreadyConnected=Вузли вже з'єднано
+containsValidationErrors=Знайдено помилки
+updatingDocument=Оновлюю. Зачекайте...
+updatingSelection=Оновлюю. Зачекайте...
+collapse-expand=Звернути/Розвернути
+doubleClickOrientation=Doubleclick для зміни орієнтації
+close=Закрити
+error=Помилка
+done=Зроблено
+cancel=Відміна
+ok=OK

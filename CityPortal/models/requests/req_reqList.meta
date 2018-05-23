@@ -1,0 +1,92 @@
+{
+  "caption": "request", // entity name
+  "description": "request", // entity description
+  "sqlAlias": "req",
+  "attributes": {
+    "reqDate": {
+      "dataType": "Date",
+      "caption": "Request Date",
+      "description": "Request Date",
+      "allowNull": false
+    },
+    "applicantPhone": {
+      "dataType": "String",
+      "size": 255,
+      "caption": "Applicant`s phone",
+      "description": "Applicant`s phone",
+      "allowNull": false,
+      "isMultiLang": false
+    },
+    "applicantInfo": {
+      "dataType": "String",
+      "size": 255,
+      "caption": "Applicant`s contact info",
+      "description": "Applicant`s contact info",
+      "allowNull": false,
+      "isMultiLang": false
+    },
+
+    "department": { // name of attributes (column name on AdminUI)
+      "dataType": "Entity",
+      "associatedEntity": "req_depart", // association with other entity
+      "caption": "Request department", // caption of the object on AdminUI
+      "allowNull": false //it can`t be empty.
+    },
+    "subDepartment": { // name of attributes (column name on AdminUI)
+      "dataType": "Entity",
+      "associatedEntity": "req_subDepart", // association with other entity
+      "caption": "Subdepartment", // caption of the object on AdminUI
+      "allowNull": true //it can`t be empty.
+    },
+    "reqText": {
+      "dataType": "Text",
+      "size": 2500,
+      "caption": "Text of Request",
+      "description": "Text of request",
+      "allowNull": false,
+      "isMultiLang": false
+    },
+    "reqDoc": {
+      "dataType": "Document",
+      "caption": "attach",
+      "description": "doc",
+      "storename": "attach"
+    },
+    "answer": {
+      "dataType": "Text",
+      "size": 2500,
+      "caption": "Request answer",
+      "description": "Request answer",
+      "allowNull": true,
+      "isMultiLang": false
+    },
+    "status": {
+      "dataType": "Enum",
+      "enumGroup": "REQUEST_STATUS",
+      "caption": "Status",
+      "allowNull": false
+    }
+
+, "regionList": {
+ "dataType": "Many",
+ "associatedEntity": "req_cityRegion",
+ "associationManyData": "req_cityRegion_map",
+ "caption": "List city regions",
+ "description": "List of city regions",
+ "allowNull": true
+}
+ },
+  "mixins": { // the mandatory section (can be empty)
+    "mStorage": {
+      "simpleAudit": true
+    },
+  "dataHistory" : {}, "softLock": {
+            "lockIdentifier": "ID",
+            "lockEntity": "req_reqList"
+        }, "rls": {
+      "expression": "'(' + $.currentOwner() + ' OR ' + '[department.roleInSystem] in (' + Session.userRoles + '))'"
+
+    }
+  }
+
+}

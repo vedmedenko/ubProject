@@ -1,0 +1,5 @@
+askZoom=ВВедите масштаб (%)
+properties=Свойства
+outline=Обрамление
+tasks=Задачи
+help=Помощь

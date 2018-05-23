@@ -1,0 +1,38 @@
+﻿{
+    "caption": "Yarlıq",
+    "description": "ф-и işə salınması üçün yarlıq",
+    "attributes": {
+        "desktopID": {
+            "caption": "Desktop"
+        },
+        "parentID": {
+            "caption": "Yarlıq qovluğu"
+        },
+        "code": {
+            "caption": "Коd"
+        },
+        "isFolder": {
+            "caption": "Qovluq?"
+        },
+        "caption": {
+            "caption": "Yarlığın adı",
+            "description": ""
+        },
+        "cmdCode": {
+            "caption": "Komandanın mətni"
+        },
+        "inWindow": {
+            "caption": "Ayrıca pəncərədə",
+            "description": "Ayrıca pəncərədə göstər"
+        },
+        "isCollapsed": {
+            "caption": "Çevir",
+            "description": "Birinci buraxılış zamanı çevrilmiş göstər",
+            "documentation": "Is_Folder = true olduqda mənaya malikdir. Bu qrupu ağacda çevrilmiş vəziyyətdə göstər"
+        },
+        "displayOrder": {
+            "caption": "Sıra №si",
+            "description": "Göstərmə qaydası (bu bənd çərçivəsində)"
+        }
+    }
+}

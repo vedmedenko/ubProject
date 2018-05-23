@@ -1,0 +1,546 @@
+{
+    "id": "https://unitybase.info/models/UB/schemas/entity.schema.json",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "UnityBase entity definition",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [ "caption", "attributes"],
+    "defaultProperties": ["caption", "description", "descriptionAttribute", "documentation", "attributes"],
+    "properties": {
+        "caption": {
+            "type": "string",
+	        "description": "Entity caption. Used in UI as a form/grid caption"
+        },
+        "description": {
+            "type": "string",
+	        "description": "Short information about entity. Used in hints/tips"
+        },
+        "descriptionAttribute": {
+            "type": "string",
+            "description": "Name of entity attribute, used as a display value in combobox/lookup."
+        },
+        "documentation": {
+            "type": "string",
+            "description": "Documentation for current entity. Value is used for documentation auto-generation (see `>ub cmd\\generateDoc -help`)"
+        },
+        "connectionName": {
+            "type": "string",
+            "title": "Connection",
+            "description": "Name of the connection from application's config (ubConfig.json). If empty, the default connection is used"
+        },
+        "cacheType": {
+            "type": "string",
+            "title": "Client-side cache type",
+            "enum": ["None", "SessionEntity", "Entity", "Session"],
+            "default": "None",
+            "description": "How client MAY cache entity data\n\n |Value  |Description\n|-\n| `None`|No cache performed\n| `Entity`| Client validate data version on server for each request \n| `SessionEntity` | Client validate data version on server ONLY for first request in the current session\n | `Session` | First request to data in the current session ALWAYS retrieve data from server. All other requests got a local copy"
+        },
+        "sqlAlias": {
+            "type": "string",
+            "description": "Short entity name for DDL operations (constraints, AS alias in select, etc.) Should be unique within the domain!",
+            "maxLength": 8
+        },
+        "dsType": {
+            "type": "string",
+            "enum": ["Normal", "External", "System", "Virtual"],
+            "default": "Normal",
+            "description": "Data source type\n\n|Value  |Description\n|-\n| `Normal` | UnityBase fully control this entity including DDL generation \n| `External` | DDL for such tables not under UB control \n| `System` | UnityBase server add Entity of this type to domain during startup (there is no *.meta file exist). For example FullTextSearch, many-to-many relation and so on;\n | `Virtual`| No DDL generation performed for such entity. Entity meta-file exist in domain, but data manipulation method is overrated in scripts, so we do not know how to generate DDL. See ubm_form for example."
+        },
+        "attributes": {
+            "type": "array",
+            "_format": "table",
+            "description": "Entity attributes, can be either array or object with keys=attributeName",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [ "name", "dataType", "caption"],
+                "defaultProperties": ["name", "dataType", "caption"],
+                "headerTemplate": "{{i1}}.{{self.name}}({{self.dataType}})",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 20,
+                        "description": "Name of attribute"
+                    },
+                    "dataType": {
+                        "type": "string",
+                        "enum": ["String", "Int", "BigInt", "Float", "Currency", "Boolean", "DateTime", "Text", "ID", "Entity", "Document", "Many", "Enum", "BLOB", "Date", "TimeLog"],
+                        "description": "Attribute data type",
+                        "default": "String"
+                    },
+                    "caption": {
+                        "type": "string",
+                        "description": "UI attribute caption"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description (hint) for UI"
+                    },
+                    "documentation": {
+                        "type": "string",
+                        "description": "Text for documentation generation"
+                    },
+                    "allowNull": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Server generates `not null` check constraint in the database. Client(UI) checks this field is mandatory"
+                    },
+                    "isUnique": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Server generates check constraint in database (considering the soft-delete etc.)"
+                    },
+                    "allowSort": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Allow `order by` clause by this attribute"
+                    },
+                    "defaultValue": {
+                        "type": "string",
+                        "description": "Value of attribute by default. Server generates DDL: `DEFAULT defaultValue` in database. For a DateTime attributes macros 'currentDate' & 'maxDate' can be used"
+                    },
+                    "defaultView": {
+                        "type": "boolean",
+                        "description": "If `true` - client shows this field in auto-build forms and in '*' select fields. Always false for `Entity` type attribute, `true` for other"
+                    },
+                    "readOnly": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Attribute readOnly flag, only for client"
+                    },
+                    "customSettings": {
+                        "type": "object",
+                        "description": "Optional settings for attribute. Can be any valid JSON",
+                        "additionalProperties": true
+                    },
+                    "size": {
+                        "type": "number",
+                        "description": "Required for `dataType=String` - maximum length of string (in characters)"
+                    },
+                    "isMultiLang": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Required for `dataType=String` - provide ability to store attribute value using different languages, described in the application config. Fur multilingual attributes DDL generator add additional columns to database table with suffix _Lang (_ru, _uk etc)"
+                    },
+                    "associatedEntity": {
+                        "type": "string",
+                        "description": "Required for `dataType=Entity|Many` - name of associated entity. On the database level we create indeх & constraint"
+                    },
+                    "associationAttr": {
+                        "type": "string",
+                        "description": "Required for `dataType=Entity` and attribute does not point to the entity primary key, when associated entity attribute name can be specified here",
+                        "default": "ID"
+                    },
+                    "generateFK": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Possible for `dataType=Entity` - set this to `false` to bypass foreign key generation on the database level"
+                    },
+                    "associationManyData": {
+                        "type": "string",
+                        "description": "Required for `dataType=Many` - name of the many-to-many table. UB create system entity with this name and generate table during DDL generation"
+                    },
+                    "enumGroup": {
+                        "type": "string",
+                        "description": "Required for `dataType=Enum` - Group code from ubm_enum.eGroup"
+                    },
+                    "cascadeDelete": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Possible for `dataType=Entity` - enable cascade delete on application serve level (not on database level)"
+                    },
+                    "storeName": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Possible for `dataType=Document` - name of store from `storeConfig` application config section. If emtpy - store with `isDefault=true` will be used"
+                    },
+                    "mapping": {
+                        "type": "array",
+                        "description": "Optional mapping of attribute to physical DB structure",
+                        "_format": "table",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [ "name", "expression"],
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "enum": ["AnsiSQL", "Oracle", "Oracle9", "Oracle10", "Oracle11", "MSSQL", "MSSQL2008", "MSSQL2012", "SQLite3", "PostgreSQL", "Firebird"],
+                                    "description": "Dialect of expression definition. For DB independent mapping (for example - mapping to field) use AnsiSQL dialect"
+                                },
+                                "expressionType": {
+                                    "type": "string",
+                                    "enum": ["Field", "Expression"],
+                                    "default": "Field",
+                                    "description": "Type of expression\n\n|Value  |Description\n|-\n| `Field` | Mapping to table/view column\n | `Expression` | SQL expression"
+                                },
+                                "expression": {
+                                    "type": "string",
+                                    "description": "Either column name or valid SQL expression"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "mapping": {
+            "type": "array",
+            "description": "By default server map entity to the DB table with the same name. Optionally it can be changed here",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [ "name", "selectName", "execName"],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "enum": ["AnsiSQL", "Oracle", "Oracle9", "Oracle10", "Oracle11", "MSSQL", "MSSQL2008", "MSSQL2012", "SQLite3", "PostgreSQL", "Firebird"],
+                        "description": "Dialect of expression definition. For DB independent mapping (for example - mapping to field) use AnsiSQL dialect"
+                    },
+                    "selectName": {
+                        "type": "string",
+                        "description": "DB table or view name used in SELECT clauses"
+                    },
+                    "execName": {
+                        "type": "string",
+                        "description": "DB table name for insert,update,delete operations"
+                    },
+                    "pkGenerator": {
+                        "type": "string",
+                        "description": "For custom primary key generation. Either sequence name or SQL statements, where last statement is select returning one row.\n See [Primary Key Guide](/api/server/#!/guide/primarykey)"
+                    }
+                }
+            }
+        },
+        "mixins": {
+            "type": "object",
+            "description": "Collection of current entity mixins",
+            "properties": {
+                "mStorage": {
+                    "type": "object",
+                    "description": "Provide CRUID operations for entity database persistent",
+                    "properties": {
+                        "simpleAudit": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Simple row level audit (will add `mi_owner`, `mi_createDate`, `mi_createUser`, `mi_modifyDate`, `mi_modifyUser` attributes). Required for caching"
+                        },
+                        "safeDelete": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Soft delete (add `mi_deleteDate` and `mi_deleteUser` attributes)"
+                        }
+                    }
+                },
+                "audit": {
+                    "type": "object",
+                    "description": "Turned ON by default! All `insert`/`update`/`delete` low level operation will be logged to `uba_auditTrail`",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "To forcibly disable auditing - set this to false (not recommended)"
+                        },
+                        "parentEntity": {
+                            "type": "string",
+                            "description": "If this entity used only as a detail and we want to note in audit for which maser changes made - note it here"
+                        },
+                        "parentIdentifier": {
+                            "type": "string",
+                            "description": "Name of attribute point to `parentEntity`"
+                        }
+                    }
+                },
+                "rls": {
+                    "type": "object",
+                    "description": "Provide Row Level Security. See [RLS tutorial](https://unitybase.info/Server/index.html#!/guide/rls) for details",
+                    "required": [ "expression"],
+                    "properties": {
+                        "historyType": {
+                            "type": "string",
+                            "description": "Any valid JavaScript expression. Executed in this entity context (`this===current entity`). Must return valid WHERE part of SQL statement (added to main WHERE using AND condition"
+                        }
+                    }
+                },
+                "aclRls": {
+                  "type": "object",
+                  "description": "Access Control List Row Level Security. WARNING - configuration will be changed",
+                  "properties":{
+                    "useUnityName": {
+                      "type": "boolean",
+                      "description": "In case this entity have a `unity` mixin and `useUnityName` is `true` then ACL will be stored for the parent entity. This important for situation of many descendants of one entity"
+                    },
+                    "onEntities": {
+                      "type": "array",
+                      "description": "Subjects (entity names) for ACL",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "entityConnectAttr": {
+                      "type": "string",
+                      "description": "this entity attribute name for join to acl entity. TODO - explain"
+                    },
+                    "exprMethod": {
+                      "type": "string",
+                      "description": "name of entity method, which create subquery structure. TODO - explain"
+                    },
+                    "selectionRule": {
+                      "enum": ["Exist", "In"],
+                      "default": "Exists",
+                      "description": "Rule for connect subquery by according aclRls table. `In` - connect by IN condition (example: ... AND mainEntity.ID IN (SELECT instanceID FROM aclRlsTable WHERE ...))\n`Exist` - connect by EXIST condition (example: ... AND EXISTS (SELECT 1 FROM aclRlsTable WHERE ...))"
+                    },
+                    "model": {
+                      "type": "string",
+                      "description": "model name where to place the entity for storing aclRLS. If empy will be calculated. TODO - explain or remove!"
+                    }
+                  }
+                },
+                "als": {
+                  "type": "object",
+                  "description": "Attribute level security. TODO - explain",
+                  "properties": {
+                    "stateAttrName": {
+                      "type": "string",
+                      "description": "Attribute for automatic read current record state value. If empty, mixin read state value from entity `getRecordCurrState` method"
+                    },
+                    "stateEnumGroup": {
+                      "type": "string",
+                      "description": "`ubm_enum` group with possible entity states"
+                    },
+                    "optimistic": {
+                      "type": "boolean",
+                      "default": true,
+                      "description": "is attribute security level optimistic(true) or pessimistic(false)"
+                    }
+                  }
+                },
+                "dataHistory": {
+                  "type": "object",
+                  "description": "Provide historical data storage",
+                  "properties": {
+                    "historyType": {
+                      "enum": ["NewBecomesActual", "OriginalRemainsActual"],
+                      "default": "NewBecomesActual",
+                      "description": "What record during `newversion` method call becomes actual\n\n|Value  |Description\n|-\n| `NewBecomesActual` | `newversion(__mip_ondate)` method will insert new row with actual data, set it actuality period to [__mip_ondate; infinity]. Original row actuality period is updated to [starDate; __mip_ondate)\n| `OriginalRemainsActual` | `newversion(__mip_ondate)` method will update a current row data, set current row actuality period to [__mip_ondate, infinity] and insert new row with original data and actuality period [startDate; __mip_ondate)"
+                    }
+                  }
+                },
+                "unity": {
+                  "type": "object",
+                  "description": "`inheritance`",
+                  "required": [ "entity"],
+                  "properties": {
+                    "entity": {
+                      "type": "string",
+                      "description": "Parent entity code"
+                    },
+                    "attributeList": {
+                      "type": "array",
+                      "description": "List of parent entity attribute names to keep in sync with this entity",
+                      "_format": "table",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "mapping": {
+                      "type": "object",
+                      "description": "If this entity attribute names differ from parent you can specify mapping from self attributes to parent attributes in form `\"mapping\": {\"thisAttrName\": \"parentAttrName\", ....}"
+                    },
+                    "defaults": {
+                      "type": "object",
+                      "description": "The list of constants to be inserted into parent entity. Keys of `defaults` is a parent entity attribute names, key values is a constant to be inserted into this attribute"
+                    }
+                  }
+                },
+                "tree": {
+                  "type": "object",
+                  "description": "Materialized path mixin. Will add `mi_treePath` to entity attribute and store where current row `Materialized path` - a string representing row hierarchy `rootID/textLevelID/.../currentRowID`",
+                  "required": ["parentAttr"],
+                  "properties": {
+                    "parentAttr": {
+                      "type": "string",
+                      "description": "entity attribute code, where a `parentID` is stored"
+                    },
+                    "pathAttr": {
+                      "type": "string",
+                      "description": "Attribute used to build the path. Usually this is `ID`",
+                      "default": "ID"
+                    },
+                    "pathDelimiter": {
+                      "type": "string",
+                      "maxLength": 1,
+                      "description": "path delimiter",
+                      "default:": "/"
+                    }
+                  }
+                },
+                "fts": {
+                  "type": "object",
+                  "description": "Full Text Search mixin. See [FTS tutorial](/api/server/#!/guide/fts) for details",
+                  "properties":{
+                    "dataProvider": {
+                      "enum": ["Mixin", "Entity"],
+                      "description": "How to obtain a data for full text index. \n\n|Value  |Description\n|-\n| `Mixin` | String for FTS are building automatically using `indexedAttributes` array. \n| `Entity` | developer must provide a entity method `getFTSData` which return a FTS string"
+                    },
+                    "scope": {
+                      "enum": ["Connection", "Entity", "Custom"],
+                      "default": "Connection",
+                      "description": "model of using fts datasource table in current fts index. Deprecated?"
+                    },
+                    "connectionName": {
+                      "type": "string",
+                      "description": "Name of a `SQLite3` connection from `application.connections`",
+                      "default": "ftsDefault"
+                    },
+                    "indexedAttributes": {
+                      "type": "array",
+                      "description": "If `dataProvider` is set to `Mixin` - array of attribute names to include into FTS index",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "descriptionAttribute": {
+                      "type": "string",
+                      "description": "Attribute to display in a first column of search result. By default equal to entity `descriptionAttribute` property value"
+                    },
+                    "dateAttribute": {
+                      "type": "string",
+                      "description": "Attribute to use as a DATE filter during FRS search. If empyy - filtration by date not supported"
+                    },
+                    "attrNameBracket": {
+                      "type": "string",
+                      "default": "z",
+                      "description": "If data provider is `Mixin` then every attribute name in indexed string will starting and closing with this value. Example: for attribute `name` index string will be \"znamez:'Some name'\""
+                    }
+                  }
+                },
+                "softLock": {
+                  "type": "object",
+                  "description": "Soft lock mixin. Server blocks record for entity by 'lockEntity' param and 'lockIdentifier' identifier. TODO - explain",
+                  "properties":{
+                    "lockIdentifier": {
+                      "type": "string",
+                      "description": "Attribute, that identifies entity record (for example `ID` for main entity or `docID` for detail entity)"
+                    },
+                    "lockEntity": {
+                      "type": "string",
+                      "description": "Entity, that will be locked (for detail entity can be differ with the current entity)"
+                    }
+                  }
+                },
+                "clobTruncate": {
+                  "type": "object",
+                  "description": "mixin for truncate Oracle clob field data to short string",
+                  "properties":{
+                    "attributeList": {
+                      "type": "object",
+                      "description": "List of attributes for truncate: {\"attr1\": {\"size\": 100 }, ....}",
+                      "additionalProperties": true
+                    }
+                  }
+                }
+            }
+        },
+        "dbKeys": {
+            "type": "object",
+            "description": "Optional **unique** indexes definition for DDLGenerator. Keys is a index names. TIP: For attributes with `isUnique` set to `true` indexes are created automatically. This section is mainly for creating complex (several fields) unique indexes",
+            "additionalProperties": true,
+            "properties": {
+                "nameOfYourIndex": {
+                    "type": "object",
+                    "description": "Unique index definition. Each key is a attribute code to be included to index",
+                    "additionalProperties": true,
+                    "properties": {
+                        "yourAttributeCode": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "description": "Attribute to be included in index",
+                            "properties":{
+                                "sort": {
+                                    "type": "string",
+                                    "description": "Sort order",
+                                    "enum": ["ASC", "DESC"],
+                                    "default": "ASC"
+                                },
+                                "func": {
+                                    "type": "string",
+                                    "description": "Function used to create `functional` index. Only for Oracle"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "dbExtensions": {
+            "type": "object",
+            "description": "Optional additional indexes, foreign keys and check constraints definition for DDLGenerator.\n TIP: For attributes with `dataType`=`Entity` indexes and ref. constraint are created automatically",
+            "additionalProperties": true,
+            "properties": {
+                "nameOfYourFeature": {
+                    "type": "object",
+                    "required": [ "type"],
+                    "description": "Feature definition. DB object with the same name will be created in DB (index name, check name, FK name)",
+                    "additionalProperties": true,
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": ["INDEX", "FK", "CHECK"],
+                            "description": "Feature type"
+                        },
+                        "definition": {
+                            "type": "object",
+                            "description": "Database independent feature definition (preferred over dialect definition)",
+                            "properties": {
+                                "keys": {
+                                    "type": "object",
+                                    "description": "For feature with `type`=`INDEX` - list of attributes to be included in the index",
+                                    "additionalProperties": true,
+                                    "properties": {
+                                        "yourAttributeCode": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "description": "Attribute to be included in index",
+                                            "properties": {
+                                                "sort": {
+                                                    "type": "string",
+                                                    "description": "Sort order",
+                                                    "enum": ["ASC", "DESC"],
+                                                    "default": "ASC"
+                                                },
+                                                "func": {
+                                                    "type": "string",
+                                                    "description": "Function used to create `functional` index. Only for Oracle"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "check": {
+                                    "type": "string",
+                                    "description": "for feature with `type`=`CHECK` - check constraint definition. Example: `attributeName1 > 0`"
+                                },
+                                "isUnique": {
+                                    "type": "boolean",
+                                    "description": "Is this is UNIQUE index definition feature"
+                                }
+                            }
+                        },
+                        "yourSQLDialect": {
+                            "type": "object",
+                            "description": "Direct SQL dialect feature definition. UnityBase server only checks, that object with this name exists in database. \n **WARNING**: Preferred way is define features via `definition`",
+                            "additionalProperties": false,
+                            "properties": {
+                                "expression": {
+                                    "type": "string",
+                                    "description": "SQL statement for feature creation. Example: `CREATE UNIQUE INDEX UIDX_CODE on ubt_dictionary(code, filterValue)`"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

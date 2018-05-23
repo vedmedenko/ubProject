@@ -1,0 +1,83 @@
+﻿{
+	"caption": "User certificates",
+	"description": "User certificates",
+	"connectionName": "",
+	"sqlAlias": "usrcer",
+	"cacheType": "None",
+	"descriptionAttribute": "description",
+	"documentation": "used for Certificate authentification ",
+	"attributes": {
+           "userID": {
+              "dataType": "Entity",
+              "associatedEntity": "uba_user",
+              "caption": "User",
+              "description": "",
+              "allowNull": false
+           },
+		"issuer_serial":	{
+			"dataType": "String",
+			"size": 512,
+			"caption": "Issuer",
+			"description": "Issuer tag of cerificate",
+			"allowNull": false
+		},
+		"issuer_cn":	{
+			"dataType": "String",
+			"size": 512,
+			"caption": "Issuer caption",
+			"description": "",
+			"allowNull": true
+		},
+		"serial":	{
+			"dataType": "String",
+			"size": 100,
+			"caption": "Serial number",
+			"description": "Serial number of cerificate",
+			"allowNull": false
+		},
+		"certificate":	{
+			"dataType": "BLOB",
+			"caption": "Certificate",
+			"description": "Binary data of certificate",
+			"allowNull": false,
+			"isUnique": false
+		},
+		"description": {
+			"dataType": "String",
+			"size": 512,
+			"caption": "Description"
+		},	
+		"disabled": {
+			"dataType": "Boolean",
+			"caption": "Disabled",
+			"description": "disabled",
+			"allowNull": false,
+			"defaultValue": "0"
+		},
+		"revoked": {
+			"dataType": "Boolean",
+			"caption": "Revoked",
+			"description": "Revoked",
+			"allowNull": false,
+			"defaultValue": "0"
+		},
+		"revocationDate": {
+			"dataType": "DateTime",
+			"caption": "Revocation date",
+			"description": "Revocation date",
+			"allowNull": true
+		}
+	},
+	"dbKeys": { 
+		"uidx_usercert": {
+                	"serial": {},
+                	"issuer_serial": {},
+                	"userID" : {}
+		}
+	},
+	"mixins": {
+		"mStorage":	{
+			"simpleAudit": true
+		}
+	}
+}

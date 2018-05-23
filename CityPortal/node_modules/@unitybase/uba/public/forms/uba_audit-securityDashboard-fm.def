@@ -1,0 +1,131 @@
+// @! "do not remove comments below unless you know what you do!"
+// @isDefault "false"
+// @entity "uba_audit"
+// @formType "custom"
+// @caption "Security dashboard"
+// @description "Supervisor security dashboard"
+Ext.define('UBA.securityDashboard', {
+  extend: 'Ext.form.Panel',
+  autoScroll: true,
+  layout: 'border',
+  items: [{
+    xtype: 'toolbar',
+    region: 'north',
+    items: [{
+      text: UB.i18n('clear'),
+      handler: function () {
+        this.up('panel').loggingEl.innerHTML = '<div>Monitoring restarted at ' + new Date().toLocaleString() + '</div>'
+      }
+    }]
+  }, {
+    xtype: 'box',
+    id: 'audit-dashboard-log', // html: '<div id="audit-dashboard-log">Initializing...</div>',
+    region: 'center',
+    text: 'Initializing...'
+  }, {
+    xtype: 'box',
+    id: 'audit-dashboard-stat',
+    region: 'south',
+    height: 30
+  }],
+
+  keepAliveIntervalID: null,
+
+  addLineToLog: function (htmlText) {
+    this.loggingEl.insertAdjacentHTML('afterbegin', '<div>' + htmlText + '<div>')
+  },
+
+  onGetNewEvent: function (message) {
+    var data = JSON.parse(message)
+        // ID: 329612071370753
+        // actionTime: "2016-07-20T15:12:27.000Z"
+        // actionType: "SECURITY_VIOLATION"
+        // actionUser: "?"
+        // entity: "uba_user"
+        // entityinfo_id: 0
+        // fromValue: "ELS: User "simple" Reason "user is blocked or not exists""
+        // remoteIP: "fe80::b83b:79df:9b0b:7864%63"
+    var html, style
+    var actionDescription = data.fromValue || data.targetUser || ''
+    if (data.actionType === 'SECURITY_VIOLATION') {
+      style = 'color:red'
+    } else if (data.actionType === 'LOGIN_FAILED') {
+      style = 'color:magenta'
+    } else if (data.actionType === 'LOGIN') {
+      style = 'color:green'
+    } else {
+      style = 'color:blue'
+    }
+    var actionEnum = UB.core.UBEnumManager.getById('AUDIT_ACTION', data.actionType)
+    var actionTitle = actionEnum ? actionEnum.get('name') : data.actionType
+
+    if ((data.actionType === 'INSERT') || (data.actionType === 'DELETE')) {
+      if (data.targetRole) {
+        actionDescription = ' role "' + data.targetRole + '" is ' + (data.actionType === 'INSERT' ? ' added ' : ' removed ') + ' for user "' + data.targetUser + '" by user "' + data.actionUser + '"'
+      } else {
+        actionDescription = ' user "' + data.targetUser + '" is ' + (data.actionType === 'INSERT' ? ' added ' : ' removed ') + '" by user "' + data.actionUser + '"'
+      }
+    }
+    html = UB.format('<span style="{2};display:flex"><span style="width:120px">{0}</span><span style="width:150px">{3}</span> <span style="width:200px">{1}</span> {4}</span>',
+        Ext.Date.format(new Date(data.actionTime), 'd.m G:H:s'), data.remoteIP, style, actionTitle, actionDescription)
+    this.addLineToLog(html)
+  },
+
+  initComponent: function () {
+    this.loggingEl = null
+    this.onGetNewEventBinded = this.onGetNewEvent.bind(this)
+    this.on('boxready', this.initializeAfterBoxReady.bind(this))
+    this.callParent(arguments)
+  },
+
+  disconnectListener: null,
+  reconnectListener: null,
+  getStat: function () {
+    var me = this
+    $App.connection.get('stat').then(function (statResult) {
+      me.statElm.innerHTML = '<b>Server statistics:</b> ' + JSON.stringify(statResult.data)
+    }).done()
+  },
+
+  initializeAfterBoxReady: function () {
+    var me = this
+    me.loggingEl = document.getElementById('audit-dashboard-log')
+    me.statElm = document.getElementById('audit-dashboard-stat')
+    me.statElm.innerText = 'Server statistics'
+    var notifier = $App.connection.ubNotifier
+    if (notifier.supported) {
+      UB.Repository('ubs_settings').attrs(['settingKey', 'settingValue'])
+                .where('settingKey', '=', 'UBA.securityDashboard.supervisorUser').selectAsObject()
+                .done(function (res) {
+                  me.getStat()
+                  me.supervisorUser = (res.length === 1 ? res[0].settingValue : 'admin')
+                  if ($App.connection.userLogin() === me.supervisorUser) {
+                    me.keepAliveIntervalID = setInterval(me.getStat.bind(me), 3000)
+                    notifier.on('uba_audit_notifier', me.onGetNewEventBinded)
+                    me.disconnectListener = me.addLineToLog.bind(me, '<span style="color:red">WebSocket is disconnected. Monitoring is broken!</span>')
+                    notifier.on('disconnected', me.disconnectListener)
+                    me.reconnectListener = me.addLineToLog.bind(me, 'WebSocket (re)connected. Monitoring is working..')
+                    notifier.on('connected', me.reconnectListener)
+                    me.addLineToLog('<div>Monitoring started at ' + new Date().toLocaleString() + '</div>')
+                  } else {
+                    me.addLineToLog('<div>Monitoring NOT started-only <strong>' + me.supervisorUser + '</strong> user able to listen to monitoring events</div>')
+                  }
+                })
+    } else {
+      me.addLineToLog('<div>Monitoring NOT started - WebSockets support is disabled on the server side</div>')
+    }
+  },
+
+  onRemoved: function () {
+    var notifier = $App.connection.ubNotifier
+    this.loggingEl = null
+    if (this.keepAliveIntervalID) {
+      clearInterval(this.keepAliveIntervalID)
+    }
+    if (notifier.supported) {
+      notifier.removeListener('uba_audit_notifier', this.onGetNewEventBinded)
+      notifier.removeListener('disconnected', this.disconnectListener)
+      notifier.removeListener('connected', this.reconnectListener)
+    }
+  }
+})

@@ -1,0 +1,52 @@
+//@! "do not remove comments below unless you know what you do!"
+//@isDefault "false"
+//@entity "uba_els"
+//@model "UBA"
+//@formType "auto"
+//@caption "Method rights"
+//@description "Method rights"
+/*global UB, Ext */
+exports.formDef = {
+    size: {
+        width: 300,
+        height: 400
+    },
+
+    parentConfig: {
+        layout: {
+            type: "vbox",
+            align: "stretch"
+        }
+    },
+
+    items: [{
+        attributeName: "disabled"
+    }, {
+        attributeName: "code"
+    }, {
+        attributeName: "entityMask"
+    }, {
+        attributeName: "methodMask"
+    }, {
+        attributeName: "ruleRole"
+    }, {
+        attributeName: "ruleType"
+    }, {
+        attributeName: "description"
+    }, {
+        xtype: "label",
+        style: {
+            color: "red"
+        },
+        text: "Warning: changes take effect after server reboot. "
+    }, {
+        xtype: "label",
+        style: {
+            color: "green"
+        },
+        text: " Deny entries take precedence over allow entries. This mean that if a user is a member of two groups, one that is allowed a permission and another that is a denied the same permission, then user is denied that permission"
+    }, {
+      xtype: "label",
+      html: $App.domainInfo.entities.uba_els.attributes.entityMask.documentation
+    }]
+}

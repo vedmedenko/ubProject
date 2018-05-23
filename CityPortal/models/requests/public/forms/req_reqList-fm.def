@@ -1,0 +1,60 @@
+// @! "do not remove comments below unless you know what you do!"
+// @isDefault "false"
+// @entity "req_reqList"
+// @model "RequestList"
+// @formType "auto"
+// @caption "My Request List"
+// @description "reqList"
+exports.formDef = {
+  parentConfig: {
+    layout: {
+      type: "vbox",
+      align: 'stretch'
+    }
+  },
+  items: [
+    {
+      layout: {
+        type: 'hbox' //Horizontal positioning of elements
+      },
+      items: [
+        {
+          attributeName: "reqDate", // Request Date
+          flex: 1                   // Proportional width of the element
+        },
+        {
+          attributeName: "status",
+          flex:3 
+        }
+      ]
+    },
+    {
+      layout: {
+        type: 'hbox' //  Horizontal positioning of elements
+      },
+      items: [
+        {
+          attributeName: "department" ,/*Request department*/
+          flex: 2 // Proportional width of the element
+        },
+        {
+          attributeName: "subDepartment", /* Subdepartment */
+          flex:3 
+        }
+      ]
+    },
+    { attributeName: "applicantPhone" /*Applicant`s phone*/},
+    { attributeName: "applicantInfo" /*Applicant`s contact info*/},
+    { attributeName: "reqText" /*Text of Request*/},
+    { attributeName: "answer" /*Request answer*/},
+    { attributeName: "regionList" /*Regions name*/},
+    {
+  attributeName: "reqDoc",
+  expanded: true,            // Show on form
+  height: 200,
+  layout: 'auto',            // Auto width
+  contentTypeMapping: {'image/jpeg': 'UB.ux.UBImg'}
+
+}
+  ]
+};

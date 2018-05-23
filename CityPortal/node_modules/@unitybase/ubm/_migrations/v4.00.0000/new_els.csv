@@ -1,0 +1,2 @@
+code;entityMask;methodMask;ruleType;ruleRole;description
+UBM_READ_USERS;ubm*;select;A;User;Allow read all UBM model entities for User

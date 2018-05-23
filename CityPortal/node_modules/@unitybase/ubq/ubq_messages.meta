@@ -1,0 +1,63 @@
+﻿{
+	"caption": "Message queue",
+	"description": "Message queue",
+	"connectionName": "",
+	"sqlAlias": "mqm",
+	"cacheType": "None",
+	"descriptionAttribute": "",
+	"documentation": "Store messages posted by producers. Concumers read messages from this table and run corresponding tasks",
+	"attributes": {
+		"queueCode": {
+			"dataType": "String",
+			"size": 16,
+			"caption": "Queue code",
+			"description": "Consumer determinate handler by this code. for each queCode must be consumer which handle it",
+			"allowNull": false
+		},
+		"msgCmd": {
+			"dataType": "String",
+			"size": 2000,
+			"caption": "Command",
+			"description": "Command for receiver. Contain JSON serialized object with command parameters. Command must contain attributes receiver understand"
+		},
+		"msgData": {
+			"dataType": "Text",
+			"caption": "Message data",
+			"description": "Additional data for message. May contain Base64 encoded binary data"
+		},
+		"msgPriority": {
+			"dataType": "Int",
+			"caption": "Priority",
+			"description": "Priority of messages. 1=High, 0=Low, default 0",
+			"defaultValue": "0",
+			"allowNull": false
+		},
+		"completeDate": {
+			"dataType": "DateTime",
+			"caption": "Complete date",
+			"allowNull": true
+		}
+	},
+	"mixins": {
+		"mStorage": {
+			"simpleAudit": true,
+			"safeDelete" : false
+		}
+	},
+    "dbExtensions": {
+		"IDX_UBQ_MESSAGES_QCCD": {
+			"type": "INDEX",
+			"definition": {
+				"keys": {
+					"queueCode": {
+						"sort": "ASC"
+					},
+					"completeDate": {
+						"sort": "ASC"
+					}
+				},
+				"isUnique": false
+			}
+		}
+    }
+}

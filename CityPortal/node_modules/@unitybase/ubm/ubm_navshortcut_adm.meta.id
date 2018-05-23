@@ -1,0 +1,12 @@
+﻿{
+    "caption": "Administrasi dari panel navigasi",
+    "description": "",
+    "attributes": {
+        "instanceID": {
+            "caption": "Jalan pintas"
+        },
+        "admSubjID": {
+            "caption": "Subjek administrasi"
+        }
+    }
+}

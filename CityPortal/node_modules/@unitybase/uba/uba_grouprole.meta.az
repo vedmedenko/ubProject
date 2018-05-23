@@ -1,0 +1,14 @@
+﻿{
+    "caption": "İstifadəçi qrup",
+    "description": "İstifadəçiyə təyin edilmiş qrup",
+    "attributes": {
+        "groupID": {
+            "caption": "Qrup",
+            "description": ""
+        },
+        "roleID": {
+            "caption": "Rol",
+            "description": ""
+        }
+    }
+}

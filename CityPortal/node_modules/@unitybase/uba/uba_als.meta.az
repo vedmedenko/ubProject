@@ -1,0 +1,22 @@
+﻿{
+    "caption": "Attribute level security (ALS)",
+    "description": "Atributiv təhlükəsizliyin səviyyəsi",
+    "documentation": "",
+    "attributes": {
+        "entity": {
+            "caption": "Obyekt"
+        },
+        "attribute": {
+            "caption": "Atribut  "
+        },
+        "state": {
+            "caption": "Vəziyyət şifrəsi"
+        },
+        "roleName": {
+            "caption": "Roluhn adı"
+        },
+        "actions": {
+            "caption": "İcazəli əməliyyatlar"
+        }
+    }
+}

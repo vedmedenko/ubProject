@@ -1,0 +1,38 @@
+﻿{
+    "caption": "Form",
+    "description": "Definition of interface forms",
+    "attributes": {
+        "code": {
+            "caption": "Form code"
+        },
+        "description": {
+            "caption": "Description"
+        },
+        "caption": {
+            "caption": "Form title"
+        },
+        "formType": {
+            "caption": "Form type",
+            "description": "Form definition type (auto or custom)"
+        },
+        "formDef": {
+            "caption": "Form definition",
+            "description": "Form interface definition"
+        },
+        "formCode": {
+            "caption": "Form script",
+            "description": "JS worm client logic"
+        },
+	"model": {
+	  "caption": "Model"
+	},
+        "entity": {
+            "caption": "Entity",
+            "description": "Entity code"
+        },
+        "isDefault": {
+            "caption": "By default",
+            "description": "Default entity form"
+        }
+    }
+}

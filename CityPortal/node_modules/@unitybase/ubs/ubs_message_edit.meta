@@ -1,0 +1,54 @@
+{
+	"caption": "Message",
+	"description": "System messanges",
+	"connectionName": "",
+	"sqlAlias": "msgEdit",
+	"cacheType": "None",
+	"descriptionAttribute": "ID",
+	"documentation": "System messages",
+	"attributes": {
+		"messageBody": {
+			"dataType": "Text",
+			"caption": "Message",
+			"allowNull": true
+		},
+		"complete": {
+			"dataType": "Boolean",
+			"caption": "Redy to send",
+			"defaultValue": "0",
+			"allowNull": false
+		},
+		"messageType": {
+			"dataType": "Enum",
+			"enumGroup": "UBS_MESSAGE_TYPE",
+			"defaultValue": "",
+			"caption": "Type",
+			"allowNull": false
+		},
+		"startDate": {
+			"dataType": "DateTime",
+			"caption": "Start date",
+			"allowNull": false
+		},
+		"expireDate": {
+			"dataType": "DateTime",
+			"caption": "Expire date",
+			"allowNull": false
+		}
+	},
+	"mixins": {
+		"mStorage": {
+			"simpleAudit": true,
+			"safeDelete": true
+		},
+		"audit": {
+            		"enabled": true 
+		}
+	},
+	"mapping": { 
+		"AnsiSQL": {
+			"selectName": "ubs_message",
+			"execName": "ubs_message"
+		}
+	}
+}

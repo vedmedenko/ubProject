@@ -1,0 +1,42 @@
+﻿{
+    "caption": "Audit",
+    "attributes": {
+        "entity": {
+            "caption": "Entity"
+        },
+        "entityinfo_id": {
+            "caption": "Instance ID"
+        },
+        "actionType": {
+            "caption": "Action",
+            "description": "Action"
+        },
+        "actionUser": {
+            "caption": "User",
+            "description": "User"
+        },
+        "actionTime": {
+            "caption": "Action time",
+            "description": "Action time"
+        },
+        "remoteIP": {
+            "caption": "Remote IP",
+            "description": "Caller remote IP address"
+        },
+        "fromValue": {
+            "caption": "Old values"
+        },
+        "toValue": {
+            "caption": "New values"
+        },
+        "targetUser": {
+            "caption": "Target user",
+            "description": "The user name for which the data has changed"
+        },
+        "targetRole": {
+            "caption": "Target role",
+            "description": "The role name for which the data has changed"
+        }
+    },
+    "description": "Security changes audit"
+}

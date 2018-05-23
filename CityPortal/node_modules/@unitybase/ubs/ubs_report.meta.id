@@ -1,0 +1,24 @@
+﻿{
+    "caption": "laporan template",
+    "description": "laporan template",
+    "attributes": {
+        "model": {
+            "caption": "Model",
+            "description": "Kode Model tempat untuk menyimpan laporan"
+        },
+        "report_code": {
+            "caption": "laporan kode"
+        },
+        "name": {
+            "caption": "Nama"
+        },
+        "template": {
+            "caption": "Template",
+            "description": "Template"
+        },
+        "code": {
+            "caption": "kode Javascript",
+            "description": "kode Javascript"
+        }
+    }
+}

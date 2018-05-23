@@ -1,0 +1,32 @@
+﻿{   
+	"caption": "Registration key counter",
+	"description": "Registration key counter",
+	"connectionName": "",
+	"sqlAlias": "nuco",
+	"descriptionAttribute": "",
+	"cacheType": "None",
+	"attributes": {
+		"regKey": {
+			"dataType": "String",
+			"size": 255,
+			"caption": "Registration key",
+			"description": "Registration key",
+			"allowNull": false,
+			"isMultiLang": false,
+			"isUnique": true
+		},				
+		"counter": {
+			"dataType": "ID",
+			"caption": "Counter",
+			"description": "Counter",
+			"allowNull": false
+		}
+	},
+	"mixins": {
+		"mStorage": {
+			"simpleAudit":false,
+			"safeDelete":false
+        },
+		"audit": {"enabled": false}
+	}
+}

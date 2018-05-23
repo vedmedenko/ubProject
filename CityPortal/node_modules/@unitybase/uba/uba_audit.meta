@@ -1,0 +1,87 @@
+﻿{
+	"caption": "Security audit",
+	"description": "Security audit",
+	"connectionName": "",
+	"sqlAlias": "saud",
+	"cacheType": "None",
+	"descriptionAttribute": "entity",
+	"documentation": "All changes to UBA model entities (except uba_als & uba_subject) + user login related event are logged here",
+	"attributes": {
+		"entity": {
+			"dataType": "String",
+			"size": 32,
+			"caption": "Entity code",
+			"allowNull": false
+		},
+		"entityinfo_id": {
+			"dataType": "ID",
+			"caption": "Instance ID",
+			"allowNull": false
+		},
+		"actionType": {
+			"dataType": "Enum",
+			"enumGroup": "AUDIT_ACTION",
+			"caption": "Action",
+			"allowNull": false
+		},
+		"actionUser": {
+            "dataType": "String",
+            "size": 128,
+			"caption": "User",
+			"description": "User, who perform the action",
+			"allowNull": false
+		},
+		"actionTime": {
+			"dataType": "DateTime",
+			"caption": "Action time",
+			"allowNull": false
+		},
+		"remoteIP": {
+			"dataType": "String",
+			"size": 40,
+			"caption": "Remote IP",
+            "description": "Caller remote IP address. NULL in case of localhost"
+		},
+        "targetUser": {
+            "dataType": "String",
+            "size": 128,
+            "caption": "Target user",
+            "description": "The user name for which the data has changed",
+            "allowNull": true
+        },
+        "targetRole": {
+            "dataType": "String",
+            "size": 128,
+            "caption": "Target role",
+            "description": "The role name for which the data has changed",
+            "allowNull": true
+        },
+		"fromValue": {
+			"dataType": "Text",
+			"caption": "Old values",
+			"allowNull": true
+		},
+		"toValue": {
+			"dataType": "Text",
+			"caption": "New values",
+			"allowNull": true
+		}
+	},
+	"mixins": {
+		"mStorage": {
+			"simpleAudit": false,
+			"safeDelete": false
+		},
+		"audit": {
+        	"enabled": false
+		}
+	},
+    "dbExtensions":{
+        "idx_saud_targetUser": {
+            "type": "INDEX",
+            "definition":{
+                "keys": { "targetUser": {} }
+            }
+        }
+    }
+}

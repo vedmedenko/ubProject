@@ -1,0 +1,11 @@
+//@! "do not remove comments below unless you know what you do!"
+//@isDefault "false"
+//@entity "ubs_message_recipient"
+//@formType "auto"
+//@caption "Получатель"
+//@description "ubs_message_recipient"
+exports.formDef = {
+	items: [
+		{ attributeName: "userID" /*Пользователь*/}
+	]
+};

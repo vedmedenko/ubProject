@@ -1,0 +1,36 @@
+﻿{
+    "caption": "Audit",
+    "description": "Audit",
+    "attributes": {
+        "entity": {
+            "caption": "Kesatuan"
+        },
+        "entityinfo_id": {
+            "caption": "instance ID"
+        },
+        "actionType": {
+            "caption": "Tindakan"
+        },
+        "actionUser": {
+            "caption": "pemakai"
+        },
+        "actionTime": {
+            "caption": "waktu Action"
+        },
+        "remoteIP": {
+            "caption": "terpencil IP"
+        },
+        "fromValue": {
+            "caption": "nilai-nilai lama"
+        },
+        "toValue": {
+            "caption": "nilai-nilai baru"
+        },
+        "parentEntity": {
+            "caption": "Induk nama entitas"
+        },
+        "parentEntityInfo_id": {
+            "caption": "Induk contoh ID"
+        }
+    }
+}

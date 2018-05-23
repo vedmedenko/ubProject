@@ -1,0 +1,12 @@
+﻿{
+    "caption": "Administrasi dari desktop",
+    "description": "",
+    "attributes": {
+        "instanceID": {
+            "caption": "Desktop"
+        },
+        "admSubjID": {
+            "caption": "subjek Admin"
+        }
+    }
+}

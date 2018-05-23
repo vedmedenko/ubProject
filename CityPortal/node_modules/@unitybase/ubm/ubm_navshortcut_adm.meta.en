@@ -1,0 +1,12 @@
+﻿{
+    "caption": "Administering of navigation panel",
+    "description": "Description",
+    "attributes": {
+        "instanceID": {
+            "caption": "Shortcut"
+        },
+        "admSubjID": {
+            "caption": "Subject of administration"
+        }
+    }
+}

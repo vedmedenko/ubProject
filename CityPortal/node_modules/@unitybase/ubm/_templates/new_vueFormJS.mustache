@@ -1,0 +1,10 @@
+﻿exports.formCode = {
+    data: {
+        message: 'Hello Vue.js!'
+    },
+    methods:{
+		btnClick: function(model){
+			$App.dialogInfo(model.$data.message).done(function(){model.$data.message = model.$data.message + '!' });
+        }
+    }
+}
